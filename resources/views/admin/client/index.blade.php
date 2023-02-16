@@ -43,6 +43,8 @@
                   <th>Email</th>
                   <th>Rank</th>
                   <th>VPS</th>
+                  <th>Habbos</th>
+                  <th>Opcionais</th>
                   <th>Status</th>
                   <th>Ações</th>
                 </tr>
@@ -82,11 +84,21 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->rank }}</td>
-                      <td>
-                        <a href="{{ route('client-vps', $user->id) }}">
-                          {{ $user->servers()->count() }}
-                        </a>
-                      </td>
+                    <td>
+                      <a href="{{ route('client-vps', $user->id) }}">
+                        {{ $user->servers()->count() }}
+                      </a>
+                    </td>
+                    <td>
+                      <a href="{{ route('client-habbos', $user->id) }}">
+                        {{ $user->habbos()->count() }}
+                      </a>
+                    </td>
+                    <td>
+                      <a href="{{ route('client-optionals', $user->id) }}">
+                        {{ $user->optionals()->count() }}
+                      </a>
+                    </td>
                     <td>{{ $user->status }}</td>
                     <td>
                       <a href="{{ route('edit-client', $user->id) }}" class="btn btn-success">

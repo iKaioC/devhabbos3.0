@@ -55,19 +55,23 @@ class User extends Authenticatable
 
     public function habbos()
     {
-        return $this->belongsToMany(Habbo::class, 'user_habbo')->withPivot('product_type');
+        return $this->belongsToMany(Habbo::class, 'user_habbo')
+            ->withPivot('product_type', 'status')
+            ->select('habbos.*', 'user_habbo.status', 'product_type');
     }
 
     public function servers()
     {
         return $this->belongsToMany(Server::class, 'user_server')
             ->withPivot('pay', 'status', 'product_type')
-            ->select('servers.*', 'user_server.pay', 'user_server.status');
+            ->select('servers.*', 'user_server.pay', 'user_server.status', 'product_type');
     }
 
     public function optionals()
     {
-        return $this->belongsToMany(Optional::class, 'user_optional')->withPivot('product_type');
+        return $this->belongsToMany(Optional::class, 'user_optional')
+            ->withPivot('status', 'pay', 'product_type')
+            ->select('optionals.*', 'user_optional.pay', 'user_optional.status', 'product_type');
     }
 
     public function testimonials()

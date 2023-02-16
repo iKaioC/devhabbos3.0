@@ -249,7 +249,7 @@ h6 {
 }
 
 .card-title {
-  padding: 20px 0 15px 0;
+  /* padding: 20px 0 15px 0; */
   font-size: 18px;
   font-weight: 500;
   color: #012970;
@@ -844,6 +844,11 @@ h6 {
 .dashboard .revenue-card .card-icon {
   color: #2eca6a;
   background: #e0f8e9;
+}
+
+.dashboard .optionals-card .card-icon {
+  color: #c43530;
+  background: #f8e0e0;
 }
 
 .dashboard .customers-card .card-icon {

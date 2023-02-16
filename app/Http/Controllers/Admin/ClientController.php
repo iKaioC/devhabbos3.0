@@ -65,5 +65,19 @@ class ClientController extends Controller
         $servers = $user->servers()->select('servers.*', 'user_server.status', 'user_server.pay')->get();
         return view('admin.client.servers', compact('servers', 'user'));
     }  
+
+    public function showHabbos($id)
+    {
+        $user = User::findOrFail($id);
+        $habbos = $user->habbos()->select('habbos.*', 'user_habbo.status')->get();
+        return view('admin.client.habbos', compact('habbos', 'user'));
+    }
+
+    public function showOptionals($id)
+    {
+        $user = User::findOrFail($id);
+        $optionals = $user->optionals()->select('optionals.*', 'user_optional.status')->get();
+        return view('admin.client.optionals', compact('optionals', 'user'));
+    }
     
 }
