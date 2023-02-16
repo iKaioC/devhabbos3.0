@@ -2,46 +2,20 @@
 
 @section('content')
 
+  <link rel="stylesheet" href="{{ asset('client/css/ticketstable.css') }}">
+
   <div>
-
-    <style>
-    html,
-    body,
-    .intro {
-    height: 100%;
-    }
-
-    table td,
-    table th {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    }
-
-    thead th {
-    color: #fff;
-    }
-
-    .card {
-    border-radius: .5rem;
-    }
-
-    .table-scroll {
-    border-radius: .5rem;
-    }
-
-    .table-scroll table thead th {
-    font-size: 1rem;
-    }
-    thead {
-    top: 0;
-    position: sticky;
-    }
-    </style>
 
     @if(session('message'))
       <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle me-1"></i> {{ session('message') }}
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @endif
+
+    @if (session()->has('error'))
+      <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-1"></i> {{ session('error') }}
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif
@@ -64,8 +38,8 @@
         <div class="card">
           <div class="card-header">
             <h5>Meus Tickets
-              <a href="{{ route('client-dashboard') }}" class="btn btn-primary float-end">
-                <i class="bi bi-database-add"></i> Voltar
+              <a href="{{ route('tickets-create') }}" class="btn btn-primary float-end">
+                <i class="bi bi-ticket-detailed"></i> Abrir Ticket
               </a>
             </h5>
           </div>

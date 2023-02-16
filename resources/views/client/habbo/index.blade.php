@@ -2,43 +2,9 @@
 
 @section('content')
 
+  <link rel="stylesheet" href="{{ asset('client/css/ticketstable.css') }}">
+
   <div>
-
-    <style>
-    html,
-    body,
-    .intro {
-    height: 100%;
-    }
-
-    table td,
-    table th {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    }
-
-    thead th {
-    color: #fff;
-    }
-
-    .card {
-    border-radius: .5rem;
-    }
-
-    .table-scroll {
-    border-radius: .5rem;
-    }
-
-    .table-scroll table thead th {
-    font-size: 1rem;
-    }
-    thead {
-    top: 0;
-    position: sticky;
-    }
-    </style>
-
     @if(session('message'))
       <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle me-1"></i> {{ session('message') }}
@@ -65,7 +31,7 @@
           <div class="card-header">
             <h5>Servidores Habbo
               <a href="{{ route('client-dashboard') }}" class="btn btn-primary float-end">
-                <i class="bi bi-database-add"></i> Voltar
+                <i class="bi bi-arrow-left"></i> Voltar
               </a>
             </h5>
           </div>
@@ -89,10 +55,9 @@
                                   <th scope="col">Ver</th>
                                 </tr>
                               </thead>
+
                               <tbody>
-
                                 @foreach ($habbos as $habbo)
-
                                   <div class="modal fade" id="habbosinfo{{ $habbo->id }}" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                       <div class="modal-content">
@@ -106,27 +71,27 @@
                                             <li class="list-group-item">
                                               <i class="bi bi-book me-1 text-primary"></i>
                                               <b>Nome do Serviço:</b> {{ $habbo->name }}
-                                              </li>
+                                            </li>
 
-                                              <li class="list-group-item">
-                                                <i class="bi bi-database me-1 text-danger"></i>
-                                                <b>Emulador:</b> {{ $habbo->emulator }}
-                                              </li>
+                                            <li class="list-group-item">
+                                              <i class="bi bi-database me-1 text-danger"></i>
+                                              <b>Emulador:</b> {{ $habbo->emulator }}
+                                            </li>
 
-                                              <li class="list-group-item">
-                                                <i class="bi bi-window-fullscreen me-1 text-warning"></i>
-                                                <b>CMS:</b> {{ $habbo->cms }}
-                                              </li>
+                                            <li class="list-group-item">
+                                              <i class="bi bi-window-fullscreen me-1 text-warning"></i>
+                                              <b>CMS:</b> {{ $habbo->cms }}
+                                            </li>
 
-                                              <li class="list-group-item">
-                                                <i class="bi bi-ticket-detailed me-1 text-info"></i>
-                                                <b>Idioma:</b> {{ $habbo->language }}
-                                              </li>
+                                            <li class="list-group-item">
+                                              <i class="bi bi-ticket-detailed me-1 text-info"></i>
+                                              <b>Idioma:</b> {{ $habbo->language }}
+                                            </li>
 
-                                              <li class="list-group-item">
-                                                <i class="bi bi-check-circle me-1 text-success"></i>
-                                                <b>Valor Pago:</b> R$ {{ $habbo->price }} Reais
-                                              </li>
+                                            <li class="list-group-item">
+                                              <i class="bi bi-check-circle me-1 text-success"></i>
+                                              <b>Valor Pago:</b> R$ {{ $habbo->price }} Reais
+                                            </li>
                                           </ul>
                                         </div>
 
@@ -136,10 +101,15 @@
                                       </div>
                                     </div>
                                   </div>
-
+                                  
                                   <tr>
-                                    <td style="font-size: 14px;">{{ $habbo->name }}</td>
-                                    <td style="font-size: 14px;">{{ $habbo->product_type }}</td>
+                                    <td style="font-size: 14px;">
+                                      {{ $habbo->name }}
+                                    </td>
+
+                                    <td style="font-size: 14px;">
+                                      {{ $habbo->product_type }}
+                                    </td>
 
                                     <td>
                                       <span class="badge border-{{ $habbo->status === 'Ativo' ? 'success' :   ($habbo->status === 'Cancelado' ? 'muted' : 'warning') }} border-1 text-{{ $habbo->status === 'Ativo' ? 'success' : ($habbo->status === 'Cancelado' ? 'muted' : 'warning') }}">
@@ -160,9 +130,7 @@
                                       </button>
                                     </td>
                                   </tr>
-
                                 @endforeach
-
                               </tbody>
                             </table>
                           </div>
@@ -174,11 +142,9 @@
               </div>
             </div>
           </section>
-
         </div>
       </div>
     </div>
-
   </div>
-
+  
 @endsection

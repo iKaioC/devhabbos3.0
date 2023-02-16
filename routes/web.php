@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ArchiveController;
+use App\Http\Controllers\Admin\ClientController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\VpsController;
@@ -10,12 +12,14 @@ use App\Http\Controllers\Admin\ServerController;
 use App\Http\Controllers\Web\HabboWebController;
 use App\Http\Controllers\Admin\OptionalController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Used\ServerController as UsedServerController;
 use App\Http\Controllers\Web\OptionalWebController;
 use App\Http\Controllers\Client\HabboClientDashboard;
 use App\Http\Controllers\Client\ServerClientController;
 use App\Http\Controllers\Client\TicketClientController;
 use App\Http\Controllers\Client\OptionalClientDashboard;
 use App\Http\Controllers\Client\DashboardClientController;
+use App\Http\Controllers\Client\TestimonialClientController;
 use App\Http\Controllers\Client\TicketCommentClientController;
 
 /*
@@ -60,6 +64,7 @@ Route::prefix('client')->middleware(['auth'])->group(function () {
     Route::get('user/remove-image', [UserController::class, 'removeImage'])->name('user-remove-image');
 
     Route::post('user/change-password', [UserController::class, 'changePassword'])->name('user-change-password');
+    // End Client Panel
 
     // Service Tickets
     Route::get('/tickets', [TicketClientController::class, 'index'])->name('tickets-index');
@@ -68,7 +73,11 @@ Route::prefix('client')->middleware(['auth'])->group(function () {
     Route::get('/tickets/{ticket}', [TicketClientController::class, 'edit'])->name('tickets-update');
     Route::post('/tickets/{ticket}/comments', [TicketCommentClientController::class, 'store'])
   ->name('ticket-comments-store');
+    // End Service Tickets
 
+    // Client Testimonials
+    Route::get('/testimonials', [TestimonialClientController::class, 'index'])->name('testimonial-index');
+    // End Client Testimonials
 });
 // End Client Routes
 
@@ -115,6 +124,36 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::put('optional/{optional}', 'update')->name('update-optional');
 
         Route::delete('optional/{optional}', 'destroy')->name('optional-destroy');
+    });
+
+    // Used Services
+    Route::get('used/servers', [UsedServerController::class, 'index'])->name('used-servers');
+
+    // Archives Routes
+    Route::controller(ArchiveController::class)->group(function () {
+        Route::get('archives', 'index')->name('admin-archives');
+
+        Route::get('archive/create', 'create')->name('create-archive');
+        Route::post('archive', 'store')->name('store-archive');
+
+        Route::get('archive/{archive}/edit', 'edit')->name('edit-archive');
+        Route::put('archive/{archive}', 'update')->name('update-archive');
+
+        Route::delete('archive/{archive}', 'destroy')->name('archive-destroy');
+    });
+
+    // Clients Routes
+    Route::controller(ClientController::class)->group(function () {
+        Route::get('clients', 'index')->name('admin-clients');
+
+        Route::get('client/create', 'create')->name('create-client');
+        Route::post('client', 'store')->name('store-client');
+
+        Route::get('client/{user}/edit', 'edit')->name('edit-client');
+        Route::put('client/{user}', 'update')->name('update-client');
+
+        // Client Services Useds
+        Route::get('client/{id}/vps', 'showVps')->name('client-vps');
     });
 
 });

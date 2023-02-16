@@ -51,6 +51,15 @@
                   @error('slug')<small class="text-danger">{{ $message }}</small>@enderror
                 </div>
 
+                <div class="col-md-12">
+                  <label class="form-label">Categoria:</label>
+                  <select name="category" id="category" class="form-select">
+                    <option value="Habbo">Habbo</option>
+                    <option value="Windows">Windows</option>
+                    <option value="Outro">Outro</option>
+                  </select>
+                </div>
+
                 <div class="col-md-6">
                   <label class="form-label">Tag1:</label>
                   <input type="text" name="tag1" class="form-control">

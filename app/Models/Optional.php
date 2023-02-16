@@ -14,6 +14,7 @@ class Optional extends Model
     protected $fillable = [
         'name',
         'slug',
+        'category',
         'tag1',
         'tag2',
         'tag3',

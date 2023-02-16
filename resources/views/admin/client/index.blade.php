@@ -13,11 +13,11 @@
 
     {{-- Page Title --}}
     <div class="pagetitle">
-      <h1>Opcionais Habbo</h1>
+      <h1>Clientes (Usuários)</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active">Opcionais Habbo</li>
+          <li class="breadcrumb-item active">Clientes</li>
         </ol>
       </nav>
     </div>
@@ -28,8 +28,8 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Opcionais Habbo
-              <a href="{{ route('create-optional') }}" class="btn btn-primary float-end">
+            <h5>Clientes
+              <a href="{{ route('create-client') }}" class="btn btn-primary float-end">
                 <i class="bi bi-database-add"></i> Adicionar
               </a>
             </h5>
@@ -40,31 +40,31 @@
               <thead>
                 <tr>
                   <th>Nome</th>
-                  <th>Categoria</th>
-                  <th>Tag1</th>
-                  <th>Tag2</th>
-                  <th>Preço</th>
+                  <th>Email</th>
+                  <th>Rank</th>
+                  <th>VPS</th>
+                  <th>Status</th>
                   <th>Ações</th>
                 </tr>
               </thead>
 
               <tbody>
-                @foreach ($optionals as $optional)
+                @foreach ($users as $user)
 
                 <div class="modal fade" id="deleteModal" tabindex="-1">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title">Deletar Opcional</h5>
+                        <h5 class="modal-title">Deletar Usuário</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
             
-                      <form action="{{ route('optional-destroy', $optional->id) }}" method="post">
+                      <form action="#" method="post">
                         @csrf
                         @method('DELETE')
             
                         <div class="modal-body">
-                          Você tem certeza que deseja deletar este Opcional Habbo?
+                          Você tem certeza que deseja deletar este arquivo?
                         </div>
             
                         <div class="modal-footer">
@@ -79,17 +79,17 @@
 
                 
                   <tr>
-                    <td>{{ $optional->name }}</td>
-                    <td>{{ $optional->category }}</td>
-                    <td>{{ $optional->tag1 }}</td>
-                    <td>{{ $optional->tag2 }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->rank }}</td>
+                      <td>
+                        <a href="{{ route('client-vps', $user->id) }}">
+                          {{ $user->servers()->count() }}
+                        </a>
+                      </td>
+                    <td>{{ $user->status }}</td>
                     <td>
-                      <span class="badge bg-success">
-                        <i class="bi bi-currency-dollar"></i> {{ $optional->price }}
-                      </span>
-                    </td>
-                    <td>
-                      <a href="{{ route('edit-optional', $optional->id) }}" class="btn btn-success">
+                      <a href="{{ route('edit-client', $user->id) }}" class="btn btn-success">
                         <i class="bi bi-pencil-square"></i>
                       </a>
                       <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger">
@@ -100,7 +100,6 @@
                 @endforeach
               </tbody>
             </table>
-            <div>{{ $optionals->links() }}</div>
           </div>
         </div>
       </div>

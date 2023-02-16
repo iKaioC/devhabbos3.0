@@ -11,7 +11,8 @@ class TicketClientController extends Controller
 {
     public function index()
     {
-        $tickets = Ticket::with('user')->get();
+        $user = auth()->user();
+        $tickets = $user->tickets()->with('user')->get();
         return view('client.ticket.index', compact('tickets'));
     }
 
@@ -22,6 +23,11 @@ class TicketClientController extends Controller
 
     public function edit(Ticket $ticket)
     {
+        $user = auth()->user();
+        if ($ticket->user_id !== $user->id) {
+            return redirect()->route('tickets-index')->with('error', 'Você não tem permissão para acessar este ticket!');
+        }
+    
         $ticket->load('user', 'comments.user');
         return view('client.ticket.edit', compact('ticket'));
     }
@@ -40,11 +46,5 @@ class TicketClientController extends Controller
         $ticket->save();
     
         return redirect()->route('tickets-index')->with('success', 'Ticket criado com sucesso!');
-    }    
-
-    public function show(Ticket $ticket)
-    {
-        $ticket->load('user', 'comments.user');
-        return view('tickets.show', compact('ticket'));
     }
 }

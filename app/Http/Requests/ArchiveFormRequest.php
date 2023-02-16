@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OptionalFormRequest extends FormRequest
+class ArchiveFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,14 +26,8 @@ class OptionalFormRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'slug' => ['required', 'string'],
-            'category' => ['required', 'string'],
-            'tag1' => ['required', 'string'],
-            'tag2' => ['required', 'string'],
-            'tag3' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'price' => ['required', 'string'],
-            'icon' => ['nullable'],
-            'color' => ['nullable'],
+            'link' => ['required', 'string'],
         ];
     }
 }

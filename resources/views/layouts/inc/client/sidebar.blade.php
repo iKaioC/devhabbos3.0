@@ -40,7 +40,7 @@
       </li><!-- End Extras Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{{ route('testimonial-index') }}">
           <i class="bi bi-chat"></i>
           <span>Depoimentos</span>
         </a>

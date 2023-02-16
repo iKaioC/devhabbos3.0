@@ -2,42 +2,9 @@
 
 @section('content')
 
+<link rel="stylesheet" href="{{ asset('client/css/ticketstable.css') }}">
+
   <div>
-
-    <style>
-    html,
-    body,
-    .intro {
-    height: 100%;
-    }
-
-    table td,
-    table th {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    }
-
-    thead th {
-    color: #fff;
-    }
-
-    .card {
-    border-radius: .5rem;
-    }
-
-    .table-scroll {
-    border-radius: .5rem;
-    }
-
-    .table-scroll table thead th {
-    font-size: 1rem;
-    }
-    thead {
-    top: 0;
-    position: sticky;
-    }
-    </style>
 
     @if(session('message'))
       <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
@@ -65,7 +32,7 @@
           <div class="card-header">
             <h5>Servidores VPS
               <a href="{{ route('client-dashboard') }}" class="btn btn-primary float-end">
-                <i class="bi bi-database-add"></i> Voltar
+                <i class="bi bi-arrow-left"></i> Voltar
               </a>
             </h5>
           </div>

@@ -30,6 +30,7 @@ class OptionalController extends Controller
         $optional = new Optional;
         $optional->name = $validatedData['name'];
         $optional->slug = Str::slug($validatedData['name']);
+        $optional->category = $validatedData['category'];
         $optional->tag1 = $validatedData['tag1'];
         $optional->tag2 = $validatedData['tag2'];
         $optional->tag3 = $validatedData['tag3'];
@@ -55,6 +56,7 @@ class OptionalController extends Controller
 
         $optional->name = $validatedData['name'];
         $optional->slug = Str::slug($validatedData['name']);
+        $optional->category = $validatedData['category'];
         $optional->tag1 = $validatedData['tag1'];
         $optional->tag2 = $validatedData['tag2'];
         $optional->tag3 = $validatedData['tag3'];

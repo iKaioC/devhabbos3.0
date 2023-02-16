@@ -13,11 +13,11 @@
 
     {{-- Page Title --}}
     <div class="pagetitle">
-      <h1>Opcionais Habbo</h1>
+      <h1>Arquivos</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active">Opcionais Habbo</li>
+          <li class="breadcrumb-item active">Arquivos</li>
         </ol>
       </nav>
     </div>
@@ -28,8 +28,8 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Opcionais Habbo
-              <a href="{{ route('create-optional') }}" class="btn btn-primary float-end">
+            <h5>Arquivos
+              <a href="{{ route('create-archive') }}" class="btn btn-primary float-end">
                 <i class="bi bi-database-add"></i> Adicionar
               </a>
             </h5>
@@ -40,31 +40,29 @@
               <thead>
                 <tr>
                   <th>Nome</th>
-                  <th>Categoria</th>
-                  <th>Tag1</th>
-                  <th>Tag2</th>
-                  <th>Preço</th>
+                  <th>Slug</th>
+                  <th>Link</th>
                   <th>Ações</th>
                 </tr>
               </thead>
 
               <tbody>
-                @foreach ($optionals as $optional)
+                @foreach ($archives as $archive)
 
                 <div class="modal fade" id="deleteModal" tabindex="-1">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title">Deletar Opcional</h5>
+                        <h5 class="modal-title">Deletar Arquivo</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
             
-                      <form action="{{ route('optional-destroy', $optional->id) }}" method="post">
+                      <form action="{{ route('archive-destroy', $archive->id) }}" method="post">
                         @csrf
                         @method('DELETE')
             
                         <div class="modal-body">
-                          Você tem certeza que deseja deletar este Opcional Habbo?
+                          Você tem certeza que deseja deletar este arquivo?
                         </div>
             
                         <div class="modal-footer">
@@ -79,17 +77,11 @@
 
                 
                   <tr>
-                    <td>{{ $optional->name }}</td>
-                    <td>{{ $optional->category }}</td>
-                    <td>{{ $optional->tag1 }}</td>
-                    <td>{{ $optional->tag2 }}</td>
+                    <td>{{ $archive->name }}</td>
+                    <td>{{ $archive->slug }}</td>
+                    <td>{{ substr($archive->link, 0, 40) }}...</td>
                     <td>
-                      <span class="badge bg-success">
-                        <i class="bi bi-currency-dollar"></i> {{ $optional->price }}
-                      </span>
-                    </td>
-                    <td>
-                      <a href="{{ route('edit-optional', $optional->id) }}" class="btn btn-success">
+                      <a href="{{ route('edit-archive', $archive->id) }}" class="btn btn-success">
                         <i class="bi bi-pencil-square"></i>
                       </a>
                       <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger">
@@ -100,7 +92,7 @@
                 @endforeach
               </tbody>
             </table>
-            <div>{{ $optionals->links() }}</div>
+            <div>{{ $archives->links() }}</div>
           </div>
         </div>
       </div>

@@ -33,14 +33,7 @@
       </li><!-- End Optionals Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-          <i class="bi bi-person"></i>
-          <span>Extras</span>
-        </a>
-      </li><!-- End Extras Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{{ route('admin-archives') }}">
           <i class="bi bi-person"></i>
           <span>Arquivos</span>
         </a>
@@ -63,52 +56,19 @@
       </li><!-- End Extras Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{{ route('used-servers') }}">
           <i class="bi bi-person"></i>
           <span>Em uso</span>
         </a>
       </li><!-- End Extras Page Nav -->
 
-      <li class="nav-heading">Usuários</li>
+      <li class="nav-heading">Clientes</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#vps-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Usuários</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="vps-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="forms-elements.html">
-              <i class="bi bi-circle"></i><span>Clientes</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Servidores</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Opcionais</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Extras</span>
-            </a>
-          </li>
-        </ul>
-
         <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{{ route('admin-clients') }}">
           <i class="bi bi-person"></i>
-          <span>Em uso</span>
+          <span>Lista de Clientes</span>
         </a>
         </li><!-- End Extras Page Nav -->
       </li><!-- End Forms Nav -->
