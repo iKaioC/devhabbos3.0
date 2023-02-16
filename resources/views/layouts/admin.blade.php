@@ -7,7 +7,7 @@
     {{-- CSRF Token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Painel - @yield('title')</title>
 
     {{-- Favicons --}}
     <link href="{{ asset('admin/img/favicon.png') }}" rel="icon">

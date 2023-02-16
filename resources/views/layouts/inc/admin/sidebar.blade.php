@@ -20,21 +20,21 @@
       <li class="nav-item">
         <a class="nav-link {{ $currentUrl === route('admin-habbos') ? '' : 'collapsed' }}" 
         href="{{ route('admin-habbos') }}" href="{{ route('admin-habbos') }}">
-          <i class="bi bi-person"></i>
+        <i class="bi bi-controller"></i>
           <span>Servidores</span>
         </a>
       </li><!-- End Servers Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link {{ $currentUrl === route('admin-optionals') ? '' : 'collapsed' }}" href="{{ route('admin-optionals') }}">
-          <i class="bi bi-person"></i>
+          <i class="bi bi-balloon"></i>
           <span>Opcionais</span>
         </a>
       </li><!-- End Optionals Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('admin-archives') }}">
-          <i class="bi bi-person"></i>
+        <a class="nav-link {{ $currentUrl === route('admin-archives') ? '' : 'collapsed' }}" href="{{ route('admin-archives') }}" href="{{ route('admin-archives') }}">
+          <i class="bi bi-archive"></i>
           <span>Arquivos</span>
         </a>
       </li><!-- End Extras Page Nav -->
@@ -43,21 +43,21 @@
 
       <li class="nav-item">
         <a class="nav-link {{ $currentUrl === route('admin-servers') ? '' : 'collapsed' }}" href="{{ route('admin-servers') }}">
-          <i class="bi bi-person"></i>
+          <i class="bi bi-device-hdd"></i>
           <span>VPS Canadá</span>
         </a>
       </li><!-- End Extras Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link {{ $currentUrl === route('admin-servers-brasil') ? '' : 'collapsed' }}" href="{{ route('admin-servers-brasil') }}">
-          <i class="bi bi-person"></i>
+          <i class="bi bi-hdd"></i>
           <span>VPS Brasil</span>
         </a>
       </li><!-- End Extras Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('used-servers') }}">
-          <i class="bi bi-person"></i>
+        <a class="nav-link {{ $currentUrl === route('used-servers') ? '' : 'collapsed' }}" href="{{ route('used-servers') }}">
+          <i class="bi bi-hdd-stack"></i>
           <span>Em uso</span>
         </a>
       </li><!-- End Extras Page Nav -->
@@ -66,7 +66,7 @@
 
       <li class="nav-item">
         <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('admin-clients') }}">
+        <a class="nav-link {{ $currentUrl === route('admin-clients') ? '' : 'collapsed' }}" href="{{ route('admin-clients') }}" href="{{ route('admin-clients') }}">
           <i class="bi bi-person"></i>
           <span>Lista de Clientes</span>
         </a>
@@ -76,8 +76,8 @@
       <li class="nav-heading">Website</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
-          <i class="bi bi-question-circle"></i>
+        <a class="nav-link {{ $currentUrl === route('client-testimonials') ? '' : 'collapsed' }}" href="{{ route('client-testimonials') }}" href="{{ route('client-testimonials') }}">
+          <i class="bi bi-chat-left-dots"></i>
           <span>Depoimentos</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->

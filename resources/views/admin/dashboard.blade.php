@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Dashboard')
 @section('content')
 
   @if(session('message'))
@@ -16,24 +16,17 @@
         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
       </ol>
     </nav>
-  </div><!-- End Page Title -->
+  </div>
 
   <section class="section dashboard">
     <div class="row">
-
-      <!-- Column -->
       <div class="col-lg-12">
         <div class="row">
-
-          <!-- Habbos Card -->
           <div class="col-xxl-4 col-md-4">
-
             <div class="card info-card customers-card">
-
               <a href="{{ route('admin-habbos') }}">
                 <div class="card-body">
                   <h5 class="card-title">Habbos <span>| Total</span></h5>
-
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
@@ -41,17 +34,13 @@
                     <div class="ps-3">
                       <h6>R$ {{ number_format($totalHabbo, 2, ',', '.') }}</h6>
                       <span class="text-warning small pt-1 fw-bold">{{ $userHabbos->count() }}</span> <span class="text-muted small pt-2 ps-1">Habbos no total</span>
-
                     </div>
                   </div>
-
                 </div>
               </a>
             </div>
+          </div>
 
-          </div><!-- End Habbos Card -->
-
-          <!-- VPS Card -->
           <div class="col-xxl-4 col-md-4">
             <div class="card info-card revenue-card">
               <a href="{{ route('admin-servers') }}">
@@ -69,9 +58,8 @@
                 </div>
               </a>
             </div>
-          </div><!-- End VPS Card -->
+          </div>
 
-          <!-- Optionals Card -->
           <div class="col-xxl-4 col-md-4">
             <div class="card info-card optionals-card">
               <a href="{{ route('admin-optionals') }}">
@@ -89,12 +77,10 @@
                 </div>
               </a>
             </div>
-          </div><!-- End Optionals Card -->
+          </div>
 
-          <!-- Clients Card -->
           <div class="col-xxl-4 col-md-12">
             <div class="card info-card sales-card">
-              
                 <div class="card-body align-self-center">
                   <a href="{{ route('admin-habbos') }}">
                     <h5 class="card-title text-center">Clientes <span>| Total</span></h5>
@@ -119,13 +105,10 @@
                     </div>
                   </a>
                 </div>
-              
             </div>
-          </div><!-- End Clients Card -->
-
+          </div>
         </div>
-      </div><!-- End Column -->
-
+      </div>
     </div>
   </section>
   

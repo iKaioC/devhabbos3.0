@@ -1,9 +1,8 @@
 @extends('layouts.admin')
-
+@section('title', 'Arquivos')
 @section('content')
 
   <div>
-
     @if(session('message'))
       <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle me-1"></i> {{ session('message') }}
@@ -28,9 +27,9 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Arquivos
-              <a href="{{ route('create-archive') }}" class="btn btn-primary float-end">
-                <i class="bi bi-database-add"></i> Adicionar
+            <h5 class="mt-1">Arquivos
+              <a href="{{ route('create-archive') }}" class="btn btn-primary btn-sm float-end">
+                <i class="bi bi-archive"></i> Adicionar
               </a>
             </h5>
           </div>
@@ -45,46 +44,42 @@
                   <th>Ações</th>
                 </tr>
               </thead>
-
+              
               <tbody>
                 @foreach ($archives as $archive)
+                  <div class="modal fade" id="deleteModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Deletar Arquivo</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
 
-                <div class="modal fade" id="deleteModal" tabindex="-1">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Deletar Arquivo</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <form action="{{ route('archive-destroy', $archive->id) }}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <div class="modal-body">
+                            Você tem certeza que deseja deletar este arquivo?
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-danger">Sim, deletar!</button>
+                          </div>
+                        </form>
                       </div>
-            
-                      <form action="{{ route('archive-destroy', $archive->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-            
-                        <div class="modal-body">
-                          Você tem certeza que deseja deletar este arquivo?
-                        </div>
-            
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                          <button type="submit" class="btn btn-danger">Sim, deletar!</button>
-                        </div>
-                      </form>
-            
                     </div>
                   </div>
-                </div>
 
-                
                   <tr>
                     <td>{{ $archive->name }}</td>
                     <td>{{ $archive->slug }}</td>
                     <td>{{ substr($archive->link, 0, 40) }}...</td>
                     <td>
-                      <a href="{{ route('edit-archive', $archive->id) }}" class="btn btn-success">
+                      <a href="{{ route('edit-archive', $archive->id) }}" class="btn btn-success btn-sm">
                         <i class="bi bi-pencil-square"></i>
                       </a>
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger">
+                      <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger btn-sm">
                         <i class="bi bi-trash3"></i>
                       </a>
                     </td>
@@ -97,7 +92,6 @@
         </div>
       </div>
     </div>
-
   </div>
-  
+
 @endsection

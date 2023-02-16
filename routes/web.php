@@ -156,6 +156,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('client/{id}/vps', 'showVps')->name('client-vps');
         Route::get('client/{id}/habbos', 'showHabbos')->name('client-habbos');
         Route::get('client/{id}/optionals', 'showOptionals')->name('client-optionals');
+
+        Route::get('client/testimonials', 'showTestimonials')->name('client-testimonials');
     });
 
 });

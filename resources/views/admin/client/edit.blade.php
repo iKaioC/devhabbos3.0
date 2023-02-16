@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Editando: '.$user->name)
 @section('content')
 
   <link rel="stylesheet" href="{{ asset('admin/css/profileclient.css') }}">
@@ -24,11 +25,11 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4>Editando {{ $user->name }}
-            <a href="{{ route('admin-clients') }}" class="btn btn-primary float-end">
-              <i class="bi bi-database-add"></i> Voltar
+          <h5>Editando {{ $user->name }}
+            <a href="{{ route('admin-clients') }}" class="btn btn-primary btn-sm float-end">
+              <i class="bi bi-arrow-left"></i> Voltar
             </a>
-          </h4>
+          </h5>
         </div>
       </div>
     </div>
@@ -133,8 +134,10 @@
 
                   <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div class="text-right mt-3">
-                        <button type="submit" class="btn btn-primary">Atualizar</button>
+                      <div class="text-right mt-4">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                          <i class="bi bi-check-lg"></i> Atualizar
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -142,7 +145,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </form>

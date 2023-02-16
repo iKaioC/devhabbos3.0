@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'VPSs em uso')
 @section('content')
 
   @if(session('message'))
@@ -25,9 +26,9 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Servidores VPS em uso - CANADÁ
-              <a href="#" class="btn btn-primary float-end">
-                <i class="bi bi-database-add"></i> Adicionar
+            <h5 class="mt-1">Servidores VPS em uso - CANADÁ
+              <a href="#" class="btn btn-primary float-end btn-sm">
+                <i class="bi bi-device-hdd"></i> Adicionar
               </a>
             </h5>
           </div>
@@ -55,16 +56,18 @@
                           <td>{{ $server->name }}</td>
                           <td>{{ $server->memory }}</td>
                           <td>{{ $server->locale }}</td>
+
                           <td>
                             <span class="badge bg-success">
                               <i class="bi bi-currency-dollar"></i> {{ $server->price }}
                             </span>
                           </td>
+                          
                           <td>
-                            <a href="" class="btn btn-success">
+                            <a href="" class="btn btn-success btn-sm">
                               <i class="bi bi-pencil-square"></i>
                             </a>
-                            <a href="" class="btn btn-danger">
+                            <a href="" class="btn btn-danger btn-sm">
                               <i class="bi bi-trash3"></i>
                             </a>
                           </td>
@@ -86,9 +89,9 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Servidores VPS em uso - BRASIL
-              <a href="#" class="btn btn-primary float-end">
-                <i class="bi bi-database-add"></i> Adicionar
+            <h5 class="mt-1">Servidores VPS em uso - BRASIL
+              <a href="#" class="btn btn-primary float-end btn-sm">
+                <i class="bi bi-device-hdd"></i> Adicionar
               </a>
             </h5>
           </div>
@@ -116,19 +119,20 @@
                           <td>{{ $server->name }}</td>
                           <td>{{ $server->memory }}</td>
                           <td>{{ $server->locale }}</td>
-                          <td>
-                          <span class="badge bg-success">
-                          <i class="bi bi-currency-dollar"></i> {{ $server->price }}
-                          </span>
-                          </td>
-                          <td>
-                          <a href="" class="btn btn-success">
-                          <i class="bi bi-pencil-square"></i>
-                          </a>
 
-                          <a href="" class="btn btn-danger">
-                          <i class="bi bi-trash3"></i>
-                          </a>
+                          <td>
+                            <span class="badge bg-success">
+                              <i class="bi bi-currency-dollar"></i> {{ $server->price }}
+                            </span>
+                          </td>
+
+                          <td>
+                            <a href="" class="btn btn-success btn-sm">
+                              <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a href="" class="btn btn-danger btn-sm">
+                              <i class="bi bi-trash3"></i>
+                            </a>
                           </td>
                         </tr>
                       @endif

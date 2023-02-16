@@ -1,16 +1,15 @@
 @extends('layouts.admin')
-
+@section('title', 'Servidores Habbo')
 @section('content')
 
   <div>
-
     @if(session('message'))
       <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle me-1"></i> {{ session('message') }}
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif
-
+    
     {{-- Page Title --}}
     <div class="pagetitle">
       <h1>Servidores Habbo</h1>
@@ -28,9 +27,9 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Servidores Habbo
-              <a href="{{ route('create-habbo') }}" class="btn btn-primary float-end">
-                <i class="bi bi-database-add"></i> Adicionar
+            <h5 class="mt-1">Servidores Habbo
+              <a href="{{ route('create-habbo') }}" class="btn btn-primary btn-sm float-end">
+                <i class="bi bi-controller"></i> Adicionar
               </a>
             </h5>
           </div>
@@ -50,49 +49,48 @@
 
               <tbody>
                 @foreach ($habbos as $habbo)
+                  <div class="modal fade" id="deleteModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Deletar Habbo</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
 
-                <div class="modal fade" id="deleteModal" tabindex="-1">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Deletar Habbo</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <form action="{{ route('habbo-destroy', $habbo->id) }}" method="post">
+                          @csrf
+                          @method('DELETE')
+
+                          <div class="modal-body">
+                            Você tem certeza que deseja deletar este Server Habbo?
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-danger">Sim, deletar!</button>
+                          </div>
+                        </form>
                       </div>
-            
-                      <form action="{{ route('habbo-destroy', $habbo->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-            
-                        <div class="modal-body">
-                          Você tem certeza que deseja deletar este Server Habbo?
-                        </div>
-            
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                          <button type="submit" class="btn btn-danger">Sim, deletar!</button>
-                        </div>
-                      </form>
-            
                     </div>
                   </div>
-                </div>
 
-                
                   <tr>
                     <td>{{ $habbo->name }}</td>
                     <td>{{ $habbo->emulator }}</td>
                     <td>{{ $habbo->cms }}</td>
                     <td>{{ $habbo->language }}</td>
+
                     <td>
                       <span class="badge bg-success">
                         <i class="bi bi-currency-dollar"></i> {{ $habbo->price }}
                       </span>
                     </td>
+
                     <td>
-                      <a href="{{ route('edit-habbo', $habbo->id) }}" class="btn btn-success">
+                      <a href="{{ route('edit-habbo', $habbo->id) }}" class="btn btn-success btn-sm">
                         <i class="bi bi-pencil-square"></i>
                       </a>
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger">
+                      <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger btn-sm">
                         <i class="bi bi-trash3"></i>
                       </a>
                     </td>
@@ -105,7 +103,6 @@
         </div>
       </div>
     </div>
-
   </div>
-  
+
 @endsection

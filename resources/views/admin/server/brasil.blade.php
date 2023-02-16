@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'VPS Brasil')
 @section('content')
 
   @if(session('message'))
@@ -26,14 +26,14 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h5>Servidores VPS - NVME
-            <a href="{{ route('create-server') }}" class="btn btn-primary float-end">
-              <i class="bi bi-database-add"></i> Adicionar
+          <h5 class="mt-1">Servidores VPS - NVME
+            <a href="{{ route('create-server') }}" class="btn btn-primary float-end btn-sm">
+              <i class="bi bi-device-hdd"></i> Adicionar
             </a>
           </h5>
         </div>
 
-        <div class="card-body mt-3">
+        <div class="card-body">
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
@@ -50,37 +50,37 @@
 
             <tbody>
               @foreach ($servers as $server)
-              @if ($server->type_storage == 'NVME' AND $server->locale == 'Brasil')
-                <tr>
-                  <td>{{ $server->name }}</td>
-                  <td>{{ $server->memory }}</td>
-                  <td>
-                    {{ $server->amount_storage }} {{ $server->type_storage }}
-                  </td>
-                  <td>{{ $server->vcpu }}</td>
-                  <td>{{ $server->locale }}</td>
-                  <td>
-                    <span class="badge bg-success">
-                      <i class="bi bi-currency-dollar"></i> {{ $server->price }}
-                    </span>
-                  </td>
-                  <td>
-                    @if ($server->stock == '1')
-                      <p class="text-success">Disponível</p>
-                    @else
-                      <p class="text-danger">Indisponível</p>
-                    @endif
-                  </td>
-                  <td>
-                    <a href="" class="btn btn-success">
-                      <i class="bi bi-pencil-square"></i>
-                    </a>
-                    <a href="" class="btn btn-danger">
-                      <i class="bi bi-trash3"></i>
-                    </a>
-                  </td>
-                </tr>
-              @endif
+                @if ($server->type_storage == 'NVME' AND $server->locale == 'Brasil')
+                  <tr>
+                    <td>{{ $server->name }}</td>
+                    <td>{{ $server->memory }}</td>
+                    <td>
+                      {{ $server->amount_storage }} {{ $server->type_storage }}
+                    </td>
+                    <td>{{ $server->vcpu }}</td>
+                    <td>{{ $server->locale }}</td>
+                    <td>
+                      <span class="badge bg-success">
+                        <i class="bi bi-currency-dollar"></i> {{ $server->price }}
+                      </span>
+                    </td>
+                    <td>
+                      @if ($server->stock == '1')
+                        <p class="text-success">Disponível</p>
+                      @else
+                        <p class="text-danger">Indisponível</p>
+                      @endif
+                    </td>
+                    <td>
+                      <a href="" class="btn btn-success btn-sm">
+                        <i class="bi bi-pencil-square"></i>
+                      </a>
+                      <a href="" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash3"></i>
+                      </a>
+                    </td>
+                  </tr>
+                @endif
               @endforeach
             </tbody>
           </table>

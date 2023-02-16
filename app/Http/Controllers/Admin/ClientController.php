@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -78,6 +79,13 @@ class ClientController extends Controller
         $user = User::findOrFail($id);
         $optionals = $user->optionals()->select('optionals.*', 'user_optional.status')->get();
         return view('admin.client.optionals', compact('optionals', 'user'));
+    }
+
+    public function showTestimonials()
+    {
+        $testimonials = Testimonial::with('user')->get();
+
+        return view('admin.client.testimonials', compact('testimonials'));
     }
     
 }
