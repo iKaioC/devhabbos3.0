@@ -97,6 +97,10 @@
                 <option value="bx bx-globe" {{ $optional->icon == "bx bx-globe" ? 'selected' : '' }}>Icon Globe</option>
                 <option value="bx bx-data" {{ $optional->icon == "bx bx-data" ? 'selected' : '' }}>Icon Data</option>
                 <option value="bx bx-game" {{ $optional->icon == "bx bx-game" ? 'selected' : '' }}>Icon Game</option>
+                <option value="bx bxl-html5" {{ $optional->icon == "bx bxl-html5" ? 'selected' : '' }}>Icon Html5</option>
+                <option value="bx bxl-microsoft" {{ $optional->icon == "bx bxl-microsoft" ? 'selected' : '' }}>Icon Microsoft</option>
+                <option value="bx bxs-tv" {{ $optional->icon == "bx bxs-tv" ? 'selected' : '' }}>Icon Furni</option>
+                <option value="bx bx-plug" {{ $optional->icon == "bx bx-plug" ? 'selected' : '' }}>Icon Plugin</option>
               </select>
             </div>
 
@@ -107,6 +111,8 @@
                 <option value="icon-box-cyan" {{ $optional->color == "icon-box-cyan" ? 'selected' : '' }}>Cor Cyan</option>
                 <option value="icon-box-green" {{ $optional->color == "icon-box-green" ? 'selected' : '' }}>Cor Verde</option>
                 <option value="icon-box-blue" {{ $optional->color == "icon-box-blue" ? 'selected' : '' }}>Cor Azul</option>
+                <option value="icon-box-orange" {{ $optional->color == "icon-box-orange" ? 'selected' : '' }}>Cor Laranja</option>
+                <option value="icon-box-purple" {{ $optional->color == "icon-box-purple" ? 'selected' : '' }}>Cor Roxa</option>
               </select>
             </div>
 

@@ -671,6 +671,22 @@ section {
   border-color: #2282ff;
 }
 
+.services .icon-box-orange .icon i {
+  color: #fc8600;
+}
+
+.services .icon-box-orange:hover {
+  border-color: #fc8600;
+}
+
+.services .icon-box-purple .icon i {
+  color: #ca00fc;
+}
+
+.services .icon-box-purple:hover {
+  border-color: #ca00fc;
+}
+
 /*--------------------------------------------------------------
 # Portfolio
 --------------------------------------------------------------*/

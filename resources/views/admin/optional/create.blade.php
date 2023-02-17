@@ -98,6 +98,11 @@
                 <option value="bx bx-globe">Globe Icon</option>
                 <option value="bx bx-data">Data Icon</option>
                 <option value="bx bx-game">Game Icon</option>
+                <option value="bx bxl-html5">Html5 Icon</option>
+                <option value="bx bxl-microsoft">Windows Icon</option>
+                <option value="bx bxs-tv">Furni Icon</option>
+                <option value="bx bx-plug">Plugin Icon</option>
+                <option value="bx bxs-cloud">Cloud Icon</option>
               </select>
             </div>
 
@@ -108,6 +113,8 @@
                 <option value="icon-box-cyan">Cor Azul-esverdeado</option>
                 <option value="icon-box-green">Cor Verde</option>
                 <option value="icon-box-blue">Cor Azul</option>
+                <option value="icon-box-orange">Cor Laranja</option>
+                <option value="icon-box-purple">Cor Roxa</option>
               </select>
             </div>
 

@@ -14,7 +14,7 @@ class OptionalController extends Controller
 
     public function index()
     {
-        $optionals = Optional::orderBy('id', 'ASC')->paginate(15);
+        $optionals = Optional::orderBy('category', 'ASC')->paginate(15);
         return view('admin.optional.index', ['optionals' => $optionals]);
     }
 
