@@ -63,49 +63,48 @@
                                   <th scope="col">Ver</th>
                                 </tr>
                               </thead>
+
                               <tbody>
+                                <tr>
+                                  @foreach ($tickets as $ticket)
+                                    <td style="font-size: 14px;">{{ $ticket->title }}</td>
+                                    <td style="font-size: 14px;">{{ $ticket->category }}</td>
 
-                                  <tr>
-                                    @foreach ($tickets as $ticket)
-                                      <td style="font-size: 14px;">{{ $ticket->title }}</td>
-                                      <td style="font-size: 14px;">{{ $ticket->category }}</td>
-
-                                      @if ($ticket->status == 'Aberto')
-                                        <td style="font-size: 14px;">
-                                          <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Aberto</span>
-                                        </td>
-                                      @elseif ($ticket->status == 'Fechado')
-                                        <td style="font-size: 14px;">
-                                          <span class="badge bg-secondary"><i class="bi bi-collection me-1"></i> Fechado</span>
-                                        </td>
-                                      @elseif ($ticket->status == 'Pendente')
-                                        <td style="font-size: 14px;">
-                                          <span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle me-1"></i> Pendente</span>
-                                        </td>
-                                      @endif
-
-                                      @if ($ticket->priority == 'Alta')
-                                        <td class="text-danger" style="font-size: 14px;">
-                                          <strong>{{ $ticket->priority }}</strong>
-                                        </td>
-                                      @elseif ($ticket->priority == 'Média')
-                                        <td class="text-warning" style="font-size: 14px;">
-                                          <strong>{{ $ticket->priority }}</strong>
-                                        </td>
-                                      @elseif ($ticket->priority == 'Baixa')
-                                        <td class="text-success" style="font-size: 14px;">
-                                          <strong>{{ $ticket->priority }}</strong>
-                                        </td>
-                                      @endif
-
-                                      <td>
-                                        <a href="{{ route('tickets-update', $ticket->id) }}" class="btn btn-primary btn-sm">
-                                          <i class="bi bi-eye"></i>
-                                        </a>
+                                    @if ($ticket->status == 'Aberto')
+                                      <td style="font-size: 14px;">
+                                        <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Aberto</span>
                                       </td>
-                                    @endforeach
-                                  </tr>
+                                    @elseif ($ticket->status == 'Fechado')
+                                      <td style="font-size: 14px;">
+                                        <span class="badge bg-secondary"><i class="bi bi-collection me-1"></i> Fechado</span>
+                                      </td>
+                                    @elseif ($ticket->status == 'Pendente')
+                                      <td style="font-size: 14px;">
+                                        <span class="badge bg-warning text-dark"><i class="bi bi-exclamation-triangle me-1"></i> Pendente</span>
+                                      </td>
+                                    @endif
 
+                                    @if ($ticket->priority == 'Alta')
+                                      <td class="text-danger" style="font-size: 14px;">
+                                        <strong>{{ $ticket->priority }}</strong>
+                                      </td>
+                                    @elseif ($ticket->priority == 'Média')
+                                      <td class="text-warning" style="font-size: 14px;">
+                                        <strong>{{ $ticket->priority }}</strong>
+                                      </td>
+                                    @elseif ($ticket->priority == 'Baixa')
+                                      <td class="text-success" style="font-size: 14px;">
+                                        <strong>{{ $ticket->priority }}</strong>
+                                      </td>
+                                    @endif
+
+                                    <td>
+                                      <a href="{{ route('tickets-update', $ticket->id) }}" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-eye"></i>
+                                      </a>
+                                    </td>
+                                  @endforeach
+                                </tr>
                               </tbody>
                             </table>
                           </div>
@@ -117,11 +116,9 @@
               </div>
             </div>
           </section>
-
         </div>
       </div>
     </div>
-
   </div>
 
 @endsection

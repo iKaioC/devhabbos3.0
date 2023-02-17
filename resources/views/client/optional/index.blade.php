@@ -56,10 +56,9 @@
                                   <th scope="col">Ver</th>
                                 </tr>
                               </thead>
+                              
                               <tbody>
-
                                 @foreach ($optionals as $optional)
-
                                   <div class="modal fade" id="serversinfo{{ $optional->id }}" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                       <div class="modal-content">
@@ -127,9 +126,7 @@
                                       </button>
                                     </td>
                                   </tr>
-
                                 @endforeach
-
                               </tbody>
                             </table>
                           </div>
@@ -141,11 +138,9 @@
               </div>
             </div>
           </section>
-
         </div>
       </div>
     </div>
-
   </div>
 
 @endsection

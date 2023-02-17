@@ -76,7 +76,7 @@
       <li class="nav-heading">Website</li>
 
       <li class="nav-item">
-        <a class="nav-link {{ $currentUrl === route('client-testimonials') ? '' : 'collapsed' }}" href="{{ route('client-testimonials') }}" href="{{ route('client-testimonials') }}">
+        <a class="nav-link {{ $currentUrl === route('client-testimonials-admin') ? '' : 'collapsed' }}" href="{{ route('client-testimonials-admin') }}" href="{{ route('client-testimonials-admin') }}">
           <i class="bi bi-chat-left-dots"></i>
           <span>Depoimentos</span>
         </a>

@@ -20,7 +20,6 @@
   <div class="card col-lg-12">
     <div class="card-header text-secondary">
       <strong>{{ $ticket->title }}</strong>
-
       @if ($ticket->status == 'Aberto')
         <span style="cursor: default;" class="btn btn-success float-end">Aberto</span>
       @elseif ($ticket->status == 'Pendente')
@@ -28,7 +27,6 @@
       @elseif ($ticket->status == 'Fechado')
         <span style="cursor: default;" class="btn btn-secondary float-end">Fechado</span>
       @endif
-
     </div>
 
     <div class="container padding-bottom-3x mb-2">

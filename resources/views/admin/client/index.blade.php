@@ -78,7 +78,7 @@
                     <td>{{ $user->rank }}</td>
 
                     <td>
-                      <a href="{{ route('client-vps', $user->id) }}">
+                      <a href="{{ route('client-vps-admin', $user->id) }}">
                         {{ $user->servers()->count() }}
                       </a>
                     </td>

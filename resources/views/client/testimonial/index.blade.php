@@ -31,15 +31,12 @@
           @foreach ($testimonials as $testimonial)
             <div class="card-body">
               <h5 class="card-title">Depoimento: {{ $testimonial->id }}</h5>
-
               <div class="d-flex justify-content-center">
                 <img src="{{ asset('profile-images/'.Auth::user()->image) }}" width="100px" alt="Kaio Conde" class="rounded-circle">
               </div>
               
               <p class="d-flex justify-content-center mt-3">{{ $testimonial->testimony }}</p>
-
               <hr>
-
             </div>
           @endforeach
         </div>

@@ -153,11 +153,11 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::put('client/{user}', 'update')->name('update-client');
 
         // Client Services Useds
-        Route::get('client/{id}/vps', 'showVps')->name('client-vps');
-        Route::get('client/{id}/habbos', 'showHabbos')->name('client-habbos');
-        Route::get('client/{id}/optionals', 'showOptionals')->name('client-optionals');
+        Route::get('client/{id}/vps', 'showVps')->name('client-vps-admin');
+        Route::get('client/{id}/habbos', 'showHabbos')->name('client-habbos-admin');
+        Route::get('client/{id}/optionals', 'showOptionals')->name('client-optionals-admin');
 
-        Route::get('client/testimonials', 'showTestimonials')->name('client-testimonials');
+        Route::get('client/testimonials', 'showTestimonials')->name('client-testimonials-admin');
     });
 
 });

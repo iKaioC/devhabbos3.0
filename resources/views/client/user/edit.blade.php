@@ -11,15 +11,13 @@
         <li class="breadcrumb-item active">Perfil</li>
       </ol>
     </nav>
-  </div><!-- End Page Title -->
+  </div>
 
   <section class="section profile">
     <div class="row">
       <div class="col-xl-4">
-
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
             @if(Auth::user()->image == '')
               <img src="{{ asset('profile-images/default.png') }}" alt="{{ Auth::user()->name }}" class="rounded-circle">
             @else
@@ -27,35 +25,34 @@
             @endif
 
             <h2>{{ Auth::user()->name }}</h2>
+
             <span style="cursor: default;" class="btn btn-danger mb-2">
               <span class="badge bg-white text-danger">1</span> {{ Auth::user()->rank }}
             </span>
+
             <div class="social-links mt-2">
               <a href="{{ Auth::user()->link }}" target="_blank"><i class="bi bi-stripe"></i></i></a>
             </div>
           </div>
         </div>
-
       </div>
 
       <div class="col-xl-8">
-
         @if (session('error'))
           <div class="alert alert-danger">
               {{ session('error') }}
           </div>
+
         @elseif(session('message'))
-        <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-          <i class="bi bi-check-circle me-1"></i> {{ session('message') }}
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+          <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle me-1"></i> {{ session('message') }}
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
         @endif
 
         <div class="card">
           <div class="card-body pt-3">
-            <!-- Bordered Tabs -->
             <ul class="nav nav-tabs nav-tabs-bordered">
-
               <li class="nav-item">
                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Início</button>
               </li>
@@ -69,10 +66,9 @@
               </li>
 
             </ul>
+
             <div class="tab-content pt-2">
-
               <div class="tab-pane fade show active profile-overview" id="profile-overview">
-
                 <h5 class="card-title">Detalhes do perfil</h5>
 
                 <div class="row">
@@ -107,21 +103,16 @@
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Status da Conta</div>
                   <div class="col-lg-9 col-md-8">
-
                     @if (Auth::user()->status == 'active')
                       <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Ativo</span>
                     @elseif (Auth::user()->status == 'inactive')
                       <span class="badge bg-danger"><i class="bi bi-exclamation-octagon me-1"></i> Desativado</span>
                     @endif
-                    
                   </div>
                 </div>
-
               </div>
 
               <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-                <!-- Profile Edit Form -->
                 <form action="{{ route('user-update') }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
@@ -134,7 +125,6 @@
                         <img src="{{ asset('profile-images/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
                       @endif
 
-
                       <div class="pt-2">
                         @if (Auth::user()->image == '')
                           <label for="image" class="btn btn-primary btn-sm"><i class="bi bi-upload"></i></label>
@@ -143,8 +133,6 @@
                           <a href="{{ route('user-remove-image') }}" class="btn btn-danger btn-sm" ><i class="bi bi-trash"></i></a>
                         @endif
                       </div>
-
-                      
                     </div>
                   </div>
 
@@ -192,13 +180,10 @@
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary">Salvar Alterações</button>
                   </div>
-                </form><!-- End Profile Edit Form -->
-
+                </form>
               </div>
 
               <div class="tab-pane fade pt-3" id="profile-change-password">
-
-                <!-- Change Password Form -->
                 <form action="{{ route('user-change-password') }}" method="POST">
                   @csrf
                   <div class="row mb-3">
@@ -234,15 +219,11 @@
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary">Alterar Senha</button>
                   </div>
-                </form><!-- End Change Password Form -->
-
+                </form>
               </div>
-
-            </div><!-- End Bordered Tabs -->
-
+            </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -262,5 +243,4 @@
     }
   </script>
 
-  
 @endsection
