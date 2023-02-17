@@ -26,7 +26,6 @@ class ClientFormRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
             'rank' => 'required|string',
             'cell' => 'required|string',
             'link' => 'required|string',

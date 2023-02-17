@@ -44,13 +44,13 @@ class ClientController extends Controller
         return view('admin.client.edit', compact('user'));
     }
 
-    public function update(ClientFormRequest $request, User $user)
+    public function update(ClientFormRequest $request, $id)
     {
         $validatedData = $request->validated();
     
+        $user = User::findOrFail($id);
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
-        $user->password = Hash::make($validatedData['password']);
         $user->rank = $validatedData['rank'];
         $user->cell = $validatedData['cell'];
         $user->link = $validatedData['link'];

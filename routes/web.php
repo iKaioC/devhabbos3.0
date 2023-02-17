@@ -150,7 +150,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::post('client', 'store')->name('store-client');
 
         Route::get('client/{user}/edit', 'edit')->name('edit-client');
-        Route::put('client/{user}', 'update')->name('update-client');
+        Route::put('client/{id}', 'update')->name('update-client');
 
         // Client Services Useds
         Route::get('client/{id}/vps', 'showVps')->name('client-vps-admin');

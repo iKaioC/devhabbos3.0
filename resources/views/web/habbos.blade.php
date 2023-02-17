@@ -77,11 +77,11 @@
           @endforeach
 
           @foreach ($habbos as $habbo)
-          @if ($habbo->price == 'A combinar')
+          @if ($habbo->price == '0,00')
           <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
             <div class="box featured" data-aos="zoom-in" data-aos-delay="100">
               <h3>Customizado</h3>
-              <h4><sup>{{ $habbo->price }}</sup></h4>
+              <h4><sup>A combinar</sup></h4>
               <ul>
                 <li>{{ $habbo->emulator }}</li>
                 <li>CMS de sua escolha</li>

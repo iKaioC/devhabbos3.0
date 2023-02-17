@@ -34,56 +34,57 @@
       </div>
     </div>
 
-    <form action="{{ route('update-archive', $user->id) }}" method="POST" class="row g-3">
-      @csrf
-      @method('PUT')
-      <div class="container">
-        <div class="row gutters">
-          <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-            <div class="card h-100">
-              <div class="card-body">
-                <div class="account-settings">
-                  <div class="user-profile">
-                    <div class="user-avatar mt-5">
-                      @if ($user->image == '')
-                        <img src="{{ asset('profile-images/default.png') }}" alt="{{ $user->name }}">
-                      @else
-                        <img src="{{ asset('profile-images/'.$user->image) }}" alt="{{ $user->name }}">
-                      @endif
-                    </div>
-
-                    <h5 class="user-name">{{ $user->name }}</h5>
-                    <h6 class="user-email">{{ $user->email }}</h6>
+    <div class="container">
+      <div class="row gutters">
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="account-settings">
+                <div class="user-profile">
+                  <div class="user-avatar mt-5">
+                    @if ($user->image == '')
+                      <img src="{{ asset('profile-images/default.png') }}" alt="{{ $user->name }}">
+                    @else
+                      <img src="{{ asset('profile-images/'.$user->image) }}" alt="{{ $user->name }}">
+                    @endif
                   </div>
 
-                  @if ($user->staff == '1')
-                    <div class="about">
-                      <h5>Administrador</h5>
-                      <a href="{{ $user->link }}" target="_blank">
-                        <p>{{ $user->link }}</p>
-                      </a>
-                    </div>
-                  @else
-                    <div class="about">
-                      <h5>{{ $user->rank }}</h5>
-                      <a href="{{ $user->link }}" target="_blank">
-                        <p>{{ $user->link }}</p>
-                      </a>
-                    </div>
-                  @endif
+                  <h5 class="user-name">{{ $user->name }}</h5>
+                  <h6 class="user-email">{{ $user->email }}</h6>
                 </div>
+
+                @if ($user->staff == '1')
+                  <div class="about">
+                    <h5>Administrador</h5>
+                    <a href="{{ $user->link }}" target="_blank">
+                      <p>{{ $user->link }}</p>
+                    </a>
+                  </div>
+                @else
+                  <div class="about">
+                    <h5>{{ $user->rank }}</h5>
+                    <a href="{{ $user->link }}" target="_blank">
+                      <p>{{ $user->link }}</p>
+                    </a>
+                  </div>
+                @endif
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-            <div class="card h-100">
-              <div class="card-body">
-                <div class="row gutters">
-                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
-                    <h6 class="mb-2 text-primary">Detalhes Pessoais</h6>
-                  </div>
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
+                  <h6 class="mb-2 text-primary">Detalhes Pessoais</h6>
+                </div>
 
+                <form action="{{ route('update-client', $user->id) }}" method="POST" class="row g-3">
+                  @csrf
+                  @method('PUT')
+                  
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                     <div class="form-group">
                       <label for="name">Nome Completo</label>
@@ -94,14 +95,7 @@
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                       <label for="email">Email</label>
-                      <input disabled type="email" class="form-control" name="email" value="{{ $user->email }}">
-                    </div>
-                  </div>
-
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                    <div class="form-group">
-                      <label for="password">Senha</label>
-                      <input type="text" class="form-control" name="password">
+                      <input type="email" class="form-control" name="email" value="{{ $user->email }}">
                     </div>
                   </div>
 
@@ -124,7 +118,7 @@
                       <input type="text" class="form-control" name="cell" value="{{ $user->cell }}">
                     </div>
                   </div>
-  
+
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                       <label for="link">Link do Servidor</label>
@@ -141,13 +135,13 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </form>
+    </div>
   </div>
 
 @endsection

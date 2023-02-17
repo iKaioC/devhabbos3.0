@@ -18,7 +18,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(!Auth::user()->staff == '1') {
-            return redirect()->route('home')->with('status', 'Você não faz parte da equipe Dev Habbos!');
+            return redirect()->route('client-dashboard')->with('error', 'Você não faz parte da equipe Dev Habbos!');
         }
 
         return $next($request);
