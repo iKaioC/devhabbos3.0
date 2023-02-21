@@ -25,13 +25,14 @@ class HabboFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'slug' => ['required', 'string'],
+            'slug' => ['nullable', 'string'],
             'emulator' => ['required', 'string'],
             'cms' => ['required', 'string'],
             'language' => ['required', 'string'],
             'url' => ['required', 'string'],
             'description' => ['required', 'string'],
             'price' => ['required', 'string'],
+            'images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
         ];
     }
 }

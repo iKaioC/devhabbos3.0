@@ -17,6 +17,6 @@ class TicketCommentClientController extends Controller
         $comment->user_id = auth()->id();
         $comment->save();
 
-        return redirect()->route('tickets-index', $ticket)->with('success', 'Comentário adicionado com sucesso!');
+        return back()->with('success', 'Comentário adicionado com sucesso!');
     }
 }

@@ -15,6 +15,7 @@ class Archive extends Model
         'name',
         'slug',
         'description',
-        'link'
+        'link',
+        'image'
     ];
 }

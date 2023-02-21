@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ClientFormRequest;
+use App\Models\Ticket;
 
 class ClientController extends Controller
 {
@@ -86,6 +87,13 @@ class ClientController extends Controller
         $testimonials = Testimonial::with('user')->get();
 
         return view('admin.client.testimonials', compact('testimonials'));
+    }
+
+    public function showTickets()
+    {
+        $tickets = Ticket::with('user')->get();
+
+        return view('admin.client.tickets.index', compact('tickets'));
     }
     
 }

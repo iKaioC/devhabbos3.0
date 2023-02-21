@@ -33,14 +33,14 @@
       </li><!-- End Optionals Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('client-optionals') }}">
+        <a class="nav-link {{ $currentUrl === route('client-optionals') ? '' : 'collapsed' }}" href="{{ route('client-optionals') }}" href="{{ route('client-optionals') }}">
           <i class="bi bi-arrow-down-up"></i>
           <span>Opcionais</span>
         </a>
       </li><!-- End Extras Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('testimonial-index') }}">
+        <a class="nav-link {{ $currentUrl === route('testimonial-index') ? '' : 'collapsed' }}" href="{{ route('testimonial-index') }}" href="{{ route('testimonial-index') }}">
           <i class="bi bi-chat"></i>
           <span>Depoimentos</span>
         </a>
@@ -49,14 +49,14 @@
       <li class="nav-heading">Conta</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('user-edit') }}">
+        <a class="nav-link {{ $currentUrl === route('user-edit') ? '' : 'collapsed' }}" href="{{ route('user-edit') }}" href="{{ route('user-edit') }}">
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('tickets-index') }}">
+        <a class="nav-link {{ $currentUrl === route('tickets-index') ? '' : 'collapsed' }}" href="{{ route('tickets-index') }}" href="{{ route('tickets-index') }}">
           <i class="bi bi-ticket-detailed"></i>
           <span>Tickets</span>
         </a>

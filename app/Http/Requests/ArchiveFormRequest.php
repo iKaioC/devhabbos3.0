@@ -28,6 +28,7 @@ class ArchiveFormRequest extends FormRequest
             'slug' => ['required', 'string'],
             'description' => ['required', 'string'],
             'link' => ['required', 'string'],
+            'image' => ['nullable', 'image'],
         ];
     }
 }

@@ -11,6 +11,12 @@ class OptionalWebController extends Controller
     public function index()
     {
         $optionals = Optional::all();
-        return view('web.optionals', compact('optionals'));
+        return view('web.optional.optionals', compact('optionals'));
+    }
+
+    public function habbo()
+    {
+        $optionals = Optional::all();
+        return view('web.optional.opthabbo', compact('optionals'));
     }
 }

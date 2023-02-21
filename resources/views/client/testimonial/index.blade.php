@@ -28,17 +28,29 @@
             Seu Depoimento
           </div>
 
-          @foreach ($testimonials as $testimonial)
-            <div class="card-body">
-              <h5 class="card-title">Depoimento: {{ $testimonial->id }}</h5>
-              <div class="d-flex justify-content-center">
-                <img src="{{ asset('profile-images/'.Auth::user()->image) }}" width="100px" alt="Kaio Conde" class="rounded-circle">
+          @if ($testimonials->count() > 0)
+            @foreach ($testimonials as $testimonial)
+              <div class="card-body">
+                <h5 class="card-title">Depoimento: {{ $testimonial->id }}</h5>
+                <div class="d-flex justify-content-center">
+                  <img src="{{ asset('profile-images/'.Auth::user()->image) }}" width="100px" alt="Kaio Conde" class="rounded-circle">
+                </div>
+
+                <p class="d-flex justify-content-center mt-3">{{ $testimonial->testimony }}</p>
+                <hr>
               </div>
-              
-              <p class="d-flex justify-content-center mt-3">{{ $testimonial->testimony }}</p>
-              <hr>
+
+            @endforeach
+          @else
+            <div class="card-body">
+              <p class="d-flex justify-content-center mt-3">
+                Não há depoimentos para {{ Auth::user()->name }}.
+              </p>
+              <p class="d-flex justify-content-center mt-3 text-small small text-danger">
+                Para registrar um depoimento ou elogio, entre em contato com o Desenvolvimento da DevHabbos.
+              </p>
             </div>
-          @endforeach
+          @endif
         </div>
       </div>
     </div>

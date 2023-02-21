@@ -35,19 +35,19 @@
           <aside class="user-info-wrapper">
             <div class="user-cover" style="background-image: url(https://bootdey.com/img/Content/bg1.jpg);">
               <div class="info-label" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward Points to spend">
-                <i class="icon-medal"></i>{{ Auth::user()->rank }}
+                <i class="icon-medal"></i>{{ $ticket->user->rank }}
               </div>
             </div>
 
             <div class="user-info">
               <div class="user-avatar">
                 <a class="edit-avatar" href="#"></a>
-                <img src="{{ asset('profile-images/'.Auth::user()->image) }}" alt="User">
+                <img src="{{ asset('profile-images/'.$ticket->user->image) }}" alt="User">
               </div>
 
               <div class="user-data">
-                <h4>{{ Auth::user()->name }}</h4>
-                <span>Entrou em {{ Auth::user()->created_at->setTimezone('America/Sao_Paulo')->format('d/m/Y') }}</span>
+                <h4>{{ $ticket->user->name }}</h4>
+                <span>Entrou em {{ $ticket->user->created_at->setTimezone('America/Sao_Paulo')->format('d/m/Y') }}</span>
               </div>
             </div>
           </aside>
@@ -121,7 +121,7 @@
 
             <div class="comment">
               <div class="comment-author-ava">
-                <img src="{{ asset('profile-images/'.Auth::user()->image) }}" alt="Avatar">
+                <img src="{{ asset('profile-images/'.$ticket->user->image) }}" alt="Avatar">
               </div>
 
               <div class="comment-body">
@@ -131,7 +131,7 @@
 
                 <div class="comment-footer">
                   <span class="comment-meta">
-                    {{ Auth::user()->name }}
+                    {{ $ticket->user->name }}
                   </span>
                 </div>
               </div>
@@ -162,11 +162,11 @@
           
           @if ($ticket->status == 'Aberto' OR $ticket->status == 'Pendente' )
             {{-- Reply Form --}}
-            <h5 class="mb-30 padding-top-1x">Faça uma pergunta</h5>
+            <h5 class="mb-30 padding-top-1x">Responder o Cliente</h5>
             <form action="{{ route('ticket-comments-store', $ticket) }}" method="post">
               @csrf
               <div class="form-group">
-                  <textarea class="form-control form-control-rounded" id="review_text" name="comment" rows="8" placeholder="Descreva sua dúvida ou problema..." required=""></textarea>
+                  <textarea class="form-control form-control-rounded" id="review_text" name="comment" rows="8" placeholder="Descreva sua conclusão do problema..." required=""></textarea>
               </div>
           
               <div class="text-right float-end mt-3">

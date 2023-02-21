@@ -10,7 +10,8 @@ class TestimonialClientController extends Controller
 {
     public function index()
     {
-        $testimonials = Testimonial::with('user')->get();
+        $user = auth()->user();
+        $testimonials = Testimonial::where('user_id', $user->id)->get();
         return view('client.testimonial.index', compact('testimonials'));
     }
 }

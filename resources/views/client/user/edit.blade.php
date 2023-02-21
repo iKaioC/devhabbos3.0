@@ -30,9 +30,14 @@
               <span class="badge bg-white text-danger">1</span> {{ Auth::user()->rank }}
             </span>
 
-            <div class="social-links mt-2">
-              <a href="{{ Auth::user()->link }}" target="_blank"><i class="bi bi-stripe"></i></i></a>
-            </div>
+            @if (Auth::user()->link == '')
+              <p class="text-small small text-danger">Configure seu url do servidor</p>
+            @else
+              <div class="social-links mt-2">
+                <a href="{{ Auth::user()->link }}" target="_blank"><i class="bi bi-stripe"></i></i></a>
+              </div>
+            @endif
+
           </div>
         </div>
       </div>

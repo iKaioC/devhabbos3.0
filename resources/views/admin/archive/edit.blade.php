@@ -35,7 +35,7 @@
 
         <div class="card-body">
           {{-- VerticalForm --}}
-          <form action="{{ route('update-archive', $archive->id) }}" method="POST" class="row g-3">
+          <form action="{{ route('update-archive', $archive->id) }}" method="POST" enctype="multipart/form-data" class="row g-3">
             @csrf
             @method('PUT')
 
@@ -62,6 +62,28 @@
               <input type="text" name="link" value="{{ $archive->link }}" class="form-control">
               @error('link')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
+
+            @if ($archive->image == '')
+              <div class="col-md-6">
+                <label class="form-label">Imagem</label>
+                <input type="file" name="image" class="form-control">
+                @error('link')<small class="text-danger">{{ $message }}</small>@enderror
+              </div>
+
+              <div class="col-md-12 text-center">
+                <label class="form-label">Este arquivo não possúi uma imagem, adicione acima.</label>
+              </div>
+            @else
+              <div class="col-md-6">
+                <label class="form-label">Atualizar Imagem</label>
+                <input type="file" name="image" class="form-control">
+                @error('link')<small class="text-danger">{{ $message }}</small>@enderror
+              </div>
+
+              <div class="col-md-12">
+                <img src="{{ asset('web/archives/'.$archive->image) }}" width="300" alt="{{ $archive->name }}">
+              </div>
+            @endif
 
             <div class="text-center">
               <button type="submit" class="btn btn-primary float-end btn-sm">

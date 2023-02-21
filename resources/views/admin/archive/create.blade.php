@@ -61,6 +61,12 @@
               @error('link')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
+            <div class="col-md-6">
+              <label class="form-label">Imagem</label>
+              <input type="file" name="image" id="image" class="form-control">
+              @error('image')<small class="text-danger">{{ $message }}</small>@enderror
+            </div>
+
             <div class="text-center">
               <button type="submit" class="btn btn-primary btn-sm float-end">
                 <i class="bi bi-check-lg"></i> Adicionar

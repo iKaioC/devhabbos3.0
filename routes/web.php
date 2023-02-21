@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ServerController;
 use App\Http\Controllers\Web\HabboWebController;
 use App\Http\Controllers\Admin\OptionalController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\TicketResponse;
 use App\Http\Controllers\Admin\Used\ServerController as UsedServerController;
 use App\Http\Controllers\Web\OptionalWebController;
 use App\Http\Controllers\Client\HabboClientDashboard;
@@ -21,6 +22,8 @@ use App\Http\Controllers\Client\OptionalClientDashboard;
 use App\Http\Controllers\Client\DashboardClientController;
 use App\Http\Controllers\Client\TestimonialClientController;
 use App\Http\Controllers\Client\TicketCommentClientController;
+use App\Http\Controllers\Web\ArchiveWebController;
+use App\Models\Habbo;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +49,10 @@ Route::get('/habbos', [HabboWebController::class, 'index'])->name('web-habbo');
 Route::get('/servers', [VpsController::class, 'index'])->name('web-sv');
 Route::get('/servers-brasil', [VpsController::class, 'brasil'])->name('web-svbrasil');
 Route::get('/optionals', [OptionalWebController::class, 'index'])->name('web-optional');
+Route::get('/optionals-habbo', [OptionalWebController::class, 'habbo'])->name('web-optional-habbo');
+Route::get('/archives', [ArchiveWebController::class, 'index'])->name('web-archives');
+
+Route::get('/habbo/{slug}', [HabboWebController::class, 'show'])->name('habbo-show');
 // End Website Routes
 
 // Client Routes
@@ -111,6 +118,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::put('habbo/{habbo}', 'update')->name('update-habbo');
 
         Route::delete('habbo/{habbo}', 'destroy')->name('habbo-destroy');
+        Route::delete('habbo/{habbo}/image/{image}', 'deleteImage')->name('delete-habbo-image');
     });
 
     // Optionals Routes
@@ -158,6 +166,10 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('client/{id}/optionals', 'showOptionals')->name('client-optionals-admin');
 
         Route::get('client/testimonials', 'showTestimonials')->name('client-testimonials-admin');
+
+        // Client Tickets
+        Route::get('client/tickets', 'showTickets')->name('client-tickets-admin');
+        Route::get('client/ticket/{ticket}', [TicketResponse::class, 'edit'])->name('tickets-update-admin');
     });
 
 });

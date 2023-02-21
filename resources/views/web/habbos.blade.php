@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <section id="pricing" class="pricing section-bg">
+    <section id="pricing" class="pricing bg-white">
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
@@ -26,15 +26,11 @@
                   <li class="na">Nitro HTML5</li>
                 </ul>
                 <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Saiba mais</a>
+                  <a href="{{ route('habbo-show', $habbo->slug) }}" class="btn-buy">Saiba mais</a>
                 </div>
               </div>
             </div>
-          @endif
-          @endforeach
-
-          @foreach ($habbos as $habbo)
-          @if ($habbo->url == 'https://ptbr.devhabbo.tech')
+          @elseif ($habbo->url == 'https://ptbr.devhabbo.tech/')
             <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
               <div class="box" data-aos="zoom-in" data-aos-delay="200">
                 <h3>Intermediário</h3>
@@ -47,53 +43,45 @@
                   <li>Catálogo Traduzido</li>
                 </ul>
                 <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Saiba mais</a>
+                  <a href="{{ route('habbo-show', $habbo->slug) }}" class="btn-buy">Saiba mais</a>
                 </div>
               </div>
             </div>
-          @endif
-          @endforeach
-
-          @foreach ($habbos as $habbo)
-          @if ($habbo->cms == 'Atom CMS')
-          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-            <div class="box" data-aos="zoom-in" data-aos-delay="300">
-              <span class="advanced">ADVANCED</span>
-              <h3>Avançado</h3>
-              <h4><sup>R$</sup>{{ $habbo->price }}</h4>
-              <ul>
-                <li>{{ $habbo->emulator }}</li>
-                <li>{{ $habbo->cms }}</li>
-                <li>{{ $habbo->language }}</li>
-                <li>Nitro HTML 5</li>
-                <li>Catálogo Traduzido</li>
-              </ul>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Saiba mais</a>
+          @elseif ($habbo->cms == 'Atom CMS')
+            <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+              <div class="box" data-aos="zoom-in" data-aos-delay="300">
+                <span class="advanced">ADVANCED</span>
+                <h3>Avançado</h3>
+                <h4><sup>R$</sup>{{ $habbo->price }}</h4>
+                <ul>
+                  <li>{{ $habbo->emulator }}</li>
+                  <li>{{ $habbo->cms }}</li>
+                  <li>{{ $habbo->language }}</li>
+                  <li>Nitro HTML 5</li>
+                  <li>Catálogo Traduzido</li>
+                </ul>
+                <div class="btn-wrap">
+                  <a href="{{ route('habbo-show', $habbo->slug) }}" class="btn-buy">Saiba mais</a>
+                </div>
               </div>
             </div>
-          </div>
-          @endif
-          @endforeach
-
-          @foreach ($habbos as $habbo)
-          @if ($habbo->price == '0,00')
-          <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
-            <div class="box featured" data-aos="zoom-in" data-aos-delay="100">
-              <h3>Customizado</h3>
-              <h4><sup>A combinar</sup></h4>
-              <ul>
-                <li>{{ $habbo->emulator }}</li>
-                <li>CMS de sua escolha</li>
-                <li>Inglês ou Português</li>
-                <li>Nitro HTML 5</li>
-                <li>Customizações</li>
-              </ul>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Saiba mais</a>
+          @elseif ($habbo->price == '0.00')
+            <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
+              <div class="box featured" data-aos="zoom-in" data-aos-delay="100">
+                <h3>Customizado</h3>
+                <h4><sup>A combinar</sup></h4>
+                <ul>
+                  <li>{{ $habbo->emulator }}</li>
+                  <li>CMS de sua escolha</li>
+                  <li>Inglês ou Português</li>
+                  <li>Nitro HTML 5</li>
+                  <li>Customizações</li>
+                </ul>
+                <div class="btn-wrap">
+                  <a href="{{ route('habbo-show', $habbo->slug) }}" class="btn-buy">Saiba mais</a>
+                </div>
               </div>
             </div>
-          </div>
           @endif
           @endforeach
 

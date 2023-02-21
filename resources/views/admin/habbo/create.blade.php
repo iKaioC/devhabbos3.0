@@ -35,7 +35,7 @@
 
         <div class="card-body">
           {{-- VerticalForm --}}
-          <form action="{{ route('store-habbo') }}" method="POST" class="row g-3">
+          <form action="{{ route('store-habbo') }}" method="POST" enctype="multipart/form-data" class="row g-3">
             @csrf
 
             <div class="col-md-6">
@@ -85,10 +85,16 @@
               @error('description')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-6">
               <label class="form-label">Valor</label>
               <input type="text" name="price" class="form-control">
               @error('price')<small class="text-danger">{{ $message }}</small>@enderror
+            </div>
+
+            <div class="col-md-12">
+              <label class="form-label">Imagens</label>
+              <input type="file" name="images[]" class="form-control" multiple>
+              @error('images')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
             <div class="text-center">

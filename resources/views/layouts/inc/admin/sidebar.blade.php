@@ -73,6 +73,15 @@
         </li><!-- End Extras Page Nav -->
       </li><!-- End Forms Nav -->
 
+      <li class="nav-item">
+        <li class="nav-item">
+        <a class="nav-link {{ $currentUrl === route('client-tickets-admin') ? '' : 'collapsed' }}" href="{{ route('client-tickets-admin') }}" href="{{ route('client-tickets-admin') }}">
+          <i class="bi bi-ticket-detailed"></i>
+          <span>Lista de Tickets</span>
+        </a>
+        </li><!-- End Extras Page Nav -->
+      </li><!-- End Forms Nav -->
+
       <li class="nav-heading">Website</li>
 
       <li class="nav-item">

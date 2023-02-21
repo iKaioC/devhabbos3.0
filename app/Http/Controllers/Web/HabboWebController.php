@@ -10,7 +10,13 @@ class HabboWebController extends Controller
 {
     public function index()
     {
-        $habbos = Habbo::all();
+        $habbos = Habbo::with('images')->get();
         return view('web.habbos', compact('habbos'));
+    }
+
+    public function show($slug)
+    {
+        $habbo = Habbo::with('images')->where('slug', $slug)->firstOrFail();
+        return view('web.habbo.index', compact('habbo'));
     }
 }
