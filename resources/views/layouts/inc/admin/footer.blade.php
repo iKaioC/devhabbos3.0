@@ -4,7 +4,7 @@
       &copy; Copyright <strong><span>DevHabbos</span></strong>. Todos os direitos reservados
     </div>
     <div class="credits">
-      Desenvolvido por: <a href="https://kaioconde.dev/">KaioConde</a>
+      Desenvolvido por: <a href="https://devhabbo.tech/">DevHabbos</a>
     </div>
   </footer><!-- End Footer -->
 

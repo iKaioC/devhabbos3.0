@@ -5,16 +5,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\VpsController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\TermController;
 use App\Http\Controllers\Admin\TicketResponse;
+use App\Http\Controllers\Web\FaqWebController;
 use App\Http\Controllers\Admin\Add\ClientHabbo;
-use App\Http\Controllers\Admin\Add\ClientOptional;
 use App\Http\Controllers\Admin\HabboController;
 use App\Http\Controllers\Client\UserController;
+use App\Http\Controllers\Web\TermWebController;
 use App\Http\Controllers\Admin\Add\ClientServer;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ServerController;
 use App\Http\Controllers\Web\HabboWebController;
 use App\Http\Controllers\Admin\ArchiveController;
+use App\Http\Controllers\Admin\Add\ClientOptional;
 use App\Http\Controllers\Admin\OptionalController;
 use App\Http\Controllers\Web\ArchiveWebController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -55,6 +59,8 @@ Route::get('/servers-brasil', [VpsController::class, 'brasil'])->name('web-svbra
 Route::get('/optionals', [OptionalWebController::class, 'index'])->name('web-optional');
 Route::get('/optionals-habbo', [OptionalWebController::class, 'habbo'])->name('web-optional-habbo');
 Route::get('/archives', [ArchiveWebController::class, 'index'])->name('web-archives');
+Route::get('/faqs', [FaqWebController::class, 'index'])->name('web-faqs');
+Route::get('/terms-of-services', [TermWebController::class, 'index'])->name('web-terms');
 
 Route::get('/habbo/{slug}', [HabboWebController::class, 'show'])->name('habbo-show');
 Route::get('/optional/{category}/{slug}', [OptionalWebController::class, 'showOptional'])->name('optional-habbo-show');
@@ -193,6 +199,37 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::put('archive/{archive}', 'update')->name('update-archive');
 
         Route::delete('archive/{archive}', 'destroy')->name('archive-destroy');
+    });
+
+    
+    // ------------------------------------------------------------------------------------------- //
+
+    // FAQs ROUTES
+    Route::controller(FaqController::class)->group(function () {
+        Route::get('faqs', 'index')->name('admin-faqs');
+
+        Route::get('faq/create', 'create')->name('create-faq');
+        Route::post('faq', 'store')->name('store-faq');
+
+        Route::get('faq/{faq}/edit', 'edit')->name('edit-faq');
+        Route::put('faq/{faq}', 'update')->name('update-faq');
+
+        Route::delete('faq/{faq}', 'destroy')->name('faq-destroy');
+    });
+
+    // ------------------------------------------------------------------------------------------- //
+
+    // Terms ROUTES
+    Route::controller(TermController::class)->group(function () {
+        Route::get('terms', 'index')->name('admin-terms');
+
+        Route::get('term/create', 'create')->name('create-term');
+        Route::post('term', 'store')->name('store-term');
+
+        Route::get('term/{term}/edit', 'edit')->name('edit-term');
+        Route::put('term/{term}', 'update')->name('update-term');
+
+        Route::delete('term/{term}', 'destroy')->name('term-destroy');
     });
 
     // ------------------------------------------------------------------------------------------- //

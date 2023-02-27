@@ -72,6 +72,18 @@
           </ul>
         </li>
 
+        <li>
+          <a class="nav-link {{ $currentUrl === route('web-archives') ? 'active' : '' }}" 
+            href="{{ route('web-archives') }}">Arquivos
+          </a>
+        </li>
+
+        <li>
+          <a class="nav-link {{ $currentUrl === route('web-faqs') ? 'active' : '' }}" 
+            href="{{ route('web-faqs') }}">FAQs
+          </a>
+        </li>
+
         <i class="bi bi-list mobile-nav-toggle"></i>
       </ul>
     </nav>
