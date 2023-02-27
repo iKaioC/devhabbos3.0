@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\UserServer;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Server extends Model
 {
@@ -26,5 +27,10 @@ class Server extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_server')->withPivot('product_type');
+    }
+
+    public function userServers()
+    {
+        return $this->hasMany(UserServer::class);
     }
 }

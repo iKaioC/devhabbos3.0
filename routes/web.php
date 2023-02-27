@@ -1,19 +1,23 @@
 <?php
 
-use App\Http\Controllers\Admin\ArchiveController;
-use App\Http\Controllers\Admin\ClientController;
+use App\Models\Habbo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\VpsController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Admin\TicketResponse;
+use App\Http\Controllers\Admin\Add\ClientHabbo;
+use App\Http\Controllers\Admin\Add\ClientOptional;
 use App\Http\Controllers\Admin\HabboController;
 use App\Http\Controllers\Client\UserController;
+use App\Http\Controllers\Admin\Add\ClientServer;
+use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ServerController;
 use App\Http\Controllers\Web\HabboWebController;
+use App\Http\Controllers\Admin\ArchiveController;
 use App\Http\Controllers\Admin\OptionalController;
+use App\Http\Controllers\Web\ArchiveWebController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\TicketResponse;
-use App\Http\Controllers\Admin\Used\ServerController as UsedServerController;
 use App\Http\Controllers\Web\OptionalWebController;
 use App\Http\Controllers\Client\HabboClientDashboard;
 use App\Http\Controllers\Client\ServerClientController;
@@ -22,8 +26,7 @@ use App\Http\Controllers\Client\OptionalClientDashboard;
 use App\Http\Controllers\Client\DashboardClientController;
 use App\Http\Controllers\Client\TestimonialClientController;
 use App\Http\Controllers\Client\TicketCommentClientController;
-use App\Http\Controllers\Web\ArchiveWebController;
-use App\Models\Habbo;
+use App\Http\Controllers\Admin\Used\ServerController as UsedServerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +46,8 @@ Route::get('/', function () {
 Auth::routes();
 
 
-// Website Routes
+// WEBSITE ROUTES
+
 Route::get('/', [HomeController::class, 'index'])->name('web-index');
 Route::get('/habbos', [HabboWebController::class, 'index'])->name('web-habbo');
 Route::get('/servers', [VpsController::class, 'index'])->name('web-sv');
@@ -53,12 +57,16 @@ Route::get('/optionals-habbo', [OptionalWebController::class, 'habbo'])->name('w
 Route::get('/archives', [ArchiveWebController::class, 'index'])->name('web-archives');
 
 Route::get('/habbo/{slug}', [HabboWebController::class, 'show'])->name('habbo-show');
-// End Website Routes
+Route::get('/optional/{category}/{slug}', [OptionalWebController::class, 'showOptional'])->name('optional-habbo-show');
 
-// Client Routes
+// END WEBSITE ROUTES
+
+// ------------------------------------------------------------------------------------------------ //
+
+// CLIENT ROUTES
 Route::prefix('client')->middleware(['auth'])->group(function () {
 
-    // Client Panel
+    // CLIENT PANEL
     Route::get('dashboard', [DashboardClientController::class, 'index'])->name('client-dashboard');
     Route::get('habbos', [HabboClientDashboard::class, 'listHabbos'])->name('client-habbos');
     Route::get('servers', [ServerClientController::class, 'listServers'])->name('client-servers');
@@ -71,29 +79,37 @@ Route::prefix('client')->middleware(['auth'])->group(function () {
     Route::get('user/remove-image', [UserController::class, 'removeImage'])->name('user-remove-image');
 
     Route::post('user/change-password', [UserController::class, 'changePassword'])->name('user-change-password');
-    // End Client Panel
+    // END CLIENT PANEL
 
-    // Service Tickets
+    // ------------------------------------------------------------------------------------------- //
+
+    // SERVICE TICKETS
     Route::get('/tickets', [TicketClientController::class, 'index'])->name('tickets-index');
     Route::get('/tickets/create', [TicketClientController::class, 'create'])->name('tickets-create');
     Route::post('/tickets', [TicketClientController::class, 'store'])->name('tickets-store');
     Route::get('/tickets/{ticket}', [TicketClientController::class, 'edit'])->name('tickets-update');
     Route::post('/tickets/{ticket}/comments', [TicketCommentClientController::class, 'store'])
   ->name('ticket-comments-store');
-    // End Service Tickets
+    // END SERVICE TICKETS
 
-    // Client Testimonials
+    // ------------------------------------------------------------------------------------------- //
+
+    // CLIENT TESTIMONIALS
     Route::get('/testimonials', [TestimonialClientController::class, 'index'])->name('testimonial-index');
-    // End Client Testimonials
-});
-// End Client Routes
+    // END CLIENT TESTIMONIALS
 
-// Admin Routes
+    // ------------------------------------------------------------------------------------------- //
+});
+// END CLIENT ROUTES
+
+// ------------------------------------------------------------------------------------------- //
+
+// ADMIN ROUTES
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin-dashboard');
 
-    // Servers Routes
+    // SERVERS ROUTES
     Route::controller(ServerController::class)->group(function () {
         Route::get('servers', 'index')->name('admin-servers');
         Route::get('servers-brasil', 'brasil')->name('admin-servers-brasil');
@@ -107,7 +123,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::delete('server/{server}', 'destroy')->name('server-destroy');
     });
 
-    // Habbos Routes
+    // ------------------------------------------------------------------------------------------- //
+
+    // HABBO ROUTES
     Route::controller(HabboController::class)->group(function () {
         Route::get('habbos', 'index')->name('admin-habbos');
 
@@ -121,7 +139,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::delete('habbo/{habbo}/image/{image}', 'deleteImage')->name('delete-habbo-image');
     });
 
-    // Optionals Routes
+    // ------------------------------------------------------------------------------------------- //
+
+    // OPTIONALS ROUTES
     Route::controller(OptionalController::class)->group(function () {
         Route::get('optionals', 'index')->name('admin-optionals');
 
@@ -134,10 +154,35 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::delete('optional/{optional}', 'destroy')->name('optional-destroy');
     });
 
-    // Used Services
-    Route::get('used/servers', [UsedServerController::class, 'index'])->name('used-servers');
+    // ------------------------------------------------------------------------------------------- //
 
-    // Archives Routes
+    // ADD SERVICES
+
+    // ADD SERVER
+    Route::get('add/server', [ClientServer::class, 'index'])->name('add-server-client');
+    Route::post('add/server', [ClientServer::class, 'store'])->name('store-server-client');
+    Route::get('edit/{id}/server', [ClientServer::class, 'edit'])->name('edit-server-client');
+    Route::put('edit/{id}/server', [ClientServer::class, 'update'])->name('update-server-client');
+
+    // ------------------------------------------------------------------------------------------- //
+
+    // ADD HABBO
+    Route::get('add/habbo', [ClientHabbo::class, 'index'])->name('add-habbo-client');
+    Route::post('add/habbo', [ClientHabbo::class, 'store'])->name('store-habbo-client');
+    Route::get('edit/{id}/habbo', [ClientHabbo::class, 'edit'])->name('edit-habbo-client');
+    Route::put('edit/{id}/habbo', [ClientHabbo::class, 'update'])->name('update-habbo-client');
+
+    // ------------------------------------------------------------------------------------------- //
+
+    // ADD OPTIONALS
+    Route::get('add/optional', [ClientOptional::class, 'index'])->name('add-optional-client');
+    Route::post('add/optional', [ClientOptional::class, 'store'])->name('store-optional-client');
+    Route::get('edit/{id}/optional', [ClientOptional::class, 'edit'])->name('edit-optional-client');
+    Route::put('edit/{id}/optional', [ClientOptional::class, 'update'])->name('update-optional-client');
+
+    // ------------------------------------------------------------------------------------------- //
+
+    // ARCHIVES ROUTES
     Route::controller(ArchiveController::class)->group(function () {
         Route::get('archives', 'index')->name('admin-archives');
 
@@ -150,7 +195,9 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::delete('archive/{archive}', 'destroy')->name('archive-destroy');
     });
 
-    // Clients Routes
+    // ------------------------------------------------------------------------------------------- //
+
+    // CLIENTS ROUTS
     Route::controller(ClientController::class)->group(function () {
         Route::get('clients', 'index')->name('admin-clients');
 
@@ -160,17 +207,28 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('client/{user}/edit', 'edit')->name('edit-client');
         Route::put('client/{id}', 'update')->name('update-client');
 
-        // Client Services Useds
+        // ------------------------------------------------------------------------------------------- //
+
+        // CLIENT SERVICES USED
         Route::get('client/{id}/vps', 'showVps')->name('client-vps-admin');
         Route::get('client/{id}/habbos', 'showHabbos')->name('client-habbos-admin');
         Route::get('client/{id}/optionals', 'showOptionals')->name('client-optionals-admin');
 
         Route::get('client/testimonials', 'showTestimonials')->name('client-testimonials-admin');
 
-        // Client Tickets
+        // ------------------------------------------------------------------------------------------- //
+
+        // CLIENT TICKETS
         Route::get('client/tickets', 'showTickets')->name('client-tickets-admin');
-        Route::get('client/ticket/{ticket}', [TicketResponse::class, 'edit'])->name('tickets-update-admin');
+        Route::get('client/ticket/{ticket}', [TicketResponse::class, 'edit'])->name('tickets-edit-admin');
+        Route::patch('client/ticket/{ticket}', [TicketResponse::class, 'update'])->name('tickets-update-admin');
+
+        // ------------------------------------------------------------------------------------------- //
     });
 
+    // END CLIENTS ROUTS
+
+    // ------------------------------------------------------------------------------------------- //
+
 });
-// End Admin Routes
+// END ADMIN ROUTES

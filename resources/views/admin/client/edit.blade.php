@@ -77,15 +77,15 @@
           <div class="card h-100">
             <div class="card-body">
               <div class="row gutters">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
-                  <h6 class="mb-2 text-primary">Detalhes Pessoais</h6>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <h6 class="text-primary">Detalhes Pessoais</h6>
                 </div>
 
-                <form action="{{ route('update-client', $user->id) }}" method="POST" class="row g-3">
+                <form action="{{ route('update-client', $user->id) }}" method="POST" class="row mt-3">
                   @csrf
                   @method('PUT')
                   
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-1">
                     <div class="form-group">
                       <label for="name">Nome Completo</label>
                       <input type="text" class="form-control" name="name" value="{{ $user->name }}">
@@ -128,7 +128,7 @@
 
                   <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div class="text-right mt-4">
+                      <div class="text-right mt-4 mb-4">
                         <button type="submit" class="btn btn-primary btn-sm">
                           <i class="bi bi-check-lg"></i> Atualizar
                         </button>
@@ -136,6 +136,29 @@
                     </div>
                   </div>
                 </form>
+
+                <hr>
+
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <h6 class="text-primary">Adicionar Serviços</h6>
+                </div>
+
+                <div class="row gutters">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="text-right mt-2 mb-4">
+                      <a href="{{ route('add-server-client') }}" class="btn btn-secondary btn-sm">
+                        <i class="bi bi-hdd"></i> Adicionar VPS
+                      </a>
+                      <a href="{{ route('add-habbo-client') }}" class="btn btn-danger btn-sm">
+                        <i class="bi bi-controller"></i> Adicionar Habbo
+                      </a>
+                      <a href="{{ route('add-optional-client') }}" class="btn btn-warning btn-sm">
+                        <i class="bi bi-balloon"></i> Adicionar Opcional
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>

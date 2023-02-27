@@ -28,4 +28,9 @@ class Optional extends Model
     {
         return $this->belongsToMany(User::class, 'user_optional')->withPivot('product_type');
     }
+
+    public function userOptionals()
+    {
+        return $this->hasMany(UserOptional::class);
+    }
 }

@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Opcionais do '.$user->name)
 @section('content')
 
   @if(session('message'))
@@ -14,7 +15,7 @@
     <nav>
       <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Home</a></li>
-      <li class="breadcrumb-item active">VPS em uso</li>
+      <li class="breadcrumb-item active">Opcionais criados</li>
       </ol>
     </nav>
   </div>
@@ -26,7 +27,7 @@
       <div class="card">
         <div class="card-header">
           <h5>Opcionais de: {{ $user->name }}
-            <a href="{{ route('admin-dashboard') }}" class="btn btn-danger float-end">
+            <a href="{{ route('admin-clients') }}" class="btn btn-danger float-end">
               <i class="bi bi-arrow-left"></i> Voltar
             </a>
           </h5>
@@ -38,8 +39,9 @@
               <tr>
                 <th>Cliente</th>
                 <th>Opcional</th>
-                <th>Categoria</th>
+                <th>Tipo</th>
                 <th>Status</th>
+                <th>Valor Original</th>
                 <th>Valor Pago</th>
                 <th>Ações</th>
               </tr>
@@ -48,17 +50,47 @@
             <tbody>
               @foreach ($optionals as $optional)
                 <tr>
-                  <td>{{ $user->name }}</td>
-                  <td>{{ $optional->name }}</td>
-                  <td>{{ $optional->category }}</td>
-                  <td>{{ $optional->pivot->status }}</td>
-                  <td>{{ $optional->price }}</td>
                   <td>
-                    <a href="" class="btn btn-success">
+                    <span class="badge border-danger border-1 text-danger">
+                      {{ $user->name }}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="badge border-secondary border-1 text-secondary">
+                      {{ $optional->name }}
+                    </span>
+                  </td>
+                  <td>
+                    @if ($optional->pivot->product_type == 'Windows')
+                      <span class="badge bg-primary">Windows</span>
+                    @elseif ($optional->pivot->product_type == 'Habbo')
+                      <span class="badge bg-warning">Habbo</span>
+                    @elseif ($optional->pivot->product_type == 'Outro')
+                      <span class="badge bg-danger">Outro</span>
+                    @endif
+                  </td>
+                  <td>
+                    @if ($optional->pivot->status == 'Finalizado')
+                      <span class="badge bg-success">Finalizado</span>
+                    @elseif ($optional->pivot->status == 'Pendente')
+                      <span class="badge bg-warning">Pendente</span>
+                    @elseif ($optional->pivot->status == 'Cancelado')
+                      <span class="badge bg-secondary">Cancelado</span>
+                    @endif
+                  </td>
+                  <td>
+                    <span class="badge bg-success">
+                      <i class="bi bi-currency-dollar"></i> {{ $optional->price }}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="badge bg-success">
+                      <i class="bi bi-currency-dollar"></i> {{ $optional->pivot->pay }}
+                    </span>
+                  </td>
+                  <td>
+                    <a href="{{ route('edit-optional-client', $optional->userOptionals->first()->id) }}" class="btn btn-success btn-sm">
                       <i class="bi bi-pencil-square"></i>
-                    </a>
-                    <a href="" class="btn btn-danger">
-                      <i class="bi bi-trash3"></i>
                     </a>
                   </td>
                 </tr>

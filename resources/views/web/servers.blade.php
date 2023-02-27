@@ -34,7 +34,7 @@
                   <li>{{ $server->locale }}</li>
                 </ul>
                 <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Adquirir</a>
+                  <a href="https://wa.me/13155122348?text=Eu%20quero%20contratar%20uma%20VPS%20da%20DevHabbos" target="_blank" class="btn-buy">Adquirir</a>
                 </div>
               </div>
             </div>
@@ -81,7 +81,7 @@
                   <li>{{ $server->locale }}</li>
                 </ul>
                 <div class="btn-wrap">
-                  <a href="#" class="btn-buy">Adquirir</a>
+                  <a href="https://wa.me/13155122348?text=Eu%20quero%20contratar%20uma%20VPS%20da%20DevHabbos" target="_blank" class="btn-buy">Adquirir</a>
                 </div>
               </div>
             </div>

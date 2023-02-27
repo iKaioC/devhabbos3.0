@@ -15,7 +15,7 @@
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="300">
             <div class="icon-box {{ $optional->color }}">
               <p style="font-size: 12px; color: #a7a7a7;">Clique no ícone para saber mais!</p>
-              <a href=""><div class="icon"><i class="{{ $optional->icon }}"></i></div>
+              <a href="{{ route('optional-habbo-show', ['category' => $optional->category, 'slug' => $optional->slug]) }}"><div class="icon"><i class="{{ $optional->icon }}"></i></div>
               <h4 class="title">{{ $optional->name }}</a></h4>
               <p class="description mb-5">{{ $optional->description }}</p>
               <h3>R${{ $optional->price }}</h3>

@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Servidores do '.$user->name)
 @section('content')
 
   @if(session('message'))
@@ -26,7 +27,7 @@
       <div class="card">
         <div class="card-header">
           <h5>Servidores VPS de: {{ $user->name }}
-            <a href="{{ route('admin-dashboard') }}" class="btn btn-danger float-end">
+            <a href="{{ route('admin-clients') }}" class="btn btn-danger float-end">
               <i class="bi bi-arrow-left"></i> Voltar
             </a>
           </h5>
@@ -50,23 +51,32 @@
             <tbody>
               @foreach ($servers as $server)
                 <tr>
-                  <td>{{ $user->name }}</td>
-                  <td>{{ $server->name }}</td>
-                  <td>{{ $server->memory }}</td>
-                  <td>{{ $server->locale }}</td>
-                  <td>{{ $server->pivot->status }}</td>
+                  <td><span class="badge border-danger border-1 text-danger">{{ $user->name }}</span></td>
+                  <td><span class="badge border-secondary border-1 text-secondary">{{ $server->name }}</span></td>
+                  <td><span class="badge border-secondary border-1 text-secondary">{{ $server->memory }}</span></td>
+                  <td><span class="badge border-primary border-1 text-primary">{{ $server->locale }}</span></td>
+                  <td>
+                    @if ($server->pivot->status == 'Finalizado')
+                      <span class="badge bg-success">Finalizado</span>
+                    @elseif ($server->pivot->status == 'Pendente')
+                      <span class="badge bg-warning">Pendente</span>
+                    @elseif ($server->pivot->status == 'Cancelado')
+                      <span class="badge bg-secondary">Cancelado</span>
+                    @endif
+                  </td>
                   <td>
                     <span class="badge bg-success">
                       <i class="bi bi-currency-dollar"></i> {{ $server->price }}
                     </span>
                   </td>
-                  <td>{{ $server->pivot->pay }}</td>
                   <td>
-                    <a href="" class="btn btn-success">
+                    <span class="badge bg-success">
+                      <i class="bi bi-currency-dollar"></i> {{ $server->pivot->pay }}
+                    </span>
+                  </td>
+                  <td>
+                    <a href="{{ route('edit-server-client', $server->userServers->first()->id) }}" class="btn btn-success">
                       <i class="bi bi-pencil-square"></i>
-                    </a>
-                    <a href="" class="btn btn-danger">
-                      <i class="bi bi-trash3"></i>
                     </a>
                   </td>
                 </tr>

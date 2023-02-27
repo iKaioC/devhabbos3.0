@@ -64,14 +64,18 @@ class ClientController extends Controller
     public function showVps($id)
     {
         $user = User::findOrFail($id);
-        $servers = $user->servers()->select('servers.*', 'user_server.status', 'user_server.pay')->get();
+        $servers = $user->servers()
+                        ->selectRaw('servers.*, user_server.status, user_server.pay, user_server.id as user_server_id')
+                    ->get();
         return view('admin.client.servers', compact('servers', 'user'));
-    }  
+    }
 
     public function showHabbos($id)
     {
         $user = User::findOrFail($id);
-        $habbos = $user->habbos()->select('habbos.*', 'user_habbo.status')->get();
+        $habbos = $user->habbos()
+                        ->selectRaw('habbos.*, user_habbo.status, user_habbo.pay, user_habbo.id as user_habbo_id')
+                    ->get();
         return view('admin.client.habbos', compact('habbos', 'user'));
     }
 

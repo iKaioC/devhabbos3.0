@@ -84,8 +84,18 @@ class User extends Authenticatable
         return $this->hasMany(Ticket::class);
     }
 
-    public function usedServers()
+    public function userServers()
     {
-        return $this->belongsToMany(Server::class, 'user_server')->withPivot('product_type');
+        return $this->hasMany(UserServer::class);
+    }
+
+    public function userHabbos()
+    {
+        return $this->hasMany(UserHabbo::class);
+    }
+
+    public function userOptionals()
+    {
+        return $this->hasMany(UserOptional::class);
     }
 }

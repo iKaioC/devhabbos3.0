@@ -19,4 +19,10 @@ class OptionalWebController extends Controller
         $optionals = Optional::all();
         return view('web.optional.opthabbo', compact('optionals'));
     }
+
+    public function showOptional($category, $slug)
+    {
+        $optional = Optional::where('category', $category)->where('slug', $slug)->firstOrFail();
+        return view('web.optional.optunique', compact('optional'));
+    }
 }

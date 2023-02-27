@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Habbos do '.$user->name)
 @section('content')
 
   @if(session('message'))
@@ -10,11 +11,11 @@
 
   {{-- Page Title --}}
   <div class="pagetitle">
-    <h1>Servidores Habbos de: {{ $user->name }}</h1>
+    <h1>Habbos de: {{ $user->name }}</h1>
     <nav>
       <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Home</a></li>
-      <li class="breadcrumb-item active">Habbos adquiridos</li>
+      <li class="breadcrumb-item active">Habbos criados</li>
       </ol>
     </nav>
   </div>
@@ -25,8 +26,8 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h5>Servidores Habbos de: {{ $user->name }}
-            <a href="{{ route('admin-dashboard') }}" class="btn btn-danger float-end">
+          <h5>Habbos de: {{ $user->name }}
+            <a href="{{ route('admin-clients') }}" class="btn btn-danger float-end">
               <i class="bi bi-arrow-left"></i> Voltar
             </a>
           </h5>
@@ -37,9 +38,9 @@
             <thead>
               <tr>
                 <th>Cliente</th>
-                <th>Servidor</th>
-                <th>Memória</th>
-                <th>DataCenter</th>
+                <th>Habbo</th>
+                <th>CMS</th>
+                <th>Idioma</th>
                 <th>Status</th>
                 <th>Valor Pago</th>
                 <th>Ações</th>
@@ -49,22 +50,45 @@
             <tbody>
               @foreach ($habbos as $habbo)
                 <tr>
-                  <td>{{ $user->name }}</td>
-                  <td>{{ $habbo->name }}</td>
-                  <td>{{ $habbo->cms }}</td>
-                  <td>{{ $habbo->language }}</td>
-                  <td>{{ $habbo->pivot->status }}</td>
                   <td>
-                    <span class="badge bg-success">
-                      <i class="bi bi-currency-dollar"></i> {{ $habbo->price }}
+                    <span class="badge border-danger border-1 text-danger">
+                      {{ $user->name }}
                     </span>
                   </td>
                   <td>
-                    <a href="" class="btn btn-success">
+                    <span class="badge border-secondary border-1 text-secondary">
+                      {{ $habbo->name }}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="badge border-primary border-1 text-primary">
+                      {{ $habbo->cms }}
+                    </span>
+                  </td>
+                  <td>
+                    @if ($habbo->language == 'Inglês')
+                      <span class="badge bg-secondary">Inglês</span>
+                    @elseif ($habbo->language == 'Português')
+                      <span class="badge bg-success">Português</span>
+                    @endif
+                  </td>
+                  <td>
+                    @if ($habbo->pivot->status == 'Finalizado')
+                      <span class="badge bg-success">Finalizado</span>
+                    @elseif ($habbo->pivot->status == 'Pendente')
+                      <span class="badge bg-warning">Pendente</span>
+                    @elseif ($habbo->pivot->status == 'Cancelado')
+                      <span class="badge bg-secondary">Cancelado</span>
+                    @endif
+                  </td>
+                  <td>
+                    <span class="badge bg-success">
+                      <i class="bi bi-currency-dollar"></i> {{ $habbo->pay }}
+                    </span>
+                  </td>
+                  <td>
+                    <a href="{{ route('edit-habbo-client', $habbo->userHabbos->first()->id) }}" class="btn btn-success btn-sm">
                       <i class="bi bi-pencil-square"></i>
-                    </a>
-                    <a href="" class="btn btn-danger">
-                      <i class="bi bi-trash3"></i>
                     </a>
                   </td>
                 </tr>

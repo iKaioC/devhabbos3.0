@@ -55,13 +55,6 @@
         </a>
       </li><!-- End Extras Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link {{ $currentUrl === route('used-servers') ? '' : 'collapsed' }}" href="{{ route('used-servers') }}">
-          <i class="bi bi-hdd-stack"></i>
-          <span>Em uso</span>
-        </a>
-      </li><!-- End Extras Page Nav -->
-
       <li class="nav-heading">Clientes</li>
 
       <li class="nav-item">

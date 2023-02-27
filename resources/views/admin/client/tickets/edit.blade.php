@@ -10,23 +10,43 @@
 
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ route('client-dashboard') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('tickets-index') }}">Tickets</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('client-tickets-admin') }}">Tickets</a></li>
         <li class="breadcrumb-item active">Responder um ticket</li>
       </ol>
     </nav>
   </div>
 
+  @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+  @endif
+
   <div class="card col-lg-12">
     <div class="card-header text-secondary">
       <strong>{{ $ticket->title }}</strong>
-      @if ($ticket->status == 'Aberto')
-        <span style="cursor: default;" class="btn btn-success float-end">Aberto</span>
-      @elseif ($ticket->status == 'Pendente')
-        <span style="cursor: default;" class="btn btn-warning float-end">Pendente</span>
-      @elseif ($ticket->status == 'Fechado')
-        <span style="cursor: default;" class="btn btn-secondary float-end">Fechado</span>
-      @endif
+      <form method="POST" action="{{ route('tickets-update-admin', $ticket->id) }}" class="float-end">
+        @csrf
+        @method('PATCH')
+        <div class="dropdown">
+          <button class="btn btn-{{ $ticket->status === 'Aberto' ? 'success' : ($ticket->status === 'Pendente' ? 'warning' : 'secondary') }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ $ticket->status }}
+          </button>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li>
+              <button type="submit" name="status" value="Aberto" class="dropdown-item @if ($ticket->status == 'Aberto') active @endif">Aberto</button>
+            </li>
+            <li>
+              <button type="submit" name="status" value="Pendente" class="dropdown-item @if ($ticket->status == 'Pendente') active @endif">Pendente</button>
+            </li>
+            <li>
+              <button type="submit" name="status" value="Fechado" class="dropdown-item @if ($ticket->status == 'Fechado') active @endif">Fechado</button>
+            </li>
+          </ul>
+        </div>
+      </form>
     </div>
 
     <div class="container padding-bottom-3x mb-2">

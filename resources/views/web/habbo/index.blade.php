@@ -37,6 +37,8 @@
               {{ $habbo->description }}
             </p>
           </div>
+
+          <a href="https://wa.me/13155122348?text=Eu%20quero%20contratar%20um%20Habbo%20da%20DevHabbos" target="_blank" class="btn btn-primary float-end">Adquirir</a>
         </div>
 
       </div>

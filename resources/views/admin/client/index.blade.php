@@ -74,32 +74,36 @@
                   </div>
 
                   <tr>
-                    <td>{{ $user->name }}</td>
+                    <td>
+                      <a href="{{ route('edit-client', $user->id) }}">
+                        {{ $user->name }}
+                      </a>
+                    </td>
                     <td>{{ $user->rank }}</td>
 
                     <td>
-                      <a href="{{ route('client-vps-admin', $user->id) }}">
-                        {{ $user->servers()->count() }}
+                      <a href="{{ route('client-vps-admin', $user->id) }}" class="btn btn-secondary mb-2 btn-sm">
+                        VPS <span class="badge bg-white text-secondary">{{ $user->servers()->count() }}</span>
                       </a>
                     </td>
 
                     <td>
-                      <a href="{{ route('client-habbos', $user->id) }}">
-                        {{ $user->habbos()->count() }}
+                      <a href="{{ route('client-habbos-admin', $user->id) }}" class="btn btn-warning mb-2 btn-sm">
+                        Habbos <span class="badge bg-white text-warning">{{ $user->habbos()->count() }}</span>
                       </a>
                     </td>
 
                     <td>
-                      <a href="{{ route('client-optionals', $user->id) }}">
-                        {{ $user->optionals()->count() }}
+                      <a href="{{ route('client-optionals-admin', $user->id) }}" class="btn btn-danger mb-2 btn-sm">
+                        Opcionais <span class="badge bg-white text-danger">{{ $user->optionals()->count() }}</span>
                       </a>
                     </td>
 
                     <td>
                       @if ($user->status == 'active')
-                        <span class="text-success">Ativa</span>
+                        <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Ativa</span>
                       @elseif ($user->status == 'inactive')
-                        <span class="text-secondary">Inativa</span>
+                      <span class="badge bg-secondary"><i class="bi bi-collection me-1"></i> Inativa</span>
                       @endif
                     </td>
 

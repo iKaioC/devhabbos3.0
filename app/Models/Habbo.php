@@ -37,4 +37,9 @@ class Habbo extends Model
     {
         return $this->belongsToMany(User::class, 'user_habbo')->withPivot('product_type');
     }
+
+    public function userHabbos()
+    {
+        return $this->hasMany(UserHabbo::class);
+    }
 }
