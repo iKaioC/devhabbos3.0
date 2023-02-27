@@ -25,7 +25,8 @@ class ClientServer extends Controller
             'server_id' => 'required|exists:servers,id',
             'product_type' => 'required',
             'status' => 'required',
-            'pay' => 'required|numeric',
+            'pay' => 'nullable|numeric',
+            'ipserver' => 'required',
             'duedate' => 'required|date_format:d/m/Y'
         ]);
     
@@ -43,10 +44,11 @@ class ClientServer extends Controller
         $userServer->product_type = $request->input('product_type');
         $userServer->status = $request->input('status');
         $userServer->pay = $request->input('pay');
+        $userServer->ipserver = $request->input('ipserver');
         $userServer->duedate = $duedate;
         $userServer->save();
     
-        return redirect()->route('admin-servers')->with('message', 'Servidor adicionado com sucesso!');
+        return redirect()->route('admin-servers')->with('message', 'Servidor adicionado ao cliente!');
     }
 
     public function edit($id)
@@ -70,7 +72,8 @@ class ClientServer extends Controller
             'server_id' => 'required|exists:servers,id',
             'product_type' => 'required|string',
             'status' => 'required',
-            'pay' => 'required|numeric',
+            'pay' => 'nullable|numeric',
+            'ipserver' => 'required',
             'duedate' => 'required|date_format:d/m/Y'
         ]);
     
@@ -79,6 +82,7 @@ class ClientServer extends Controller
         $userServer->product_type = $request->input('product_type');
         $userServer->status = $request->input('status');
         $userServer->pay = $request->input('pay');
+        $userServer->ipserver = $request->input('ipserver');
         $userServer->duedate = Carbon::createFromFormat('d/m/Y', $request->input('duedate'))->toDateString();
         $userServer->save();
     

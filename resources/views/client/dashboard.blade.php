@@ -1,5 +1,5 @@
 @extends('layouts.client')
-
+@section('title', 'Dashboard')
 @section('content')
 
   @if(session('error'))

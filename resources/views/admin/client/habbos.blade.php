@@ -42,6 +42,7 @@
                 <th>CMS</th>
                 <th>Idioma</th>
                 <th>Status</th>
+                <th>Suporte</th>
                 <th>Valor Pago</th>
                 <th>Ações</th>
               </tr>
@@ -65,11 +66,16 @@
                       {{ $habbo->cms }}
                     </span>
                   </td>
+
                   <td>
                     @if ($habbo->language == 'Inglês')
-                      <span class="badge bg-secondary">Inglês</span>
+                      <span class="badge border-secondary border-1 text-secondary">
+                        {{ $habbo->language }}
+                      </span>
                     @elseif ($habbo->language == 'Português')
-                      <span class="badge bg-success">Português</span>
+                      <span class="badge border-success border-1 text-success">
+                        {{ $habbo->language }}
+                      </span>
                     @endif
                   </td>
                   <td>
@@ -80,6 +86,9 @@
                     @elseif ($habbo->pivot->status == 'Cancelado')
                       <span class="badge bg-secondary">Cancelado</span>
                     @endif
+                  </td>
+                  <td>
+                    <span class="badge border-secondary border-1 text-secondary">{{ \Carbon\Carbon::parse($habbo->supportdate)->format('d/m/Y')}}</span>
                   </td>
                   <td>
                     <span class="badge bg-success">

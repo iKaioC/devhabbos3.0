@@ -41,7 +41,7 @@
                 <th>Opcional</th>
                 <th>Tipo</th>
                 <th>Status</th>
-                <th>Valor Original</th>
+                <th>Suporte</th>
                 <th>Valor Pago</th>
                 <th>Ações</th>
               </tr>
@@ -62,11 +62,18 @@
                   </td>
                   <td>
                     @if ($optional->pivot->product_type == 'Windows')
-                      <span class="badge bg-primary">Windows</span>
+                      <span class="badge border-primary border-1 text-primary">
+                        Windows
+                      </span>
                     @elseif ($optional->pivot->product_type == 'Habbo')
-                      <span class="badge bg-warning">Habbo</span>
+                      <span class="badge border-warning border-1 text-warning">
+                        Habbo
+                      </span>
                     @elseif ($optional->pivot->product_type == 'Outro')
                       <span class="badge bg-danger">Outro</span>
+                      <span class="badge border-secondary border-1 text-secondary">
+                        Outro
+                      </span>
                     @endif
                   </td>
                   <td>
@@ -79,9 +86,7 @@
                     @endif
                   </td>
                   <td>
-                    <span class="badge bg-success">
-                      <i class="bi bi-currency-dollar"></i> {{ $optional->price }}
-                    </span>
+                    <span class="badge border-secondary border-1 text-secondary">{{ \Carbon\Carbon::parse($optional->supportdate)->format('d/m/Y')}}</span>
                   </td>
                   <td>
                     <span class="badge bg-success">

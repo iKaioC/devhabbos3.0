@@ -1,5 +1,5 @@
 @extends('layouts.client')
-
+@section('title', 'Meus Tickets de Ajuda')
 @section('content')
 
   <link rel="stylesheet" href="{{ asset('client/css/ticketstable.css') }}">

@@ -69,7 +69,7 @@
             <div class="col-md-6">
               <label class="form-label">Status</label>
               <select name="status" id="status" class="form-select">
-                <option value="Finalizado">Finalizado</option>
+                <option value="Ativo">Ativo</option>
                 <option value="Pendente">Pendente</option>
                 <option value="Cancelado">Cancelado</option>
               </select>
@@ -79,6 +79,12 @@
               <label class="form-label">Valor Pago</label>
               <input type="text" name="pay" class="form-control">
               @error('pay')<small class="text-danger">{{ $message }}</small>@enderror
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">IP do Servidor</label>
+              <input type="text" name="ipserver" class="form-control">
+              @error('ipserver')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
             <div class="col-md-6">

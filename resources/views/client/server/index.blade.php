@@ -1,5 +1,5 @@
 @extends('layouts.client')
-
+@section('title', 'Meus Servers')
 @section('content')
 
 <link rel="stylesheet" href="{{ asset('client/css/ticketstable.css') }}">
@@ -15,7 +15,7 @@
 
     {{-- Page Title --}}
     <div class="pagetitle">
-      <h1>Servidores VPS</h1>
+      <h1>Meus Servidores VPS</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('client-dashboard') }}">Home</a></li>
@@ -30,7 +30,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Servidores VPS
+            <h5>Meus Servidores VPS
               <a href="{{ route('client-dashboard') }}" class="btn btn-primary float-end">
                 <i class="bi bi-arrow-left"></i> Voltar
               </a>
@@ -51,9 +51,9 @@
                                 <tr>
                                   <th scope="col">Nome</th>
                                   <th scope="col">Memória</th>
-                                  <th scope="col">Armazenamento</th>
-                                  <th scope="col">vCPU</th>
+                                  <th scope="col">SSD</th>
                                   <th scope="col">Status</th>
+                                  <th scope="col">Vencimento</th>
                                   <th scope="col">Preço</th>
                                   <th scope="col">Ver</th>
                                 </tr>
@@ -100,6 +100,20 @@
                                                 <i class="bi bi-check-circle me-1 text-success"></i>
                                                 <b>Valor Pago:</b> R$ {{ $server->price }} Reais
                                               </li>
+
+                                              <h5 class="modal-title mt-3">Dados da VPS</h5>
+                                              <hr>
+
+                                              <li class="list-group-item">
+                                                <i class="bi bi-pass me-1 text-primary"></i>
+                                                <b>IP:</b> {{ $server->ipserver }}
+                                              </li>
+
+                                              
+                                              <li class="list-group-item">
+                                                <i class="bi bi-person me-1 text-primary"></i>
+                                                <b>Usuário:</b> Administrator
+                                              </li>
                                           </ul>
                                         </div>
 
@@ -117,11 +131,15 @@
                                       {{ $server->amount_storage }} {{ $server->type_storage }}
                                     </td>
 
-                                    <td style="font-size: 14px;">{{ $server->vcpu }}</td>
-
                                     <td>
                                       <span class="badge border-{{ $server->status === 'Ativo' ? 'success' :   ($server->status === 'Cancelado' ? 'muted' : 'warning') }} border-1 text-{{ $server->status === 'Ativo' ? 'success' : ($server->status === 'Cancelado' ? 'muted' : 'warning') }}">
                                         {{ $server->status }}
+                                      </span>
+                                    </td>
+
+                                    <td>
+                                      <span class="badge bg-primary">
+                                        {{ \Carbon\Carbon::parse($server->duedate)->format('d/m/Y')}}
                                       </span>
                                     </td>
 

@@ -1,4 +1,5 @@
 @extends('layouts.client')
+@section('title', 'Meus Depoimentos')
 @section('content')
 
   @if(session('message'))
@@ -25,7 +26,7 @@
       <div class="col-lg-8">
         <div class="card">
           <div class="card-header">
-            Seu Depoimento
+            Meu Depoimento
           </div>
 
           @if ($testimonials->count() > 0)

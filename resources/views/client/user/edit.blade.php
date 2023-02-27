@@ -1,5 +1,5 @@
 @extends('layouts.client')
-
+@section('title', 'Editar Perfil')
 @section('content')
 
   <div class="pagetitle">

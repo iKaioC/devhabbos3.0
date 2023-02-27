@@ -63,8 +63,8 @@ class User extends Authenticatable
     public function servers()
     {
         return $this->belongsToMany(Server::class, 'user_server')
-            ->withPivot('pay', 'status', 'product_type')
-            ->select('servers.*', 'user_server.pay', 'user_server.status', 'product_type');
+            ->withPivot('pay', 'status', 'product_type', 'ipserver', 'duedate')
+            ->select('servers.*', 'user_server.pay', 'user_server.status', 'user_server.ipserver', 'product_type');
     }
 
     public function optionals()

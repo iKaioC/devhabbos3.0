@@ -51,8 +51,8 @@
                       <i class="bi bi-server"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>R$ {{ number_format($totalRevenue, 2, ',', '.') }}</h6>
-                      <span class="text-success small pt-1 fw-bold">{{ $vpsServers->count() }}</span> <span class="text-muted small pt-2 ps-1">VPS's no total</span>
+                      <h6>R$ {{ number_format($totalServer, 2, ',', '.') }}</h6>
+                      <span class="text-success small pt-1 fw-bold">{{ $userServers->count() }}</span> <span class="text-muted small pt-2 ps-1">VPS's no total</span>
                     </div>
                   </div>
                 </div>

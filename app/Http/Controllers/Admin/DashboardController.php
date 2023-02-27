@@ -25,17 +25,16 @@ class DashboardController extends Controller
         } else {
             $growthPercentage = 100;
         }
-    
-        // Recupera todas as VPS's dos clientes e calcula o total de receita
-        $vpsServers = DB::table('user_server')
-            ->join('servers', 'user_server.server_id', '=', 'servers.id')
-            ->where('user_server.product_type', 'vps')
-            ->select('user_server.id', 'user_server.user_id', 'servers.name', 'user_server.created_at', 'servers.price')
-            ->get();
 
-        $totalRevenue = 0;
-        foreach ($vpsServers as $vpsServer) {
-            $totalRevenue += str_replace(',', '.', $vpsServer->price);
+        // Recupera todas as VPS's dos clientes e calcula o total de receita
+        $userServers = DB::table('user_server')
+        ->join('servers', 'user_server.server_id', '=', 'servers.id')
+        ->select('user_server.id', 'user_server.user_id', 'servers.name', 'user_server.created_at', 'servers.price')
+        ->get();
+    
+        $totalServer = 0;
+        foreach ($userServers as $servers) {
+            $totalServer += str_replace(',', '.', $servers->price);
         }
 
         // Recupera todas os Habbos dos clientes e calcula o total de receita
@@ -64,8 +63,8 @@ class DashboardController extends Controller
         return view('admin.dashboard', [
             'totalUsers' => $totalUsers,
             'growthPercentage' => $growthPercentage,
-            'vpsServers' => $vpsServers,
-            'totalRevenue' => $totalRevenue,
+            'userServers' => $userServers,
+            'totalServer' => $totalServer,
             'userHabbos' => $userHabbos,
             'totalHabbo' => $totalHabbo,
             'userOptionals' => $userOptionals,

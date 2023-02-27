@@ -40,9 +40,9 @@
                 <th>Cliente</th>
                 <th>Servidor</th>
                 <th>Memória</th>
-                <th>DataCenter</th>
+                <th>IP</th>
                 <th>Status</th>
-                <th>Valor</th>
+                <th>Vencimento</th>
                 <th>Valor Pago</th>
                 <th>Ações</th>
               </tr>
@@ -54,28 +54,24 @@
                   <td><span class="badge border-danger border-1 text-danger">{{ $user->name }}</span></td>
                   <td><span class="badge border-secondary border-1 text-secondary">{{ $server->name }}</span></td>
                   <td><span class="badge border-secondary border-1 text-secondary">{{ $server->memory }}</span></td>
-                  <td><span class="badge border-primary border-1 text-primary">{{ $server->locale }}</span></td>
+                  <td><span class="badge border-secondary border-1 text-secondary">{{ $server->pivot->ipserver }}</span></td>
                   <td>
-                    @if ($server->pivot->status == 'Finalizado')
-                      <span class="badge bg-success">Finalizado</span>
+                    @if ($server->pivot->status == 'Ativo')
+                      <span class="badge bg-success">Ativo</span>
                     @elseif ($server->pivot->status == 'Pendente')
                       <span class="badge bg-warning">Pendente</span>
                     @elseif ($server->pivot->status == 'Cancelado')
                       <span class="badge bg-secondary">Cancelado</span>
                     @endif
                   </td>
-                  <td>
-                    <span class="badge bg-success">
-                      <i class="bi bi-currency-dollar"></i> {{ $server->price }}
-                    </span>
-                  </td>
+                  <td><span class="badge border-secondary border-1 text-secondary">{{ \Carbon\Carbon::parse($server->pivot->duedate)->format('d/m/Y')}}</span></td>
                   <td>
                     <span class="badge bg-success">
                       <i class="bi bi-currency-dollar"></i> {{ $server->pivot->pay }}
                     </span>
                   </td>
                   <td>
-                    <a href="{{ route('edit-server-client', $server->userServers->first()->id) }}" class="btn btn-success">
+                    <a href="{{ route('edit-server-client', $server->userServers->first()->id) }}" class="btn btn-success btn-sm sm">
                       <i class="bi bi-pencil-square"></i>
                     </a>
                   </td>

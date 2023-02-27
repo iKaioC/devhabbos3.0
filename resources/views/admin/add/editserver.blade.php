@@ -69,7 +69,7 @@
             <div class="col-md-6">
               <label class="form-label">Status</label>
               <select name="status" id="status" class="form-select">
-                <option value="Finalizado" @if($userServer->status == 'Finalizado') selected @endif>Finalizado</option>
+                <option value="Ativo" @if($userServer->status == 'Ativo') selected @endif>Ativo</option>
                 <option value="Pendente" @if($userServer->status == 'Pendente') selected @endif>Pendente</option>
                 <option value="Cancelado" @if($userServer->status == 'Cancelado') selected @endif>Cancelado</option>
               </select>
@@ -80,6 +80,12 @@
               <label class="form-label">Valor Pago</label>
               <input type="text" name="pay" value="{{ $userServer->pay }}" class="form-control">
               @error('pay')<small class="text-danger">{{ $message }}</small>@enderror
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">IP do Servidor</label>
+              <input type="text" name="ipserver" value="{{ $userServer->ipserver }}" class="form-control">
+              @error('ipserver')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
             <div class="col-md-6">

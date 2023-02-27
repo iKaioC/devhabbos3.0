@@ -1,5 +1,5 @@
 @extends('layouts.client')
-
+@section('title', 'Meus Opcionais')
 @section('content')
 
   <link rel="stylesheet" href="{{ asset('client/css/ticketstable.css') }}">
@@ -15,7 +15,7 @@
 
     {{-- Page Title --}}
     <div class="pagetitle">
-      <h1>Opcionais</h1>
+      <h1>Meus Opcionais</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('client-dashboard') }}">Home</a></li>
@@ -30,7 +30,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Opcionais
+            <h5>Meus Opcionais
               <a href="{{ route('client-dashboard') }}" class="btn btn-primary float-end">
                 <i class="bi bi-arrow-left"></i> Voltar
               </a>
@@ -52,6 +52,7 @@
                                   <th scope="col">Nome</th>
                                   <th scope="col">Tipo</th>
                                   <th scope="col">Status</th>
+                                  <th scope="col">Suporte até</th>
                                   <th scope="col">Preço</th>
                                   <th scope="col">Ver</th>
                                 </tr>
@@ -90,6 +91,11 @@
                                               </li>
 
                                               <li class="list-group-item">
+                                                <i class="bi bi-calendar me-1 text-primary"></i>
+                                                <b>Suporte até:</b> {{ \Carbon\Carbon::parse($optional->supportdate)->format('d/m/Y')}}
+                                              </li>
+
+                                              <li class="list-group-item">
                                                 <i class="bi bi-check-circle me-1 text-success"></i>
                                                 <b>Valor Pago:</b> R$ {{ $optional->price }} Reais
                                               </li>
@@ -108,8 +114,24 @@
                                     <td style="font-size: 14px;">{{ $optional->product_type }}</td>
 
                                     <td>
-                                      <span class="badge border-{{ $optional->status === 'Ativo' ? 'success' :   ($optional->status === 'Cancelado' ? 'muted' : 'warning') }} border-1 text-{{ $optional->status === 'Ativo' ? 'success' : ($optional->status === 'Cancelado' ? 'muted' : 'warning') }}">
-                                        {{ $optional->status }}
+                                      @if ($optional->status === 'Ativo')
+                                        <span class="badge border-success border-1 text-success">
+                                          {{ $optional->status }}
+                                        </span>
+                                      @elseif ($optional->status === 'Pendente')
+                                        <span class="badge border-warning border-1 text-warning">
+                                          {{ $optional->status }}
+                                        </span>
+                                      @elseif ($optional->status === 'Cancelado')
+                                        <span class="badge border-secondary border-1 text-secondary">
+                                          {{ $optional->status }}
+                                        </span>
+                                      @endif
+                                    </td>
+
+                                    <td>
+                                      <span class="badge bg-primary">
+                                        {{ \Carbon\Carbon::parse($optional->supportdate)->format('d/m/Y')}}
                                       </span>
                                     </td>
 

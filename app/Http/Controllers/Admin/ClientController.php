@@ -65,7 +65,7 @@ class ClientController extends Controller
     {
         $user = User::findOrFail($id);
         $servers = $user->servers()
-                        ->selectRaw('servers.*, user_server.status, user_server.pay, user_server.id as user_server_id')
+                        ->selectRaw('servers.*, user_server.status, user_server.pay, user_server.ipserver, user_server.duedate, user_server.id as user_server_id')
                     ->get();
         return view('admin.client.servers', compact('servers', 'user'));
     }
@@ -74,7 +74,7 @@ class ClientController extends Controller
     {
         $user = User::findOrFail($id);
         $habbos = $user->habbos()
-                        ->selectRaw('habbos.*, user_habbo.status, user_habbo.pay, user_habbo.id as user_habbo_id')
+                        ->selectRaw('habbos.*, user_habbo.status, user_habbo.pay, user_habbo.supportdate, user_habbo.id as user_habbo_id')
                     ->get();
         return view('admin.client.habbos', compact('habbos', 'user'));
     }
@@ -82,7 +82,9 @@ class ClientController extends Controller
     public function showOptionals($id)
     {
         $user = User::findOrFail($id);
-        $optionals = $user->optionals()->select('optionals.*', 'user_optional.status')->get();
+        $optionals = $user->optionals()
+                        ->selectRaw('optionals.*, user_optional.status, user_optional.pay, user_optional.supportdate, user_optional.id as user_optional_id')
+                    ->get();
         return view('admin.client.optionals', compact('optionals', 'user'));
     }
 

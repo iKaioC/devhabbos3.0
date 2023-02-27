@@ -17,7 +17,8 @@ class UserServer extends Model
         'server_id',
         'product_type',
         'status',
-        'pay'
+        'pay',
+        'ipserver'
     ];
 
     protected $dates = [

@@ -1,5 +1,5 @@
 @extends('layouts.client')
-
+@section('title', 'Abrir um novo Ticket')
 @section('content')
 
   <div class="pagetitle">

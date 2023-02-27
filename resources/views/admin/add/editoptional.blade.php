@@ -51,7 +51,7 @@
               <label class="form-label">Opcional</label>
               <select name="optional_id" id="optional_id" class="form-select">
                 @foreach($optionals as $optional)
-                  <option value="{{ $optional->id }}" @if($optional->id == $userOptional->optional_id) selected @endif>{{ $optional->name }} ({{ $optional->cms }})</option>
+                  <option value="{{ $optional->id }}" @if($optional->id == $userOptional->optional_id) selected @endif>{{ $optional->name }} ({{ $optional->category }})</option>
                 @endforeach
               </select>
               @error('optional_id')<small class="text-danger">{{ $message }}</small>@enderror

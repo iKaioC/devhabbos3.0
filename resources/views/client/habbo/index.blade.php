@@ -1,5 +1,5 @@
 @extends('layouts.client')
-
+@section('title', 'Meus Habbos')
 @section('content')
 
   <link rel="stylesheet" href="{{ asset('client/css/ticketstable.css') }}">
@@ -14,7 +14,7 @@
 
     {{-- Page Title --}}
     <div class="pagetitle">
-      <h1>Servidores Habbo</h1>
+      <h1>Meus Servidores Habbo</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('client-dashboard') }}">Home</a></li>
@@ -29,7 +29,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Servidores Habbo
+            <h5>Meus Servidores Habbo
               <a href="{{ route('client-dashboard') }}" class="btn btn-primary float-end">
                 <i class="bi bi-arrow-left"></i> Voltar
               </a>
@@ -51,6 +51,7 @@
                                   <th scope="col">Nome</th>
                                   <th scope="col">Tipo</th>
                                   <th scope="col">Status</th>
+                                  <th scope="col">Suporte até</th>
                                   <th scope="col">Preço</th>
                                   <th scope="col">Ver</th>
                                 </tr>
@@ -89,6 +90,16 @@
                                             </li>
 
                                             <li class="list-group-item">
+                                              <i class="bi bi-diagram-3 me-1 text-secondary"></i>
+                                              <b>Status:</b> {{ $habbo->status }}
+                                            </li>
+
+                                            <li class="list-group-item">
+                                              <i class="bi bi-calendar me-1 text-primary"></i>
+                                              <b>Suporte até:</b> {{ \Carbon\Carbon::parse($habbo->supportdate)->format('d/m/Y')}}
+                                            </li>
+
+                                            <li class="list-group-item">
                                               <i class="bi bi-check-circle me-1 text-success"></i>
                                               <b>Valor Pago:</b> R$ {{ $habbo->price }} Reais
                                             </li>
@@ -112,8 +123,24 @@
                                     </td>
 
                                     <td>
-                                      <span class="badge border-{{ $habbo->status === 'Ativo' ? 'success' :   ($habbo->status === 'Cancelado' ? 'muted' : 'warning') }} border-1 text-{{ $habbo->status === 'Ativo' ? 'success' : ($habbo->status === 'Cancelado' ? 'muted' : 'warning') }}">
-                                        {{ $habbo->status }}
+                                      @if ($habbo->status === 'Ativo')
+                                        <span class="badge border-success border-1 text-success">
+                                          {{ $habbo->status }}
+                                        </span>
+                                      @elseif ($habbo->status === 'Pendente')
+                                        <span class="badge border-warning border-1 text-warning">
+                                          {{ $habbo->status }}
+                                        </span>
+                                      @elseif ($habbo->status === 'Cancelado')
+                                        <span class="badge border-secondary border-1 text-secondary">
+                                          {{ $habbo->status }}
+                                        </span>
+                                      @endif
+                                    </td>
+
+                                    <td>
+                                      <span class="badge bg-primary">
+                                        {{ \Carbon\Carbon::parse($habbo->supportdate)->format('d/m/Y')}}
                                       </span>
                                     </td>
 
