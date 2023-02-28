@@ -88,7 +88,7 @@
                     @endif
                   </td>
                   <td>
-                    <span class="badge border-secondary border-1 text-secondary">{{ \Carbon\Carbon::parse($habbo->supportdate)->format('d/m/Y')}}</span>
+                    <span class="badge border-secondary border-1 text-secondary">{{ $habbo->supportdate }}</span>
                   </td>
                   <td>
                     <span class="badge bg-success">

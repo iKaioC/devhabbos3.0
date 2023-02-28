@@ -63,8 +63,25 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title">Informações do Habbo</h5>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          <h5 class="modal-title">Informações</h5>
+                                          
+                                          @if ($habbo->status == 'Ativo')
+                                          <span class="btn btn-success float-right">
+                                            {{ $habbo->status }}
+                                          </span>
+                                        @endif
+
+                                        @if ($habbo->status == 'Pendente')
+                                          <span class="btn btn-warning float-right">
+                                            {{ $habbo->status }}
+                                          </span>
+                                        @endif
+
+                                        @if ($habbo->status == 'Cancelado')
+                                          <span class="btn btn-secondary float-right">
+                                            {{ $habbo->status }}
+                                          </span>
+                                        @endif
                                         </div>
 
                                         <div class="modal-body">
@@ -89,19 +106,27 @@
                                               <b>Idioma:</b> {{ $habbo->language }}
                                             </li>
 
-                                            <li class="list-group-item">
-                                              <i class="bi bi-diagram-3 me-1 text-secondary"></i>
-                                              <b>Status:</b> {{ $habbo->status }}
-                                            </li>
+                                            <h5 class="modal-title">Pagamento</h5>
 
-                                            <li class="list-group-item">
-                                              <i class="bi bi-calendar me-1 text-primary"></i>
-                                              <b>Suporte até:</b> {{ \Carbon\Carbon::parse($habbo->supportdate)->format('d/m/Y')}}
-                                            </li>
+                                            <hr>
 
                                             <li class="list-group-item">
                                               <i class="bi bi-check-circle me-1 text-success"></i>
-                                              <b>Valor Pago:</b> R$ {{ $habbo->price }} Reais
+                                              <b>Valor Original:</b> R$ {{ $habbo->price }} Reais
+                                            </li>
+
+                                            <li class="list-group-item">
+                                              <i class="bi bi-currency-dollar me-1 text-success"></i>
+                                              <b>Valor Pago:</b> R$ {{ $habbo->pay }} Reais
+                                            </li>
+
+                                            <h5 class="modal-title">Suporte</h5>
+
+                                            <hr>
+
+                                            <li class="list-group-item">
+                                              <i class="bi bi-calendar me-1 text-primary"></i>
+                                              <b>Suporte até:</b> {{ $habbo->supportdate }}
                                             </li>
                                           </ul>
                                         </div>
@@ -140,7 +165,7 @@
 
                                     <td>
                                       <span class="badge bg-primary">
-                                        {{ \Carbon\Carbon::parse($habbo->supportdate)->format('d/m/Y')}}
+                                        {{ $habbo->supportdate }}
                                       </span>
                                     </td>
 

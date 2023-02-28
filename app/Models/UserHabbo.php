@@ -16,11 +16,11 @@ class UserHabbo extends Model
         'habbo_id',
         'product_type',
         'status',
-        'pay'
+        'pay',
+        'supportdate'
     ];
 
     protected $dates = [
-        'supportdate',
         'created_at',
         'updated_at'
     ];

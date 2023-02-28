@@ -1,11 +1,8 @@
 @extends('layouts.client')
 @section('title', 'Meus Servers')
 @section('content')
-
-<link rel="stylesheet" href="{{ asset('client/css/ticketstable.css') }}">
-
+  <link rel="stylesheet" href="{{ asset('client/css/ticketstable.css') }}">
   <div>
-
     @if(session('message'))
       <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle me-1"></i> {{ session('message') }}
@@ -65,8 +62,25 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title">Informações da VPS</h5>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          <h5 class="modal-title">Informações</h5>
+
+                                          @if ($server->status == 'Ativo')
+                                            <span class="btn btn-success float-right">
+                                              {{ $server->status }}
+                                            </span>
+                                          @endif
+
+                                          @if ($server->status == 'Pendente')
+                                            <span class="btn btn-warning float-right">
+                                              {{ $server->status }}
+                                            </span>
+                                          @endif
+
+                                          @if ($server->status == 'Cancelado')
+                                            <span class="btn btn-secondary float-right">
+                                              {{ $server->status }}
+                                            </span>
+                                          @endif
                                         </div>
 
                                         <div class="modal-body">
@@ -74,59 +88,80 @@
                                             <li class="list-group-item">
                                               <i class="bi bi-book me-1 text-primary"></i>
                                               <b>Nome do Serviço:</b> {{ $server->name }}
-                                              </li>
+                                            </li>
 
-                                              <li class="list-group-item">
-                                                <i class="bi bi-memory me-1 text-danger"></i>
-                                                <b>Memória RAM:</b> {{ $server->memory }}
-                                              </li>
+                                            <li class="list-group-item">
+                                              <i class="bi bi-memory me-1 text-danger"></i>
+                                              <b>Memória RAM:</b> {{ $server->memory }}
+                                            </li>
 
-                                              <li class="list-group-item">
-                                                <i class="bi bi-cpu me-1 text-secondary"></i>
-                                                <b>vCPU:</b> {{ $server->vcpu }}
-                                              </li>
+                                            <li class="list-group-item">
+                                              <i class="bi bi-cpu me-1 text-secondary"></i>
+                                              <b>vCPU:</b> {{ $server->vcpu }}
+                                            </li>
 
-                                              <li class="list-group-item">
-                                                <i class="bi bi-device-hdd me-1 text-warning"></i>
-                                                <b>DataCenter:</b> {{ $server->locale }}
-                                              </li>
+                                            <li class="list-group-item">
+                                              <i class="bi bi-device-hdd me-1 text-warning"></i>
+                                              <b>DataCenter:</b> {{ $server->locale }}
+                                            </li>
 
-                                              <li class="list-group-item">
-                                                <i class="bi bi-ticket-detailed me-1 text-info"></i>
-                                                <b>Status:</b> {{ $server->status }}
-                                              </li>
+                                            <h5 class="modal-title mt-3">Dados</h5>
 
-                                              <li class="list-group-item">
-                                                <i class="bi bi-check-circle me-1 text-success"></i>
-                                                <b>Valor Pago:</b> R$ {{ $server->price }} Reais
-                                              </li>
+                                            <hr>
 
-                                              <h5 class="modal-title mt-3">Dados da VPS</h5>
-                                              <hr>
+                                            <li class="list-group-item">
+                                              <i class="bi bi-pass me-1 text-primary"></i>
+                                              <b>IP:</b> {{ $server->ipserver }}
+                                            </li>
 
-                                              <li class="list-group-item">
-                                                <i class="bi bi-pass me-1 text-primary"></i>
-                                                <b>IP:</b> {{ $server->ipserver }}
-                                              </li>
+                                            <li class="list-group-item">
+                                              <i class="bi bi-person me-1 text-primary"></i>
+                                              <b>Usuário:</b> Administrator
+                                            </li>
 
-                                              
-                                              <li class="list-group-item">
-                                                <i class="bi bi-person me-1 text-primary"></i>
-                                                <b>Usuário:</b> Administrator
-                                              </li>
+                                            <h5 class="modal-title mt-3">Pagamento</h5>
+
+                                            <hr>
+
+                                            <li class="list-group-item">
+                                              <i class="bi bi-check-circle me-1 text-success"></i>
+                                              <b>Valor Original:</b> R$ {{ $server->price }} Reais
+                                            </li>
+
+                                            <li class="list-group-item">
+                                              <i class="bi bi-currency-dollar me-1 text-success"></i>
+                                              <b>Valor Pago:</b> R$ {{ $server->pay }} Reais
+                                            </li>
+
+                                            <h5 class="modal-title mt-3">Vencimento</h5>
+
+                                            <hr>
+
+                                            <li class="list-group-item">
+                                              <i class="bi bi-calendar-date"></i>
+                                              <b>Vencimento:</b> {{ $server->duedate }}
+                                            </li>
                                           </ul>
                                         </div>
 
                                         <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            Fechar
+                                          </button>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
 
                                   <tr>
-                                    <td style="font-size: 14px;">{{ $server->name }}</td>
-                                    <td style="font-size: 14px;">{{ $server->memory }}</td>
+                                    <td style="font-size: 14px;">
+                                      {{ $server->name }}
+                                    </td>
+
+                                    <td style="font-size: 14px;">
+                                      {{ $server->memory }}
+                                    </td>
+
                                     <td style="font-size: 14px;">
                                       {{ $server->amount_storage }} {{ $server->type_storage }}
                                     </td>
@@ -139,7 +174,7 @@
 
                                     <td>
                                       <span class="badge bg-primary">
-                                        {{ \Carbon\Carbon::parse($server->duedate)->format('d/m/Y')}}
+                                        {{ $server->duedate }}
                                       </span>
                                     </td>
 

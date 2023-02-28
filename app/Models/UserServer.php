@@ -18,11 +18,11 @@ class UserServer extends Model
         'product_type',
         'status',
         'pay',
-        'ipserver'
+        'ipserver',
+        'duedate'
     ];
 
     protected $dates = [
-        'duedate',
         'created_at',
         'updated_at'
     ];

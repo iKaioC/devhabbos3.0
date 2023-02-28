@@ -84,7 +84,7 @@
 
             <div class="col-md-6">
               <label class="form-label">Data de Suporte</label>
-              <input type="text" name="supportdate" class="form-control" value="{{ $userHabbo->supportdate->format('d/m/Y') }}">
+              <input type="text" name="supportdate" class="form-control" value="{{ $userHabbo->supportdate }}">
               @error('supportdate')<small class="text-danger">{{ $message }}</small>@enderror
             </div>           
 

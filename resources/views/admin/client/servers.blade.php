@@ -64,7 +64,7 @@
                       <span class="badge bg-secondary">Cancelado</span>
                     @endif
                   </td>
-                  <td><span class="badge border-secondary border-1 text-secondary">{{ \Carbon\Carbon::parse($server->pivot->duedate)->format('d/m/Y')}}</span></td>
+                  <td><span class="badge border-secondary border-1 text-secondary">{{ $server->pivot->duedate }}</span></td>
                   <td>
                     <span class="badge bg-success">
                       <i class="bi bi-currency-dollar"></i> {{ $server->pivot->pay }}

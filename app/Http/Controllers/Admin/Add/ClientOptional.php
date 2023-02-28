@@ -26,11 +26,8 @@ class ClientOptional extends Controller
             'product_type' => 'required',
             'status' => 'required',
             'pay' => 'required|numeric',
-            'supportdate' => 'nullable|date_format:d/m/Y'
+            'supportdate' => 'nullable'
         ]);
-    
-        // Converte a data para o formato Y-m-d
-        $supportdate = Carbon::createFromFormat('d/m/Y', $request->input('supportdate'))->format('Y-m-d');
     
         $user = User::where('email', $request->input('email'))->first();
         if (!$user) {
@@ -43,7 +40,7 @@ class ClientOptional extends Controller
         $userOptional->product_type = $request->input('product_type');
         $userOptional->status = $request->input('status');
         $userOptional->pay = $request->input('pay');
-        $userOptional->supportdate = $supportdate;
+        $userOptional->supportdate = $request->input('supportdate');
         $userOptional->save();
     
         return redirect()->route('admin-clients')->with('message', 'Opcional adicionado com sucesso!');
@@ -71,7 +68,7 @@ class ClientOptional extends Controller
             'product_type' => 'required|string',
             'status' => 'required',
             'pay' => 'required|numeric',
-            'supportdate' => 'required|date_format:d/m/Y'
+            'supportdate' => 'required'
         ]);
     
         $userOptional = UserOptional::findOrFail($id);
@@ -79,7 +76,7 @@ class ClientOptional extends Controller
         $userOptional->product_type = $request->input('product_type');
         $userOptional->status = $request->input('status');
         $userOptional->pay = $request->input('pay');
-        $userOptional->supportdate = Carbon::createFromFormat('d/m/Y', $request->input('supportdate'))->toDateString();
+        $userOptional->supportdate = $request->input('supportdate');
         $userOptional->save();
     
         return redirect()->back()->with('message', 'Opcional atualizado com sucesso!');

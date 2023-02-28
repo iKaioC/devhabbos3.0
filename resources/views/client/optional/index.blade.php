@@ -92,7 +92,7 @@
 
                                               <li class="list-group-item">
                                                 <i class="bi bi-calendar me-1 text-primary"></i>
-                                                <b>Suporte até:</b> {{ \Carbon\Carbon::parse($optional->supportdate)->format('d/m/Y')}}
+                                                <b>Suporte até:</b> {{ $optional->supportdate }}
                                               </li>
 
                                               <li class="list-group-item">
@@ -131,7 +131,7 @@
 
                                     <td>
                                       <span class="badge bg-primary">
-                                        {{ \Carbon\Carbon::parse($optional->supportdate)->format('d/m/Y')}}
+                                        {{ $optional->supportdate }}
                                       </span>
                                     </td>
 

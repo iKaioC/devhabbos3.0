@@ -27,11 +27,8 @@ class ClientServer extends Controller
             'status' => 'required',
             'pay' => 'nullable|numeric',
             'ipserver' => 'required',
-            'duedate' => 'required|date_format:d/m/Y'
+            'duedate' => 'required'
         ]);
-    
-        // Converte a data para o formato Y-m-d
-        $duedate = Carbon::createFromFormat('d/m/Y', $request->input('duedate'))->format('Y-m-d');
     
         $user = User::where('email', $request->input('email'))->first();
         if (!$user) {
@@ -45,7 +42,7 @@ class ClientServer extends Controller
         $userServer->status = $request->input('status');
         $userServer->pay = $request->input('pay');
         $userServer->ipserver = $request->input('ipserver');
-        $userServer->duedate = $duedate;
+        $userServer->duedate = $request->input('duedate');
         $userServer->save();
     
         return redirect()->route('admin-servers')->with('message', 'Servidor adicionado ao cliente!');
@@ -74,7 +71,7 @@ class ClientServer extends Controller
             'status' => 'required',
             'pay' => 'nullable|numeric',
             'ipserver' => 'required',
-            'duedate' => 'required|date_format:d/m/Y'
+            'duedate' => 'required'
         ]);
     
         $userServer = UserServer::findOrFail($id);
@@ -83,7 +80,7 @@ class ClientServer extends Controller
         $userServer->status = $request->input('status');
         $userServer->pay = $request->input('pay');
         $userServer->ipserver = $request->input('ipserver');
-        $userServer->duedate = Carbon::createFromFormat('d/m/Y', $request->input('duedate'))->toDateString();
+        $userServer->duedate = $request->input('duedate');
         $userServer->save();
     
         return redirect()->back()->with('message', 'VPS atualizado com sucesso!');

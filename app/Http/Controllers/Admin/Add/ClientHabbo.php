@@ -26,11 +26,8 @@ class ClientHabbo extends Controller
             'product_type' => 'required',
             'status' => 'required',
             'pay' => 'required|numeric',
-            'supportdate' => 'required|date_format:d/m/Y'
+            'supportdate' => 'required'
         ]);
-    
-        // Converte a data para o formato Y-m-d
-        $supportdate = Carbon::createFromFormat('d/m/Y', $request->input('supportdate'))->format('Y-m-d');
     
         $user = User::where('email', $request->input('email'))->first();
         if (!$user) {
@@ -43,7 +40,7 @@ class ClientHabbo extends Controller
         $userHabbo->product_type = $request->input('product_type');
         $userHabbo->status = $request->input('status');
         $userHabbo->pay = $request->input('pay');
-        $userHabbo->supportdate = $supportdate;
+        $userHabbo->supportdate = $request->input('supportdate');
         $userHabbo->save();
     
         return redirect()->route('admin-clients')->with('message', 'Habbo adicionado com sucesso!');
@@ -71,7 +68,7 @@ class ClientHabbo extends Controller
             'product_type' => 'required|string',
             'status' => 'required',
             'pay' => 'required|numeric',
-            'supportdate' => 'required|date_format:d/m/Y'
+            'supportdate' => 'required'
         ]);
     
         $userHabbo = UserHabbo::findOrFail($id);
@@ -79,7 +76,7 @@ class ClientHabbo extends Controller
         $userHabbo->product_type = $request->input('product_type');
         $userHabbo->status = $request->input('status');
         $userHabbo->pay = $request->input('pay');
-        $userHabbo->supportdate = Carbon::createFromFormat('d/m/Y', $request->input('supportdate'))->toDateString();
+        $userHabbo->supportdate = $request->input('supportdate');
         $userHabbo->save();
     
         return redirect()->back()->with('message', 'Habbo atualizado com sucesso!');

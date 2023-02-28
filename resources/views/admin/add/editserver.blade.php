@@ -90,7 +90,7 @@
 
             <div class="col-md-6">
               <label class="form-label">Data de vencimento</label>
-              <input type="text" name="duedate" class="form-control" value="{{ $userServer->duedate->format('d/m/Y') }}">
+              <input type="text" name="duedate" class="form-control" value="{{ $userServer->duedate }}">
               @error('duedate')<small class="text-danger">{{ $message }}</small>@enderror
             </div>           
 
