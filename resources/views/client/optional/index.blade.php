@@ -64,8 +64,25 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title">Informações da VPS</h5>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          <h5 class="modal-title">Informações</h5>
+
+                                          @if ($optional->status == 'Ativo')
+                                          <span class="btn btn-success float-right">
+                                            {{ $optional->status }}
+                                          </span>
+                                          @endif
+
+                                          @if ($optional->status == 'Pendente')
+                                            <span class="btn btn-warning float-right">
+                                              {{ $optional->status }}
+                                            </span>
+                                          @endif
+
+                                          @if ($optional->status == 'Cancelado')
+                                            <span class="btn btn-secondary float-right">
+                                              {{ $optional->status }}
+                                            </span>
+                                          @endif
                                         </div>
 
                                         <div class="modal-body">
@@ -85,19 +102,27 @@
                                                 <b>Descrição:</b> {{ $optional->description }}
                                               </li>
 
+                                              <h5 class="modal-title mt-3">Pagamento</h5>
+
+                                              <hr>
+  
                                               <li class="list-group-item">
-                                                <i class="bi bi-ticket-detailed me-1 text-info"></i>
-                                                <b>Status:</b> {{ $optional->status }}
+                                                <i class="bi bi-check-circle me-1 text-success"></i>
+                                                <b>Valor Original:</b> R$ {{ $optional->price }} Reais
+                                              </li>
+  
+                                              <li class="list-group-item">
+                                                <i class="bi bi-currency-dollar me-1 text-success"></i>
+                                                <b>Valor Pago:</b> R$ {{ $optional->pay }} Reais
                                               </li>
 
+                                              <h5 class="modal-title mt-3">Suporte</h5>
+
+                                              <hr>
+  
                                               <li class="list-group-item">
                                                 <i class="bi bi-calendar me-1 text-primary"></i>
                                                 <b>Suporte até:</b> {{ $optional->supportdate }}
-                                              </li>
-
-                                              <li class="list-group-item">
-                                                <i class="bi bi-check-circle me-1 text-success"></i>
-                                                <b>Valor Pago:</b> R$ {{ $optional->price }} Reais
                                               </li>
                                           </ul>
                                         </div>

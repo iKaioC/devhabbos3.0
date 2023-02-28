@@ -69,19 +69,19 @@
                                           <span class="btn btn-success float-right">
                                             {{ $habbo->status }}
                                           </span>
-                                        @endif
+                                          @endif
 
-                                        @if ($habbo->status == 'Pendente')
-                                          <span class="btn btn-warning float-right">
-                                            {{ $habbo->status }}
-                                          </span>
-                                        @endif
+                                          @if ($habbo->status == 'Pendente')
+                                            <span class="btn btn-warning float-right">
+                                              {{ $habbo->status }}
+                                            </span>
+                                          @endif
 
-                                        @if ($habbo->status == 'Cancelado')
-                                          <span class="btn btn-secondary float-right">
-                                            {{ $habbo->status }}
-                                          </span>
-                                        @endif
+                                          @if ($habbo->status == 'Cancelado')
+                                            <span class="btn btn-secondary float-right">
+                                              {{ $habbo->status }}
+                                            </span>
+                                          @endif
                                         </div>
 
                                         <div class="modal-body">
@@ -106,7 +106,7 @@
                                               <b>Idioma:</b> {{ $habbo->language }}
                                             </li>
 
-                                            <h5 class="modal-title">Pagamento</h5>
+                                            <h5 class="modal-title mt-3">Pagamento</h5>
 
                                             <hr>
 
@@ -120,7 +120,7 @@
                                               <b>Valor Pago:</b> R$ {{ $habbo->pay }} Reais
                                             </li>
 
-                                            <h5 class="modal-title">Suporte</h5>
+                                            <h5 class="modal-title mt-3">Suporte</h5>
 
                                             <hr>
 
