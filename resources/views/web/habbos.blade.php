@@ -65,7 +65,7 @@
                 </div>
               </div>
             </div>
-          @elseif ($habbo->price == '0.00')
+          @elseif ($habbo->price == '0,00')
             <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
               <div class="box featured" data-aos="zoom-in" data-aos-delay="100">
                 <h3>Customizado</h3>
