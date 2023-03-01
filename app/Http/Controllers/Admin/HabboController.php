@@ -114,10 +114,14 @@ class HabboController extends Controller
         $path = $habboImage->path; // obter o caminho da imagem a ser excluída
         $fullPath = public_path('web/habbos/' . $path); // obter o caminho completo para a imagem
     
-        // Verificar se a imagem existe no diretório
         if (file_exists($fullPath)) {
             // Excluir a imagem do diretório
             unlink($fullPath);
+            // Verificar se a exclusão da imagem do diretório foi bem-sucedida
+            if (!file_exists($fullPath)) {
+                // Excluir a imagem do banco de dados
+                $habboImage->delete();
+            }
         }
     
         // Excluir a imagem do banco de dados

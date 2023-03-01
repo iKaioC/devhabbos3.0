@@ -34,7 +34,7 @@
             <li><i class="bx bx-chevron-right"></i> <a href="{{ route('web-index') }}">Home</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="{{ route('web-archives') }}">Arquivos</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="{{ route('web-faqs') }}">Perguntas Frequentes</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Termos de Serviço</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('web-terms') }}">Termos de Serviço</a></li>
           </ul>
         </div>
 
@@ -44,14 +44,10 @@
 
   <div class="container">
     <div class="copyright">
-      &copy; Copyright <strong><span>Scaffold</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>DevHabbos</span></strong>. Todos os Direitos Reservados
     </div>
     <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/scaffold-bootstrap-metro-style-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      Created by <a href="{{ route('web-index') }}">DevHabbos</a>
     </div>
   </div>
 </footer><!-- End Footer -->

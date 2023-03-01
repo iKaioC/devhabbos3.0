@@ -25,7 +25,7 @@ class ArchiveFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'slug' => ['required', 'string'],
+            'slug' => ['nullable', 'string'],
             'description' => ['required', 'string'],
             'link' => ['required', 'string'],
             'image' => ['nullable', 'image'],

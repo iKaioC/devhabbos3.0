@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title', 'Início')
 @section('content')
 
   <section id="hero">
@@ -13,7 +14,7 @@
         </div>
 
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
-          <img src="{{ asset('web/img/hero-img.png') }}" class="img-fluid" alt="">
+          <img src="{{ asset('web/img/habboimg1.gif') }}" class="img-fluid" alt="">
         </div>
 
       </div>
@@ -24,7 +25,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6" data-aos="zoom-in">
-          <img src="{{ asset('web/img/about.jpg') }}" class="img-fluid" alt="">
+          <img src="{{ asset('web/img/habboimg2.png') }}" class="img-fluid" alt="">
         </div>
 
         <div class="col-lg-6 d-flex flex-column justify-contents-center" data-aos="fade-left">

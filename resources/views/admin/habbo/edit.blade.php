@@ -106,36 +106,13 @@
               @error('price')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
-            <div class="col-md-12">
-              <label class="form-label" for="images">Imagens</label>
-              <!-- Verifica se há imagens relacionadas ao habbo -->
-              @if ($habbo->images->count() > 0)
-                <div class="row">
-                  <!-- Mostra as imagens existentes -->
-                  @foreach ($habbo->images as $image)
-                    <div class="col-md-6 mb-3">
-                      <a href="{{ asset('web/habbos/' . $image->path) }}"><img src="{{ asset('web/habbos/' . $image->path) }}" style="width: 135px;" alt="{{ $habbo->name }}"></a>
-                      <div>
-                        <!-- Botão para deletar a imagem -->
-                        <form action="{{ route('delete-habbo-image', [$habbo->id, $image->id]) }}" method="POST">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-danger mt-2">Deletar</button>
-                        </form>
-                      </div>
-                    </div>
-                  @endforeach
-                </div>
-              @endif
-            
-              <!-- Verifica se há 3 imagens -->
-              @if ($habbo->images->count() > 3)
-                <p>Você já possúi imagens suficientes</p>
-              @elseif ($habbo->images->count() < 3)
-                <!-- Input para adicionar novas imagens -->
-                <input type="file" name="images[]" multiple class="form-control mt-3 mb-3">
-              @endif
-            </div>
+            <!-- Verifica se há 3 imagens -->
+            @if ($habbo->images->count() > 3)
+              <p>Você já possúi imagens suficientes</p>
+            @elseif ($habbo->images->count() < 3)
+              <!-- Input para adicionar novas imagens -->
+              <input type="file" name="images[]" multiple class="form-control mt-3 mb-3">
+            @endif
 
             <div class="text-center">
               <button type="submit" class="btn btn-primary btn-sm float-end">
@@ -143,6 +120,31 @@
               </button>
             </div>
           </form>
+
+          <div class="col-md-12">
+            <h5>Imagens</h5>
+            {{-- <label class="form-label" for="images">Imagens</label> --}}
+            
+            <!-- Verifica se há imagens relacionadas ao habbo -->
+            @if ($habbo->images->count() > 0)
+              <div class="row">
+                <!-- Mostra as imagens existentes -->
+                @foreach ($habbo->images as $image)
+                  <div class="col-md-6 mb-3">
+                    <a href="{{ asset('web/habbos/' . $image->path) }}"><img src="{{ asset('web/habbos/' . $image->path) }}" style="width: 135px;" alt="{{ $habbo->name }}"></a>
+                    <div>
+                      <!-- Botão para deletar a imagem -->
+                      <form action="{{ route('delete-habbo-image', [$habbo->id, $image->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger mt-2">Deletar</button>
+                      </form>
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+            @endif
+          </div>
           {{-- Vertical Form --}}
         </div>
       </div>

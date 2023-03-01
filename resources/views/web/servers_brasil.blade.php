@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title', 'VPS Brasil')
 @section('content')
 
     <section id="servers-brasil" class="pricing bg-white">

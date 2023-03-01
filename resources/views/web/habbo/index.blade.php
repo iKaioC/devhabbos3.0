@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title', $habbo->name)
 @section('content')
 
   <section id="portfolio-details" class="portfolio-details">

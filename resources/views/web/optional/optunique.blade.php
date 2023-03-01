@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@section('title', $optional->name)
 @section('content')
 
   <section id="portfolio-details" class="portfolio-details">
@@ -22,6 +23,14 @@
               <li>
                 <a href="https://wa.me/13155122348?text=Eu%20quero%20contratar%20um%20Opcional%20Habbo%20da%20DevHabbos" target="_blank" class="btn btn-primary">Adquirir</a>
               </li>
+
+              @if (!empty($optional->repository))
+                <li>
+                  <h6 class="text-secondary mt-4">Clique <a href="{{ $optional->repository }}" target="_blank">aqui</a> para acessar o repositório!</h6>
+                </li>
+              @else
+
+              @endif
             </ul>
           </div>
         </div>
@@ -38,19 +47,13 @@
             <h3>Imagem</h3>
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
-
+                @foreach ($optional->images as $image)
                 <div class="swiper-slide">
-                  <img src="https://www.howtogeek.com/wp-content/uploads/2014/07/new-IIS-hero.png?width=1198&trim=1,1&bg-color=000&pad=1,1" width="800" alt="{{ $optional->name }}">
+                  <a href="{{ asset('web/optionals/'.$image->path) }}" target="_blank">
+                    <img src="{{ asset('web/optionals/'.$image->path) }}" alt="{{ $optional->name }}">
+                  </a>
                 </div>
-
-                <div class="swiper-slide">
-                  <img src="https://www.oreilly.com/api/v2/epubs/9780133116007/files/graphics/12fig01.jpg" height="500" alt="{{ $optional->name }}">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="https://rdr-it.com/wp-content/uploads/images/03-clic-active-desactive-extention.jpg" height="500" alt="{{ $optional->name }}">
-                </div>
-
+                @endforeach
               </div>
               <div class="swiper-pagination"></div>
             </div>

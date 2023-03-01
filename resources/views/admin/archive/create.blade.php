@@ -35,7 +35,7 @@
 
         <div class="card-body">
           {{-- VerticalForm --}}
-          <form action="{{ route('store-archive') }}" method="POST" class="row g-3">
+          <form action="{{ route('store-archive') }}" method="POST" enctype="multipart/form-data" class="row g-3">
             @csrf
             <div class="col-md-6">
               <label class="form-label">Nome</label>

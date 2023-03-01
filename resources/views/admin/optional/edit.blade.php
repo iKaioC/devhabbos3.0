@@ -35,7 +35,7 @@
 
         <div class="card-body">
           {{-- VerticalForm --}}
-          <form action="{{ route('update-optional', $optional->id) }}" method="POST" class="row g-3">
+          <form action="{{ route('update-optional', $optional->id) }}" method="POST" enctype="multipart/form-data" class="row g-3">
             @csrf
             @method('PUT')
 
@@ -85,6 +85,12 @@
             </div>
 
             <div class="col-md-12">
+              <label class="form-label">Repositório</label>
+              <input type="text" name="repository" value="{{ $optional->repository }}" class="form-control">
+              @error('repository')<small class="text-danger">{{ $message }}</small>@enderror
+            </div>
+
+            <div class="col-md-12">
               <label class="form-label">Descrição</label>
               <textarea name="description" class="form-control" id="" rows="3">{{ $optional->description }}</textarea>
               @error('description')<small class="text-danger">{{ $message }}</small>@enderror
@@ -116,12 +122,43 @@
               </select>
             </div>
 
+            <!-- Verifica se há 3 imagens -->
+            @if ($optional->images->count() >= 3)
+              <p class="text-danger">Você já possúi imagens suficientes</p>
+            @elseif ($optional->images->count() < 3)
+              <!-- Input para adicionar novas imagens -->
+              <input type="file" name="images[]" multiple class="form-control mt-3 mb-3">
+            @endif
+
             <div class="text-center">
               <button type="submit" class="btn btn-primary btn-sm float-end">
                 <i class="bi bi-check-lg"></i> Atualizar
               </button>
             </div>
           </form>
+
+          <div class="col-md-12">
+            <label class="form-label" for="images">Imagens</label>
+            <!-- Verifica se há imagens relacionadas ao opcional -->
+            @if ($optional->images->count() > 0)
+              <div class="row">
+                <!-- Mostra as imagens existentes -->
+                @foreach ($optional->images as $image)
+                  <div class="col-md-6 mb-3">
+                    <a href="{{ asset('web/optionals/' . $image->path) }}"><img src="{{ asset('web/optionals/' . $image->path) }}" style="width: 135px;" alt="{{ $optional->name }}"></a>
+                    <div>
+                      <!-- Botão para deletar a imagem -->
+                      <form action="{{ route('delete-optional-image', [$optional->id, $image->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger mt-2">Deletar</button>
+                      </form>
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+            @endif
+          </div>
           {{-- Vertical Form --}}
         </div>
       </div>

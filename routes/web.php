@@ -53,6 +53,7 @@ Auth::routes();
 // WEBSITE ROUTES
 
 Route::get('/', [HomeController::class, 'index'])->name('web-index');
+Route::get('/register', [HomeController::class, 'index'])->name('web-index');
 Route::get('/habbos', [HabboWebController::class, 'index'])->name('web-habbo');
 Route::get('/servers', [VpsController::class, 'index'])->name('web-sv');
 Route::get('/servers-brasil', [VpsController::class, 'brasil'])->name('web-svbrasil');
@@ -157,7 +158,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('optional/{optional}/edit', 'edit')->name('edit-optional');
         Route::put('optional/{optional}', 'update')->name('update-optional');
 
-        Route::delete('optional/{optional}', 'destroy')->name('optional-destroy');
+        Route::delete('optional/{optional_id}', 'destroy')->name('optional-destroy');
+        Route::delete('optional/{optional}/image/{image}', 'deleteImage')->name('delete-optional-image');
     });
 
     // ------------------------------------------------------------------------------------------- //

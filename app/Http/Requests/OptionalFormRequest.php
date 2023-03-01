@@ -25,15 +25,17 @@ class OptionalFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'slug' => ['required', 'string'],
+            'slug' => ['nullable', 'string'],
             'category' => ['required', 'string'],
             'tag1' => ['required', 'string'],
             'tag2' => ['required', 'string'],
             'tag3' => ['required', 'string'],
             'description' => ['required', 'string'],
             'price' => ['required', 'string'],
+            'repository' => ['nullable', 'string'],
             'icon' => ['nullable'],
             'color' => ['nullable'],
+            'images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg'],
         ];
     }
 }

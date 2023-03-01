@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title', 'Outros Opcionais')
 @section('content')
 
   <section id="services" class="services bg-white">

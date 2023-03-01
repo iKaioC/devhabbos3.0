@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title', 'Servidores Habbo')
 @section('content')
 
     <section id="pricing" class="pricing bg-white">
@@ -30,7 +30,7 @@
                 </div>
               </div>
             </div>
-          @elseif ($habbo->url == 'https://ptbr.devhabbo.tech/')
+          @elseif ($habbo->url == 'https://pt.devhabbo.tech/')
             <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
               <div class="box" data-aos="zoom-in" data-aos-delay="200">
                 <h3>Intermediário</h3>

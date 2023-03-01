@@ -7,7 +7,7 @@
     {{-- CSRF Token --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>DevHabbos: @yield('title')</title>
 
     {{-- Favicons --}}
     <link href="{{ asset('web/img/favicon.png') }}" rel="icon">

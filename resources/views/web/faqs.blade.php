@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title', 'Perguntas Frequentes')
 @section('content')
 
 <section id="faq" class="faq">

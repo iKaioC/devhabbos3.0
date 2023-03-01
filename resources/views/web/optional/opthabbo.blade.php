@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title', 'Opcionais Habbo')
 @section('content')
 
   <section id="services" class="services bg-white">

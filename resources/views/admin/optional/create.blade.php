@@ -37,23 +37,23 @@
 
         <div class="card-body">
           {{-- VerticalForm --}}
-          <form action="{{ route('store-optional') }}" method="POST" class="row g-3">
+          <form action="{{ route('store-optional') }}" method="POST" enctype="multipart/form-data" class="row g-3">
             @csrf
 
             <div class="col-md-6">
-              <label class="form-label">Nome:</label>
+              <label class="form-label">Nome</label>
               <input type="text" name="name" class="form-control">
               @error('name')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
             <div class="col-md-6">
-              <label class="form-label">Slug:</label>
+              <label class="form-label">Slug</label>
               <input type="text" name="slug" class="form-control">
               @error('slug')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
             <div class="col-md-12">
-              <label class="form-label">Categoria:</label>
+              <label class="form-label">Categoria</label>
               <select name="category" id="category" class="form-select">
                 <option value="Habbo">Habbo</option>
                 <option value="Windows">Windows</option>
@@ -62,37 +62,43 @@
             </div>
 
             <div class="col-md-6">
-              <label class="form-label">Tag1:</label>
+              <label class="form-label">Tag1</label>
               <input type="text" name="tag1" class="form-control">
               @error('tag1')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
             <div class="col-md-6">
-              <label class="form-label">Tag2:</label>
+              <label class="form-label">Tag2</label>
               <input type="text" name="tag2" class="form-control">
               @error('tag2')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
             <div class="col-md-6">
-              <label class="form-label">Tag3:</label>
+              <label class="form-label">Tag3</label>
               <input type="text" name="tag3" class="form-control">
               @error('tag3')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
             <div class="col-md-6">
-              <label class="form-label">Valor:</label>
+              <label class="form-label">Valor</label>
               <input type="text" name="price" class="form-control">
               @error('price')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
             <div class="col-md-12">
-              <label class="form-label">Descrição:</label>
+              <label class="form-label">Repositório</label>
+              <input type="text" name="repository" class="form-control">
+              @error('repository')<small class="text-danger">{{ $message }}</small>@enderror
+            </div>
+
+            <div class="col-md-12">
+              <label class="form-label">Descrição</label>
               <textarea name="description" class="form-control" rows="3"></textarea>
               @error('description')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
             <div class="col-md-6">
-              <label class="form-label">Ícone:</label>
+              <label class="form-label">Ícone</label>
               <select name="icon" id="icon" class="form-select">
                 <option value="bx bx-server">Server Icon</option>
                 <option value="bx bx-globe">Globe Icon</option>
@@ -107,7 +113,7 @@
             </div>
 
             <div class="col-md-6">
-              <label class="form-label">Cor:</label>
+              <label class="form-label">Cor</label>
               <select name="color" id="color" class="form-select">
                 <option value="icon-box-pink">Cor Rosa</option>
                 <option value="icon-box-cyan">Cor Azul-esverdeado</option>
@@ -116,6 +122,12 @@
                 <option value="icon-box-orange">Cor Laranja</option>
                 <option value="icon-box-purple">Cor Roxa</option>
               </select>
+            </div>
+
+            <div class="col-md-12">
+              <label class="form-label">Imagens</label>
+              <input type="file" name="images[]" class="form-control" multiple>
+              @error('images')<small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
             <div class="text-center">

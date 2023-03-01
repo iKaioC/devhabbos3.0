@@ -34,9 +34,14 @@ class ArchiveController extends Controller
         $archive->description = $validatedData['description'];
         $archive->link = $validatedData['link'];
 
-        // Faz o upload da imagem e salva o caminho no banco de dados
         if ($request->hasFile('image')) {
             $image = $request->file('image');
+        
+            // Verifica se o arquivo é uma imagem válida
+            if (!$image->isValid() || !in_array($image->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
+                return redirect()->back()->withErrors(['image' => 'O arquivo deve ser uma imagem válida.']);
+            }
+        
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('web/archives'), $filename);
             $archive->image = $filename;

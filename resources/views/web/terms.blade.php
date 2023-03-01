@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title', 'Termos de Serviço')
 @section('content')
 
 <section id="faq" class="faq">

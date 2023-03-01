@@ -90,7 +90,7 @@
                       <a href="{{ route('edit-optional', $optional->id) }}" class="btn btn-success btn-sm">
                         <i class="bi bi-pencil-square"></i>
                       </a>
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger btn-sm">
+                      <a href="{{ route('optional-destroy', $optional->id) }}" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger btn-sm">
                         <i class="bi bi-trash3"></i>
                       </a>
                     </td>
