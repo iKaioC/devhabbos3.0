@@ -52,6 +52,6 @@
 
   {{-- Template Main JS File --}}
   <script src="{{ asset('web/js/main.js') }}"></script>
-  @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+  {{-- @vite(['resources/sass/urces/js/app.js']) --}}
 </body>
 </html>
