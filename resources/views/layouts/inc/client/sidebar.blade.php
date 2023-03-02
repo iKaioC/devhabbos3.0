@@ -39,7 +39,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link {{ $currentUrl === route('client-optionals') ? '' : 'collapsed' }}" href="{{ route('client-other-optionals') }}" href="{{ route('client-optionals') }}">
+        <a class="nav-link {{ $currentUrl === route('client-other-optionals') ? '' : 'collapsed' }}" href="{{ route('client-other-optionals') }}" href="{{ route('client-optionals') }}">
           <i class="bi bi-piggy-bank"></i>
           <span>Outros</span>
         </a>
