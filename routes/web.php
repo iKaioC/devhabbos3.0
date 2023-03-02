@@ -43,9 +43,9 @@ use App\Http\Controllers\Admin\Used\ServerController as UsedServerController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -53,7 +53,9 @@ Auth::routes();
 // WEBSITE ROUTES
 
 Route::get('/', [HomeController::class, 'index'])->name('web-index');
-Route::get('/register', [HomeController::class, 'index'])->name('web-index');
+Route::get('/register', function () {
+    return redirect()->route('web-index');
+});
 Route::get('/habbos', [HabboWebController::class, 'index'])->name('web-habbo');
 Route::get('/servers', [VpsController::class, 'index'])->name('web-sv');
 Route::get('/servers-brasil', [VpsController::class, 'brasil'])->name('web-svbrasil');
