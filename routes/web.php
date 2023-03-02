@@ -24,6 +24,7 @@ use App\Http\Controllers\Web\ArchiveWebController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Web\OptionalWebController;
 use App\Http\Controllers\Client\HabboClientDashboard;
+use App\Http\Controllers\Admin\Add\ClientOtherOptional;
 use App\Http\Controllers\Client\ServerClientController;
 use App\Http\Controllers\Client\TicketClientController;
 use App\Http\Controllers\Client\OptionalClientDashboard;
@@ -189,6 +190,14 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('add/optional', [ClientOptional::class, 'store'])->name('store-optional-client');
     Route::get('edit/{id}/optional', [ClientOptional::class, 'edit'])->name('edit-optional-client');
     Route::put('edit/{id}/optional', [ClientOptional::class, 'update'])->name('update-optional-client');
+
+    // ------------------------------------------------------------------------------------------- //
+
+    // ADD OTHERS OPTIONALS
+    Route::get('add/otheroptional', [ClientOtherOptional::class, 'index'])->name('add-otheroptional-client');
+    Route::post('add/otheroptional', [ClientOtherOptional::class, 'store'])->name('store-otheroptional-client');
+    Route::get('edit/{id}/otheroptional', [ClientOtherOptional::class, 'edit'])->name('edit-otheroptional-client');
+    Route::put('edit/{id}/otheroptional', [ClientOtherOptional::class, 'update'])->name('update-otheroptional-client');
 
     // ------------------------------------------------------------------------------------------- //
 
