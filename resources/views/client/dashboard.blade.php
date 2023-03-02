@@ -55,13 +55,13 @@
                 <div class="card info-card revenue-card">
   
                   <div class="card-body">
-                    <h5 class="card-title">Habbos <span>| Ativos</span></h5>
+                    <h5 class="card-title">Habbos <span>| Final</span></h5>
   
                     <div class="d-flex align-items-center">
                       <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                         <a href="{{ route('client-habbos') }}" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Quantidade de Habbo's">
                           <i class="bi bi-star me-1"></i> 
-                          {{ Auth::user()->habbos()->whereNotIn('status', ['Cancelado'])->whereIn('status', ['Ativo', 'Pendente'])->count() }}
+                          {{ Auth::user()->habbos()->count() }}
                         </a>
                       </div>
                     </div>
@@ -75,13 +75,13 @@
                 <div class="card info-card revenue-card">
   
                   <div class="card-body">
-                    <h5 class="card-title">Outros <span>| Ativos</span></h5>
+                    <h5 class="card-title">Outros <span>| Final</span></h5>
   
                     <div class="d-flex align-items-center">
                       <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                         <a href="{{ route('client-optionals') }}" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Quantidade de Opcionais">
                           <i class="bi bi-star me-1"></i> 
-                          {{ Auth::user()->optionals()->whereNotIn('status', ['Cancelado'])->whereIn('status', ['Ativo', 'Pendente'])->count() }}
+                          {{ Auth::user()->optionals()->count() }}
                         </a>
                       </div>
                     </div>
