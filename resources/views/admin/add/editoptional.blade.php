@@ -70,7 +70,7 @@
             <div class="col-md-6">
               <label class="form-label">Status</label>
               <select name="status" id="status" class="form-select">
-                <option value="Finalizado" @if($userOptional->status == 'Finalizado') selected @endif>Finalizado</option>
+                <option value="Concluído" @if($userOptional->status == 'Concluído') selected @endif>Concluído</option>
                 <option value="Pendente" @if($userOptional->status == 'Pendente') selected @endif>Pendente</option>
                 <option value="Cancelado" @if($userOptional->status == 'Cancelado') selected @endif>Cancelado</option>
               </select>

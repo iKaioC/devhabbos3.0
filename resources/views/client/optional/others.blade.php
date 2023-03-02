@@ -1,10 +1,11 @@
 @extends('layouts.client')
-@section('title', 'Meus Habbos')
+@section('title', 'Outros Opcionais')
 @section('content')
 
   <link rel="stylesheet" href="{{ asset('client/css/ticketstable.css') }}">
 
   <div>
+
     @if(session('message'))
       <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle me-1"></i> {{ session('message') }}
@@ -14,11 +15,11 @@
 
     {{-- Page Title --}}
     <div class="pagetitle">
-      <h1>Meus Servidores Habbo</h1>
+      <h1>Outros Opcionais</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('client-dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active">Servers Habbo</li>
+          <li class="breadcrumb-item active">Opcionais</li>
         </ol>
       </nav>
     </div>
@@ -29,7 +30,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h5>Meus Servidores Habbo
+            <h5>Outros Opcionais
               <a href="{{ route('client-dashboard') }}" class="btn btn-primary float-end">
                 <i class="bi bi-arrow-left"></i> Voltar
               </a>
@@ -56,30 +57,30 @@
                                   <th scope="col">Ver</th>
                                 </tr>
                               </thead>
-
+                              
                               <tbody>
-                                @foreach ($habbos as $habbo)
-                                  <div class="modal fade" id="habbosinfo{{ $habbo->id }}" tabindex="-1">
+                                @foreach ($otheroptionals as $optional)
+                                  <div class="modal fade" id="serversinfo{{ $optional->id }}" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                       <div class="modal-content">
                                         <div class="modal-header">
                                           <h5 class="modal-title">Informações</h5>
-                                          
-                                          @if ($habbo->status == 'Concluído')
+
+                                          @if ($optional->status == 'Concluído')
                                           <span class="btn btn-success float-right">
-                                            {{ $habbo->status }}
+                                            {{ $optional->status }}
                                           </span>
                                           @endif
 
-                                          @if ($habbo->status == 'Pendente')
+                                          @if ($optional->status == 'Pendente')
                                             <span class="btn btn-warning float-right">
-                                              {{ $habbo->status }}
+                                              {{ $optional->status }}
                                             </span>
                                           @endif
 
-                                          @if ($habbo->status == 'Cancelado')
+                                          @if ($optional->status == 'Cancelado')
                                             <span class="btn btn-secondary float-right">
-                                              {{ $habbo->status }}
+                                              {{ $optional->status }}
                                             </span>
                                           @endif
                                         </div>
@@ -88,46 +89,36 @@
                                           <ul class="list-group">
                                             <li class="list-group-item">
                                               <i class="bi bi-book me-1 text-primary"></i>
-                                              <b>Nome do Serviço:</b> {{ $habbo->name }}
-                                            </li>
+                                              <b>Nome do Serviço:</b> {{ $optional->name }}
+                                              </li>
 
-                                            <li class="list-group-item">
-                                              <i class="bi bi-database me-1 text-danger"></i>
-                                              <b>Emulador:</b> {{ $habbo->emulator }}
-                                            </li>
+                                              <li class="list-group-item">
+                                                <i class="bi bi-memory me-1 text-danger"></i>
+                                                <b>Tipo:</b> {{ $optional->category }}
+                                              </li>
 
-                                            <li class="list-group-item">
-                                              <i class="bi bi-window-fullscreen me-1 text-warning"></i>
-                                              <b>CMS:</b> {{ $habbo->cms }}
-                                            </li>
+                                              <li class="list-group-item">
+                                                <i class="bi bi-cpu me-1 text-secondary"></i>
+                                                <b>Descrição:</b> {{ $optional->description }}
+                                              </li>
 
-                                            <li class="list-group-item">
-                                              <i class="bi bi-ticket-detailed me-1 text-info"></i>
-                                              <b>Idioma:</b> {{ $habbo->language }}
-                                            </li>
+                                              <h5 class="modal-title mt-3">Pagamento</h5>
 
-                                            <h5 class="modal-title mt-3">Pagamento</h5>
+                                              <hr>
+  
+                                              <li class="list-group-item">
+                                                <i class="bi bi-currency-dollar me-1 text-success"></i>
+                                                <b>Valor Pago:</b> R$ {{ $optional->pay }} Reais
+                                              </li>
 
-                                            <hr>
+                                              <h5 class="modal-title mt-3">Suporte</h5>
 
-                                            <li class="list-group-item">
-                                              <i class="bi bi-check-circle me-1 text-success"></i>
-                                              <b>Valor Original:</b> R$ {{ $habbo->price }} Reais
-                                            </li>
-
-                                            <li class="list-group-item">
-                                              <i class="bi bi-currency-dollar me-1 text-success"></i>
-                                              <b>Valor Pago:</b> R$ {{ $habbo->pay }} Reais
-                                            </li>
-
-                                            <h5 class="modal-title mt-3">Suporte</h5>
-
-                                            <hr>
-
-                                            <li class="list-group-item">
-                                              <i class="bi bi-calendar me-1 text-primary"></i>
-                                              <b>Suporte até:</b> {{ $habbo->supportdate }}
-                                            </li>
+                                              <hr>
+  
+                                              <li class="list-group-item">
+                                                <i class="bi bi-calendar me-1 text-primary"></i>
+                                                <b>Suporte até:</b> {{ $optional->supportdate }}
+                                              </li>
                                           </ul>
                                         </div>
 
@@ -137,47 +128,42 @@
                                       </div>
                                     </div>
                                   </div>
-                                  
-                                  <tr>
-                                    <td style="font-size: 14px;">
-                                      {{ $habbo->name }}
-                                    </td>
 
-                                    <td style="font-size: 14px;">
-                                      {{ $habbo->product_type }}
-                                    </td>
+                                  <tr>
+                                    <td style="font-size: 14px;">{{ $optional->name }}</td>
+                                    <td style="font-size: 14px;">{{ $optional->category }}</td>
 
                                     <td>
-                                      @if ($habbo->status === 'Concluído')
+                                      @if ($optional->status === 'Concluído')
                                         <span class="badge border-success border-1 text-success">
-                                          {{ $habbo->status }}
+                                          {{ $optional->status }}
                                         </span>
-                                      @elseif ($habbo->status === 'Pendente')
+                                      @elseif ($optional->status === 'Pendente')
                                         <span class="badge border-warning border-1 text-warning">
-                                          {{ $habbo->status }}
+                                          {{ $optional->status }}
                                         </span>
-                                      @elseif ($habbo->status === 'Cancelado')
+                                      @elseif ($optional->status === 'Cancelado')
                                         <span class="badge border-secondary border-1 text-secondary">
-                                          {{ $habbo->status }}
+                                          {{ $optional->status }}
                                         </span>
                                       @endif
                                     </td>
 
                                     <td>
                                       <span class="badge bg-primary">
-                                        {{ $habbo->supportdate }}
+                                        {{ $optional->supportdate }}
                                       </span>
                                     </td>
 
                                     <td>
                                       <span class="badge bg-success">
                                         <i class="bi bi-check-circle me-1"></i> 
-                                        R$ {{ $habbo->price }}
+                                        R$ {{ $optional->pay }}
                                       </span>
                                     </td>
 
                                     <td>
-                                      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#habbosinfo{{ $habbo->id }}">
+                                      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#serversinfo{{ $optional->id }}">
                                         <i class="bi bi-eye"></i>
                                       </button>
                                     </td>
@@ -198,5 +184,5 @@
       </div>
     </div>
   </div>
-  
+
 @endsection

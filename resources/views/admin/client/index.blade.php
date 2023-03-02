@@ -42,6 +42,7 @@
                   <th>VPS</th>
                   <th>Habbos</th>
                   <th>Opcionais</th>
+                  <th>Outros</th>
                   <th>Status</th>
                   <th>Ações</th>
                 </tr>
@@ -96,6 +97,12 @@
                     <td>
                       <a href="{{ route('client-optionals-admin', $user->id) }}" class="btn btn-danger mb-2 btn-sm">
                         Opcionais <span class="badge bg-white text-danger">{{ $user->optionals()->count() }}</span>
+                      </a>
+                    </td>
+
+                    <td>
+                      <a href="{{ route('client-otheroptionals-admin', $user->id) }}" class="btn btn-info mb-2 btn-sm">
+                          Outros <span class="badge bg-white text-info">{{ $otheroptionals[$user->id] ?? 0 }}</span>
                       </a>
                     </td>
 

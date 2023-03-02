@@ -30,4 +30,17 @@ class UserOtherOptional extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function otheroptionals($id)
+    {
+        $user = User::find($id);
+        $otherOptionals = $user->otherOptionals;
+        
+        return view('otherOptionals', compact('otherOptionals'));
+    }
+
+    public function userOtherOptionals()
+    {
+        return $this->hasMany(UserOtherOptional::class);
+    }
 }

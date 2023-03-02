@@ -77,8 +77,8 @@
                     @endif
                   </td>
                   <td>
-                    @if ($optional->pivot->status == 'Finalizado')
-                      <span class="badge bg-success">Finalizado</span>
+                    @if ($optional->pivot->status == 'Concluído')
+                      <span class="badge bg-success">Concluído</span>
                     @elseif ($optional->pivot->status == 'Pendente')
                       <span class="badge bg-warning">Pendente</span>
                     @elseif ($optional->pivot->status == 'Cancelado')

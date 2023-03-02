@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Ticket;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use App\Models\UserOtherOptional;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ClientFormRequest;
-use App\Models\Ticket;
 
 class ClientController extends Controller
 {
@@ -17,8 +19,13 @@ class ClientController extends Controller
     public function index()
     {
         $users = User::all();
-
-        return view('admin.client.index', ['users' => $users]);
+        $otheroptionals = DB::table('users')
+            ->leftJoin('user_other_optional', 'users.id', '=', 'user_other_optional.user_id')
+            ->select(DB::raw('count(user_other_optional.id) as count, users.id'))
+            ->groupBy('users.id')
+            ->pluck('count', 'id');
+        
+        return view('admin.client.index', compact('users', 'otheroptionals'));
     }
 
     public function create()
@@ -86,6 +93,13 @@ class ClientController extends Controller
                         ->selectRaw('optionals.*, user_optional.status, user_optional.pay, user_optional.supportdate, user_optional.id as user_optional_id')
                     ->get();
         return view('admin.client.optionals', compact('optionals', 'user'));
+    }
+
+    public function showOtherOptionals($id)
+    {
+        $user = User::findOrFail($id);
+        $otheroptionals = UserOtherOptional::where('user_id', $id)->get();
+        return view('admin.client.otheroptionals', compact('otheroptionals', 'user'));
     }
 
     public function showTestimonials()

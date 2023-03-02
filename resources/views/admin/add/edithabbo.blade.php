@@ -69,7 +69,7 @@
             <div class="col-md-6">
               <label class="form-label">Status</label>
               <select name="status" id="status" class="form-select">
-                <option value="Finalizado" @if($userHabbo->status == 'Finalizado') selected @endif>Finalizado</option>
+                <option value="Conluído" @if($userHabbo->status == 'Conluído') selected @endif>Conluído</option>
                 <option value="Pendente" @if($userHabbo->status == 'Pendente') selected @endif>Pendente</option>
                 <option value="Cancelado" @if($userHabbo->status == 'Cancelado') selected @endif>Cancelado</option>
               </select>

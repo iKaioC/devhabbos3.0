@@ -8,6 +8,7 @@ use App\Models\Server;
 use App\Models\Ticket;
 use App\Models\Optional;
 use App\Models\Testimonial;
+use App\Models\UserOtherOptional;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -72,6 +73,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Optional::class, 'user_optional')
             ->withPivot('status', 'pay', 'product_type')
             ->select('optionals.*', 'user_optional.pay', 'user_optional.status', 'product_type');
+    }
+
+    public function otheroptionals()
+    {
+        return $this->belongsToMany(UserOtherOptional::class, 'user_other_optional', 'user_id', 'id')
+                    ->withPivot('status', 'pay', 'category');
     }
 
     public function testimonials()

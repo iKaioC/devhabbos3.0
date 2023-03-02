@@ -48,17 +48,17 @@ class DashboardController extends Controller
             $totalHabbo += str_replace(',', '.', $habbos->price);
         }
 
-        // Recupera todas os Opcionais dos clientes e calcula o total de receita
         $userOptionals = DB::table('user_optional')
             ->join('optionals', 'user_optional.optional_id', '=', 'optionals.id')
-            ->whereIn('user_optional.product_type', ['Habbo', 'Windows'])
+            ->whereIn('user_optional.product_type', ['Habbo', 'Windows', 'Outro'])
             ->select('user_optional.id', 'user_optional.user_id', 'optionals.name', 'user_optional.created_at', 'optionals.price')
+            ->unionAll(DB::table('user_other_optional')
+                ->select('user_other_optional.id', 'user_other_optional.user_id', 'user_other_optional.name', 'user_other_optional.created_at', 'user_other_optional.pay as price'))
             ->get();
-    
-        $totalOptional = 0;
-        foreach ($userOptionals as $optionals) {
-            $totalOptional += str_replace(',', '.', $optionals->price);
-        }
+
+        $totalOptional = $userOptionals->sum(function ($optionals) {
+            return str_replace(',', '.', $optionals->price);
+        });
     
         return view('admin.dashboard', [
             'totalUsers' => $totalUsers,

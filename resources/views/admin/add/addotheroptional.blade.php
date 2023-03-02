@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Adicionar Outro Opcional ao Cliente')
+@section('title', 'Adicionar Outros ao Cliente')
 @section('content')
 
   @if(session('message'))
@@ -11,7 +11,7 @@
 
   {{-- Page Title --}}
   <div class="pagetitle">
-    <h1>Novo Outro Opcional ao Cliente</h1>
+    <h1>Novo Outros ao Cliente</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin-clients') }}">Clientes</a></li>
@@ -26,7 +26,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h5 class="mt-1">Novo Outro Opcional ao Cliente
+          <h5 class="mt-1">Novo Outros ao Cliente
             <a href="{{ route('admin-clients') }}" class="btn btn-primary btn-sm float-end">
               <i class="bi bi-arrow-left"></i> Voltar
             </a>

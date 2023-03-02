@@ -70,7 +70,7 @@
             <div class="col-md-6">
               <label class="form-label">Status</label>
               <select name="status" id="status" class="form-select">
-                <option value="Finalizado">Finalizado</option>
+                <option value="Concluído">Concluído</option>
                 <option value="Pendente">Pendente</option>
                 <option value="Cancelado">Cancelado</option>
               </select>

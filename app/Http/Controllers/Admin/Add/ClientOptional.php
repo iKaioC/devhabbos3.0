@@ -25,7 +25,7 @@ class ClientOptional extends Controller
             'optional_id' => 'required|exists:optionals,id',
             'product_type' => 'required',
             'status' => 'required',
-            'pay' => 'required|numeric',
+            'pay' => 'required',
             'supportdate' => 'nullable'
         ]);
     
@@ -67,7 +67,7 @@ class ClientOptional extends Controller
             'optional_id' => 'required|exists:optionals,id',
             'product_type' => 'required|string',
             'status' => 'required',
-            'pay' => 'required|numeric',
+            'pay' => 'required',
             'supportdate' => 'required'
         ]);
     

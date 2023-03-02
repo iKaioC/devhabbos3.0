@@ -66,7 +66,7 @@
                                         <div class="modal-header">
                                           <h5 class="modal-title">Informações</h5>
 
-                                          @if ($optional->status == 'Ativo')
+                                          @if ($optional->status == 'Concluído')
                                           <span class="btn btn-success float-right">
                                             {{ $optional->status }}
                                           </span>
@@ -139,7 +139,7 @@
                                     <td style="font-size: 14px;">{{ $optional->product_type }}</td>
 
                                     <td>
-                                      @if ($optional->status === 'Ativo')
+                                      @if ($optional->status === 'Concluído')
                                         <span class="badge border-success border-1 text-success">
                                           {{ $optional->status }}
                                         </span>

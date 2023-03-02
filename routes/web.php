@@ -32,6 +32,7 @@ use App\Http\Controllers\Client\DashboardClientController;
 use App\Http\Controllers\Client\TestimonialClientController;
 use App\Http\Controllers\Client\TicketCommentClientController;
 use App\Http\Controllers\Admin\Used\ServerController as UsedServerController;
+use App\Http\Controllers\Client\OtherOptionalDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,7 @@ Route::prefix('client')->middleware(['auth'])->group(function () {
     Route::get('habbos', [HabboClientDashboard::class, 'listHabbos'])->name('client-habbos');
     Route::get('servers', [ServerClientController::class, 'listServers'])->name('client-servers');
     Route::get('optionals', [OptionalClientDashboard::class, 'listOptionals'])->name('client-optionals');
+    Route::get('otheroptionals', [OtherOptionalDashboard::class, 'listOtherOptionals'])->name('client-other-optionals');
 
     Route::get('user/profile', [UserController::class, 'edit'])->name('user-edit');
     Route::put('user/profile', [UserController::class, 'update'])->name('user-update');
@@ -263,6 +265,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('client/{id}/vps', 'showVps')->name('client-vps-admin');
         Route::get('client/{id}/habbos', 'showHabbos')->name('client-habbos-admin');
         Route::get('client/{id}/optionals', 'showOptionals')->name('client-optionals-admin');
+
+        Route::get('client/{id}/otheroptionals', 'showOtherOptionals')->name('client-otheroptionals-admin');
 
         Route::get('client/testimonials', 'showTestimonials')->name('client-testimonials-admin');
 

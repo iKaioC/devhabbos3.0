@@ -25,7 +25,7 @@ class ClientHabbo extends Controller
             'habbo_id' => 'required|exists:habbos,id',
             'product_type' => 'required',
             'status' => 'required',
-            'pay' => 'required|numeric',
+            'pay' => 'required',
             'supportdate' => 'required'
         ]);
     
@@ -67,7 +67,7 @@ class ClientHabbo extends Controller
             'habbo_id' => 'required|exists:habbos,id',
             'product_type' => 'required|string',
             'status' => 'required',
-            'pay' => 'required|numeric',
+            'pay' => 'required',
             'supportdate' => 'required'
         ]);
     

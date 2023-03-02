@@ -25,7 +25,7 @@ class ClientServer extends Controller
             'server_id' => 'required|exists:servers,id',
             'product_type' => 'required',
             'status' => 'required',
-            'pay' => 'nullable|numeric',
+            'pay' => 'nullable',
             'ipserver' => 'required',
             'duedate' => 'required'
         ]);

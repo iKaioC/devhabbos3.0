@@ -149,11 +149,14 @@
                       <a href="{{ route('add-server-client') }}" class="btn btn-secondary btn-sm">
                         <i class="bi bi-hdd"></i> Adicionar VPS
                       </a>
-                      <a href="{{ route('add-habbo-client') }}" class="btn btn-danger btn-sm">
+                      <a href="{{ route('add-habbo-client') }}" class="btn btn-warning btn-sm">
                         <i class="bi bi-controller"></i> Adicionar Habbo
                       </a>
-                      <a href="{{ route('add-optional-client') }}" class="btn btn-warning btn-sm">
+                      <a href="{{ route('add-optional-client') }}" class="btn btn-danger btn-sm">
                         <i class="bi bi-balloon"></i> Adicionar Opcional
+                      </a>
+                      <a href="{{ route('add-otheroptional-client') }}" class="btn btn-info btn-sm">
+                        <i class="bi bi-balloon"></i> Adicionar Outros
                       </a>
                     </div>
                   </div>
