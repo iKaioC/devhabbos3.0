@@ -41,8 +41,11 @@
 
             <div class="user-info">
               <div class="user-avatar">
-                <a class="edit-avatar" href="#"></a>
-                <img src="{{ asset('profile-images/'.Auth::user()->image) }}" alt="User">
+                @if (Auth::user()->image == '')
+                  <img src="{{ asset('profile-images/default.png') }}" alt="{{ Auth::user()->name }}">
+                @else
+                  <img src="{{ asset('profile-images/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                @endif
               </div>
 
               <div class="user-data">
@@ -121,7 +124,11 @@
 
             <div class="comment">
               <div class="comment-author-ava">
-                <img src="{{ asset('profile-images/'.Auth::user()->image) }}" alt="Avatar">
+                @if (Auth::user()->image == '')
+                  <img src="{{ asset('profile-images/default.png') }}" alt="{{ Auth::user()->name }}">
+                @else
+                  <img src="{{ asset('profile-images/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+                @endif
               </div>
 
               <div class="comment-body">
@@ -143,7 +150,11 @@
           @foreach ($ticket->comments as $comment)
             <div class="comment">
               <div class="comment-author-ava">
-                <img src="{{ asset('profile-images/'.$comment->user->image) }}" alt="Avatar">
+                @if (Auth::user()->image == '')
+                <img src="{{ asset('profile-images/default.png') }}" alt="{{ Auth::user()->name }}">
+              @else
+                <img src="{{ asset('profile-images/'.Auth::user()->image) }}" alt="{{ Auth::user()->name }}">
+              @endif
               </div>
 
               <div class="comment-body">
