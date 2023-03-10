@@ -31,11 +31,11 @@ class UserOtherOptional extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function otheroptionals($id)
+        public function otheroptionals($id)
     {
         $user = User::find($id);
-        $otherOptionals = $user->otherOptionals;
-        
+        $otherOptionals = $user->userOtherOptionals;
+            
         return view('otherOptionals', compact('otherOptionals'));
     }
 
