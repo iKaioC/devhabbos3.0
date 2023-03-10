@@ -29,23 +29,23 @@ class DashboardController extends Controller
         // Recupera todas as VPS's dos clientes e calcula o total de receita
         $userServers = DB::table('user_server')
         ->join('servers', 'user_server.server_id', '=', 'servers.id')
-        ->select('user_server.id', 'user_server.user_id', 'servers.name', 'user_server.created_at', 'servers.price')
+        ->select('user_server.id', 'user_server.user_id', 'servers.name', 'user_server.created_at', DB::raw('COALESCE(user_server.pay, servers.price) as value'))
         ->get();
     
         $totalServer = 0;
         foreach ($userServers as $servers) {
-            $totalServer += str_replace(',', '.', $servers->price);
+            $totalServer += str_replace(',', '.', $servers->value);
         }
 
         // Recupera todas os Habbos dos clientes e calcula o total de receita
         $userHabbos = DB::table('user_habbo')
             ->join('habbos', 'user_habbo.habbo_id', '=', 'habbos.id')
-            ->select('user_habbo.id', 'user_habbo.user_id', 'habbos.name', 'user_habbo.created_at', 'habbos.price')
+            ->select('user_habbo.id', 'user_habbo.user_id', 'habbos.name', 'user_habbo.created_at', DB::raw('COALESCE(user_habbo.pay, habbos.price) as value'))
             ->get();
-    
+
         $totalHabbo = 0;
         foreach ($userHabbos as $habbos) {
-            $totalHabbo += str_replace(',', '.', $habbos->price);
+            $totalHabbo += str_replace(',', '.', $habbos->value);
         }
 
         $userOptionals = DB::table('user_optional')
