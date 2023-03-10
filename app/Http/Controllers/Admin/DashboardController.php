@@ -48,6 +48,7 @@ class DashboardController extends Controller
             $totalHabbo += str_replace(',', '.', $habbos->value);
         }
 
+        // Recupera todos os Opcionais e outros dos clientes e calcula o total de receita
         $userOptionals = DB::table('user_optional')
             ->join('optionals', 'user_optional.optional_id', '=', 'optionals.id')
             ->whereIn('user_optional.product_type', ['Habbo', 'Windows', 'Outro'])

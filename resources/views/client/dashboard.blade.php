@@ -83,6 +83,10 @@
                           <i class="bi bi-star me-1"></i> 
                           {{ Auth::user()->optionals()->count() }}
                         </a>
+                        <a href="{{ route('client-other-optionals') }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Quantidade de Outros" style="margin-left: 15px;">
+                          <i class="bi bi-star me-1"></i> 
+                          {{ Auth::user()->otheroptionals() }}
+                      </a>
                       </div>
                     </div>
                   </div>

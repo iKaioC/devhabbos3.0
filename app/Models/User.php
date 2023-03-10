@@ -77,8 +77,7 @@ class User extends Authenticatable
 
     public function otheroptionals()
     {
-        return $this->belongsToMany(UserOtherOptional::class, 'user_other_optional', 'user_id', 'id')
-                    ->withPivot('status', 'pay', 'category');
+        return UserOtherOptional::where('user_id', $this->id)->count();
     }
 
     public function testimonials()
