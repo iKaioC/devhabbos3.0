@@ -70,11 +70,13 @@
                       <i class="bi bi-currency-dollar"></i> {{ $server->pivot->pay }}
                     </span>
                   </td>
-                  <td>
-                    <a href="{{ route('edit-server-client', $server->userServers->first()->id) }}" class="btn btn-success btn-sm sm">
-                      <i class="bi bi-pencil-square"></i>
-                    </a>
-                  </td>
+                  @foreach ($user->userServers as $userServer)
+                    <td>
+                      <a href="{{ route('edit-server-client', $userServer->id) }}" class="btn btn-success btn-sm sm">
+                        <i class="bi bi-pencil-square"></i>
+                      </a>
+                    </td>
+                  @endforeach
                 </tr>
               @endforeach
             </tbody>
