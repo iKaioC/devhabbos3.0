@@ -33,6 +33,7 @@ use App\Http\Controllers\Client\TestimonialClientController;
 use App\Http\Controllers\Client\TicketCommentClientController;
 use App\Http\Controllers\Admin\Used\ServerController as UsedServerController;
 use App\Http\Controllers\Client\OtherOptionalDashboard;
+use App\Http\Controllers\Web\SystemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,7 @@ Route::get('/register', function () {
     return redirect()->route('web-index');
 });
 Route::get('/habbos', [HabboWebController::class, 'index'])->name('web-habbo');
+Route::get('/systems', [SystemController::class, 'index'])->name('web-system');
 Route::get('/servers', [VpsController::class, 'index'])->name('web-sv');
 Route::get('/servers-brasil', [VpsController::class, 'brasil'])->name('web-svbrasil');
 Route::get('/optionals', [OptionalWebController::class, 'index'])->name('web-optional');

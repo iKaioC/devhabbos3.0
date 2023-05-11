@@ -26,6 +26,12 @@
           </a>
         </li>
 
+        <li>
+          <a class="nav-link {{ $currentUrl === route('web-system') ? 'active' : '' }}" 
+            href="{{ route('web-system') }}">Sistemas
+          </a>
+        </li>
+
         <li class="dropdown {{ $currentUrl === route('web-optional') || $currentUrl === route('web-optional-habbo') ? 'active' : '' }}">
           <a href="#" class="nav-link {{ $currentUrl === route('web-optional') || $currentUrl === route('web-optional-habbo') ? 'active' : '' }}">
             Opcionais
